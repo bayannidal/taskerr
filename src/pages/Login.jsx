@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import { authenticate, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 import UserIcon from "@heroicons/react/outline/UserIcon";
@@ -68,10 +66,10 @@ function Login() {
   };
 
   return (
-    <div className="  flex flex-col justify-between h-[90%] ">
-      <section className="flex flex-col items-center text-black mb-2 h-full justify-between">
-        <div className="  bg-third flex flex-col w-full items-center rounded-b-lg ">
-          <UserIcon className="h-10" />
+    <div className="  flex flex-col justify-between h-full pt-12 lg:pt-20">
+      <section className="flex flex-col items-center  mb-2 h-full justify-between">
+        <div className=" flex flex-col w-full items-center bg-third">
+          <UserIcon className=" h-24" />
           <h1 className=" font-bold">Login</h1>
         </div>
         <h1 className=" font-bold">Login and take care of the tasks!</h1>
@@ -118,7 +116,7 @@ function Login() {
           <div className="mt-5 flex flex-col">
             <button
               type="submit"
-              className="bg-third hover:bg-opacity-90 text-black w-full p-3 font-bold text-xl rounded-lg"
+              className="bg-third hover:bg-opacity-90  w-full p-3 font-bold text-xl rounded-lg"
             >
               Login
             </button>
