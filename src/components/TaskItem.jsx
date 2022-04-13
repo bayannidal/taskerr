@@ -1,30 +1,36 @@
 import { Switch } from "@headlessui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
+import { useDispatch } from "react-redux";
+import { deleteTask } from "../features/tasks/taskSlice";
 
 function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);
   const [pinned, setPinned] = useState(task.pinned);
+  const dispatch = useDispatch();
+  const handleDispatch = () => {
+    return dispatch(deleteTask(task.id));
+  };
   return (
-    <div class="relative custom-shadow rounded-lg bg-secondary mb-1 last:mb-0 group">
-      <div class="min-w-full  relative group  flex flex-col sm:flex-row  sm:justify-between">
-        <div class="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b sm:border-b-0  flex-1">
-          <div class=" text-gray-900  py-4 text-left font-bold">Date</div>
+    <div className="relative custom-shadow rounded-lg bg-secondary mb-1 last:mb-0 group">
+      <div className="min-w-full  relative group  flex flex-col sm:flex-row  sm:justify-between">
+        <div className="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b sm:border-b-0  flex-1">
+          <div className=" text-gray-900  py-4 text-left font-bold">Date</div>
           {new Date(task.createdAt).toLocaleString("en-US")}
         </div>
-        <div class="text-sm text-gray-900 font-light px-2 py-4 flex flex-col  justify-between border-b sm:border-b-0  flex-1">
-          <div class=" text-gray-900  py-4 text-left font-bold">Title</div>
+        <div className="text-sm text-gray-900 font-light px-2 py-4 flex flex-col  justify-between border-b sm:border-b-0  flex-1">
+          <div className=" text-gray-900  py-4 text-left font-bold">Title</div>
           {task.title}
         </div>
-        <div class="text-sm text-gray-900 font-light px-2 py-4 flex flex-col justify-between border-b sm:border-b-0 flex-1">
-          <div class=" text-gray-900  py-4 text-left font-bold">
+        <div className="text-sm text-gray-900 font-light px-2 py-4 flex flex-col justify-between border-b sm:border-b-0 flex-1">
+          <div className=" text-gray-900  py-4 text-left font-bold">
             Description
           </div>
           {task.description}
         </div>
-        <div class="text-sm text-gray-900 font-light px-2 py-4 flex flex-row justify-between flex-1">
+        <div className="text-sm text-gray-900 font-light px-2 py-4 flex flex-row justify-between flex-1">
           <div className="flex flex-col">
-            <div class=" text-gray-900  py-4 text-left font-bold">
+            <div className=" text-gray-900  py-4 text-left font-bold">
               Completed
             </div>
             <Switch
@@ -43,7 +49,9 @@ function TaskItem({ task }) {
             </Switch>
           </div>
           <div className="flex flex-col">
-            <div class="text-gray-900  py-4 text-left font-bold">Pinned</div>
+            <div className="text-gray-900  py-4 text-left font-bold">
+              Pinned
+            </div>
             <Switch
               checked={pinned}
               onChange={setPinned}
@@ -61,7 +69,10 @@ function TaskItem({ task }) {
           </div>
         </div>
       </div>
-      <button className="absolute  z-20 top-1 right-2 hover:text-red-500">
+      <button
+        className="absolute  z-20 top-1 right-2 hover:text-red-500 "
+        onClick={() => dispatch(deleteTask(task.id))}
+      >
         <XCircleIcon className="h-[20px]" />
       </button>
     </div>

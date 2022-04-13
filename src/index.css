@@ -72,3 +72,12 @@ body::-webkit-scrollbar-thumb {
   background-color: #FEDE55;
   border-radius: 20px;
 } */
+
+
+.position-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}

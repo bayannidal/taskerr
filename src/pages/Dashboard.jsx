@@ -1,29 +1,43 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTasks, reset } from "../features/tasks/taskSlice";
+import { logout, reset as resetAuth } from "../features/auth/authSlice";
 import TaskForm from "../components/TaskForm";
 import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
-import Layout from "../styles/Layout";
+import jwt_decoded from "jwt-decode";
+import XIcon from "@heroicons/react/solid/XIcon";
+
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { user } = useSelector((state) => state.auth);
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   );
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     if (isError) {
       console.log(message);
+      setDisplay(true);
     }
     if (!user) {
       navigate("/login");
     }
 
-    dispatch(getTasks());
+    if (user) {
+      dispatch(getTasks());
+      const decodedJwt = jwt_decoded(user.token);
+      if (decodedJwt.exp * 1000 < Date.now()) {
+        dispatch(logout());
+      }
+    }
+
     return () => {
+      dispatch(resetAuth());
       dispatch(reset());
     };
   }, [user, navigate, isError, message, dispatch]);
@@ -31,6 +45,11 @@ function Dashboard() {
   if (isLoading) {
     <Spinner />;
   }
+
+  const handleError = () => {
+    dispatch(reset());
+    setDisplay(false);
+  };
 
   return (
     <div className="px-4 pt-14 lg:pt-20 w-full">
@@ -45,16 +64,31 @@ function Dashboard() {
       </div>
       <section className="mt-5 custom-shadow rounded-lg p-1">
         <div className="rounded-lg h-full text-[0.75rem] lg:text-base">
-          {tasks.length > 0 ? (
+          {isError ? <div>{message}</div> : <></>}
+          {isError ? (
+            <div className="bg-red-400 p-4 rounded-lg flex justify-between items-center text-white hover:bg-opacity-80 mb-5 animate__animated animate__shakeX">
+              Bad Credentials <XIcon className="h-6" onClick={handleError} />
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {!isLoading ? (
             <>
-              {tasks.map((task) => (
-                <TaskItem key={task.id} task={task} />
-              ))}
+              {tasks && tasks.length > 0 ? (
+                <>
+                  {tasks.map((task) => (
+                    <TaskItem key={task.id} task={task} />
+                  ))}
+                </>
+              ) : (
+                <h1 className="font-bold text-center mt-2">
+                  You have not set any goals
+                </h1>
+              )}
             </>
           ) : (
-            <h1 className="font-bold text-center mt-2">
-              You have not set any goals
-            </h1>
+            <Spinner />
           )}
         </div>
       </section>
