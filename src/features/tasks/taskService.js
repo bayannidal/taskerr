@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8080/'
+const API_URL = 'https://taskr99.herokuapp.com/'
 
 const createTask = async (taskData, token) => {
     const config = {
@@ -10,8 +10,8 @@ const createTask = async (taskData, token) => {
             "Content-Type": "application/json",
         }
     }
-    console.log(response)
     const response = await axios.post(API_URL + 'task/insert', taskData, config)
+    console.log(response)
     return response.data
 }
 

@@ -25,7 +25,7 @@ function Login() {
     return () => {
       dispatch(reset());
     };
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -69,9 +69,9 @@ function Login() {
   };
 
   return (
-    <div className="  flex flex-col justify-between h-full pt-12 lg:pt-20">
-      <section className="flex flex-col items-center  mb-2 h-full justify-between p-4 ">
-        <div className=" flex flex-col w-full items-center bg-third rounded-lg py-2">
+    <div className=" flex flex-col justify-between pt-12 lg:pt-20 text-black dark:text-white">
+      <section className="flex flex-col items-center  mb-2 justify-between p-4 ">
+        <div className=" flex flex-col w-full items-center bg-third rounded-lg py-2 text-black">
           <UserIcon className=" h-10" />
           <h1 className=" font-bold">Login</h1>
         </div>
@@ -83,11 +83,7 @@ function Login() {
           handleError={handleError}
           text="Bad Credentials "
         />
-        <form
-          action="POST"
-          onSubmit={onSubmit}
-          className="flex flex-col h-full"
-        >
+        <form action="POST" onSubmit={onSubmit} className="flex flex-col">
           <div className="">
             <div className="flex">
               <InputText
@@ -116,7 +112,7 @@ function Login() {
             {!isLoading ? <Button /> : <ButtonLoading />}
             <Link
               to="/register"
-              className="text-center mt-2 text-gray-600 underline"
+              className="text-center mt-2 text-gray-600 dark:text-gray-200 underline"
             >
               New user? Create an account
             </Link>

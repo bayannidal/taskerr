@@ -1,25 +1,32 @@
-const defaultTheme = require('tailwindcss/defaulttheme');
+// const defaultTheme = require('tailwindcss/defaulttheme');
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    screens: {
-      xs: '325px',
-      ...defaultTheme.screens,
-      '3xl': '1600px'
-    },
+    // screens: {
+    //   xs: '325px',
+    //   ...defaultTheme.screens,
+    //   '3xl': '1600px'
+    // },
     extend: {
       colors: {
         // primary: 'rgb(255,255,255)',
         // secondary: 'rgb(243 244 246)',
         primary: '#FEFFFE',
         secondary: '#F8F8F9',
-        dPrimary: '#121212',
-        dSecondary: '#1E1E1E',
+        // dPrimary: '#121212',
+        // dSecondary: '#1E1E1E',
+        dPrimary: '#292929',
+        dSecondary: '#353536',
+        // dPrimary: '#3F5A7D',
+        // dSecondary: '#4C688D',
+        // dSecondary: '#224069',
+        // dPrimary: '#122F5D',
         comp: '#FAFAFF',
         third: '#FEDE55',
-        text: '#323442'
+        text: '#323442',
+        dText: "#FAFAFF"
       },
       dark: 'class'
     },
