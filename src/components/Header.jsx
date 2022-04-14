@@ -41,7 +41,7 @@ function Header() {
   console.log(goingUp);
 
   return (
-    <header className="flex justify-between items-center p-2 h-10 lg:h-20 fixed top-0 left-0 right-0 z-50">
+    <header className="flex justify-between items-center p-2 h-10 lg:h-20 fixed top-0 left-0 right-0 z-50 dark:text-white">
       <div>
         <Link to="/" className="font-bold text-xl whitespace-nowrap">
           Taskerr. 📝

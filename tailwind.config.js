@@ -15,11 +15,12 @@ module.exports = {
         // secondary: 'rgb(243 244 246)',
         primary: '#FEFFFE',
         secondary: '#F8F8F9',
+        dPrimary: '#121212',
+        dSecondary: '#1E1E1E',
         comp: '#FAFAFF',
         third: '#FEDE55',
         text: '#323442'
       },
-
       dark: 'class'
     },
   },

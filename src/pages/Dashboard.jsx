@@ -8,7 +8,10 @@ import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
+import { selectErrors } from "../features/error/errorsSlice";
 function Dashboard() {
+  const [state, setState] = useState(0);
+  const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -16,10 +19,8 @@ function Dashboard() {
   const { tasks, isLoading, isError, message, isSuccess } = useSelector(
     (state) => state.tasks
   );
-  const [display, setDisplay] = useState(false);
 
   const sortList = ["All", "Pinned", "Completed", "Expiry"];
-  const [state, setState] = useState(0);
 
   useEffect(() => {
     if (isError) {
@@ -56,17 +57,11 @@ function Dashboard() {
     dispatch(reset());
     setDisplay(false);
   };
-  // const newArr = tasks.sort((a, b) => ((a.isPinned > b.isPinned) ? 1 : -1)
-  // const newArr = [...tasks].sort(function (x, y) {
-  //   return x.pinned === y.pinned ? 0 : x ? -1 : 1;
 
-  // });
-
-  // console.log(newArr);
   return (
     <div className="px-4 pt-14 lg:pt-32 pb-5 w-full">
       <div className="custom-shadow rounded-lg p-1">
-        <section className="p-2 bg-secondary rounded-lg  mb-5 custom-shadow">
+        <section className="p-2 bg-secondary dark:bg-dSecondary dark:text-white rounded-lg  mb-5 custom-shadow">
           <h1 className="font-bold text-2xl">
             Welcome, {user && user.firstName + " " + user.lastName}!
           </h1>
@@ -75,13 +70,13 @@ function Dashboard() {
         <TaskForm />
       </div>
       <section className="mt-5 custom-shadow rounded-lg p-1">
-        <div className="flex gap-2 bg-secondary rounded-lg p-1 mb-2">
+        <div className="flex gap-2 bg-secondary dark:bg-dSecondary  rounded-lg p-1 mb-2">
           {sortList.map((item, index) => (
             <button
               type="button"
-              className={` flex-grow font-semibold text-l lg:text-xl  p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] nav-links w-[33%] ${
+              className={` flex-grow font-semibold text-l lg:text-xl dark:text-white  p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] nav-links w-[33%] ${
                 index === state
-                  ? "bg-primary hover:bg-[rgba(255,255,255)] border-2"
+                  ? "bg-primary dark:bg-dPrimary hover:bg-[rgba(255,255,255)] dark:hover:bg-[rgba(0,0,0,0.2)] border-2"
                   : ""
               }`}
               key={index}
@@ -95,7 +90,7 @@ function Dashboard() {
           <Error
             error={isError}
             handleError={handleError}
-            text="Task could not be deleted... "
+            text={errorMessage}
           />
           {!isLoading ? (
             <>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTask } from "../features/tasks/taskSlice";
 import { Switch } from "@headlessui/react";
-
+import { InputText } from "./InputText";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,33 +21,39 @@ function TaskForm() {
   };
 
   return (
-    <section className="">
+    <section className=" dark:text-white">
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label htmlFor="text" className="font-bold ml-2">
             Create a new Taskrr.
           </label>
           <div className="flex mt-5">
-            <input
+            <InputText
               type="title"
               name="title"
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What do yo have to do..."
-              className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
             />
+            {/* <input
+           
+              className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
+            /> */}
           </div>
           <div className="flex">
-            <input
+            <InputText
               type="description"
               name="description"
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="How would you describe it..."
-              className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
             />
+            {/* <input
+          
+              className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
+            /> */}
           </div>
           <div className="flex"></div>
 
@@ -61,7 +67,7 @@ function TaskForm() {
                 checked={completed}
                 onChange={setCompleted}
                 className={`${
-                  completed ? "bg-green-500" : "bg-gray-200"
+                  completed ? "bg-green-500" : "bg-gray-200 dark:bg-dSecondary"
                 } relative inline-flex items-center h-6 rounded-full w-11`}
               >
                 <span className="sr-only">Enable notifications</span>
@@ -80,7 +86,7 @@ function TaskForm() {
                 checked={pinned}
                 onChange={setPinned}
                 className={`${
-                  pinned ? "bg-purple-500" : "bg-gray-200"
+                  pinned ? "bg-purple-500" : "bg-gray-200 dark:bg-dSecondary"
                 } relative inline-flex items-center h-6 rounded-full w-11`}
               >
                 <span className="sr-only">Enable notifications</span>
@@ -95,7 +101,7 @@ function TaskForm() {
         </div>
         <button
           type="submit"
-          className="bg-third hover:bg-opacity-90 w-full p-3 font-bold text-xl rounded-lg"
+          className="bg-third hover:bg-opacity-90 w-full p-3 font-bold text-xl rounded-lg dark:text-black"
         >
           Add Task
         </button>

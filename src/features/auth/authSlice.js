@@ -27,8 +27,8 @@ export const authenticate = createAsyncThunk('authenticate', async (user, thunkA
         return await authService.authenticate(user)
     } catch (error) {
         const message = ((error.response && error.response.data && error.response.data.message) || (error.message || error.toString()))
+        console.log(message)
         return thunkApi.rejectWithValue(message)
-
     }
 })
 

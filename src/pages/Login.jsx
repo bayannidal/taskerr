@@ -36,10 +36,6 @@ function Login() {
     if (isError) {
       setDisplay(true);
     }
-
-    if (isSuccess) {
-      dispatch(reset());
-    }
   }, [
     user,
     isError,

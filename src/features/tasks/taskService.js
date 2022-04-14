@@ -10,6 +10,7 @@ const createTask = async (taskData, token) => {
             "Content-Type": "application/json",
         }
     }
+    console.log(response)
     const response = await axios.post(API_URL + 'task/insert', taskData, config)
     return response.data
 }
@@ -22,7 +23,10 @@ const getTasks = async (token) => {
             "Content-Type": "application/json",
         }
     }
+
     const response = await axios.get(API_URL + 'task/user', config)
+    console.log(response)
+
     return response.data
 }
 
@@ -36,6 +40,7 @@ const deleteTask = async (id, token) => {
         }
     }
     const response = await axios.delete(API_URL + `task/${id}`, config)
+    console.log(response)
 
     if (response.status === 200)
         return { id }
