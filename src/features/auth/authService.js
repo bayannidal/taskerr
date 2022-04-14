@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-const API_URL = 'http://localhost:8080/'
+const API_URL = 'https://taskr99.herokuapp.com/'
 const api = axios.create({
     headers: {
         Accept: "application/json",

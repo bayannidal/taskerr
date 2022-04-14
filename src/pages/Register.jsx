@@ -35,7 +35,7 @@ function Register() {
 
   useEffect(() => {
     dispatch(reset());
-  }, []);
+  }, [dispatch]);
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,

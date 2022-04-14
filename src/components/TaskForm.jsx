@@ -18,10 +18,11 @@ function TaskForm() {
     setDescription("");
     setCompleted(false);
     setPinned(false);
+    setExpiresAt("");
   };
 
   return (
-    <section className=" dark:text-white">
+    <section className=" text-text dark:text-dText">
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label htmlFor="text" className="font-bold ml-2">

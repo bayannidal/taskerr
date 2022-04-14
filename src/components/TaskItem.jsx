@@ -1,5 +1,5 @@
 import { Switch } from "@headlessui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../features/tasks/taskSlice";
@@ -12,7 +12,7 @@ function TaskItem({ task }) {
     return dispatch(deleteTask(task.id));
   };
   return (
-    <div className="relative custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  dark:text-white mb-1 last:mb-0 group">
+    <div className="relative custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-1 last:mb-0 group">
       <div className="min-w-full  relative group  flex flex-col sm:flex-row  sm:justify-between">
         <div className="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b sm:border-b-0  flex-1">
           <div className="  py-4 text-left font-bold">Date</div>

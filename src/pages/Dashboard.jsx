@@ -8,19 +8,25 @@ import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
-import { selectErrors } from "../features/error/errorsSlice";
 function Dashboard() {
   const [state, setState] = useState(0);
   const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  console.log(display);
   const { user } = useSelector((state) => state.auth);
-  const { tasks, isLoading, isError, message, isSuccess } = useSelector(
+  const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   );
 
   const sortList = ["All", "Pinned", "Completed", "Expiry"];
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+      dispatch(resetAuth());
+    };
+  }, [dispatch]);
 
   useEffect(() => {
     if (isError) {
@@ -38,15 +44,6 @@ function Dashboard() {
         dispatch(logout());
       }
     }
-    if (isSuccess) {
-      dispatch(reset());
-    }
-    return () => {
-      if (!user) {
-        dispatch(reset());
-        dispatch(resetAuth());
-      }
-    };
   }, [user, navigate, isError, message, dispatch]);
 
   if (isLoading) {
@@ -74,7 +71,7 @@ function Dashboard() {
           {sortList.map((item, index) => (
             <button
               type="button"
-              className={` flex-grow font-semibold text-l lg:text-xl dark:text-white  p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] nav-links w-[33%] ${
+              className={` flex-grow font-semibold text-l lg:text-xl dark:text-white  p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] dark:hover:bg-dPrimary nav-links w-[33%] ${
                 index === state
                   ? "bg-primary dark:bg-dPrimary hover:bg-[rgba(255,255,255)] dark:hover:bg-[rgba(0,0,0,0.2)] border-2"
                   : ""
@@ -90,7 +87,8 @@ function Dashboard() {
           <Error
             error={isError}
             handleError={handleError}
-            text={errorMessage}
+            text={message}
+            customStyle="mt-5"
           />
           {!isLoading ? (
             <>
