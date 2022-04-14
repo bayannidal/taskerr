@@ -1,9 +1,11 @@
 import LoginIcon from "@heroicons/react/outline/LoginIcon";
 import UserIcon from "@heroicons/react/outline/UserIcon";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import LogoutIcon from "@heroicons/react/outline/LogoutIcon";
+import { useRef } from "react";
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -13,6 +15,30 @@ function Header() {
     dispatch(reset());
     navigate("/login");
   };
+  const prevScrollY = useRef(0);
+
+  const [goingUp, setGoingUp] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (prevScrollY.current < currentScrollY && goingUp) {
+        setGoingUp(false);
+      }
+      if (prevScrollY.current > currentScrollY && !goingUp) {
+        setGoingUp(true);
+      }
+
+      prevScrollY.current = currentScrollY;
+      console.log(goingUp, currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [goingUp]);
+
+  console.log(goingUp);
 
   return (
     <header className="flex justify-between items-center p-2 h-10 lg:h-20 fixed top-0 left-0 right-0 z-50">

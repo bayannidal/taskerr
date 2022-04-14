@@ -25,12 +25,17 @@ function Register() {
   useEffect(() => {
     if (isError) {
       toast.error(message);
+      dispatch(reset());
     }
     if (isSuccess || user) {
+      dispatch(reset());
       navigate("/");
     }
-    dispatch(reset());
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
+
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,

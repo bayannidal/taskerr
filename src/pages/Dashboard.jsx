@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTasks, reset } from "../features/tasks/taskSlice";
@@ -7,38 +7,44 @@ import TaskForm from "../components/TaskForm";
 import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
-import XIcon from "@heroicons/react/solid/XIcon";
-
+import Error from "../components/Error";
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user } = useSelector((state) => state.auth);
-  const { tasks, isLoading, isError, message } = useSelector(
+  const { tasks, isLoading, isError, message, isSuccess } = useSelector(
     (state) => state.tasks
   );
   const [display, setDisplay] = useState(false);
 
+  const sortList = ["All", "Pinned", "Completed", "Expiry"];
+  const [state, setState] = useState(0);
+
   useEffect(() => {
     if (isError) {
-      console.log(message);
       setDisplay(true);
     }
     if (!user) {
       navigate("/login");
     }
 
-    if (user) {
+    if (user && !isError) {
       dispatch(getTasks());
       const decodedJwt = jwt_decoded(user.token);
       if (decodedJwt.exp * 1000 < Date.now()) {
+        dispatch(resetAuth());
         dispatch(logout());
       }
     }
-
-    return () => {
-      dispatch(resetAuth());
+    if (isSuccess) {
       dispatch(reset());
+    }
+    return () => {
+      if (!user) {
+        dispatch(reset());
+        dispatch(resetAuth());
+      }
     };
   }, [user, navigate, isError, message, dispatch]);
 
@@ -50,9 +56,15 @@ function Dashboard() {
     dispatch(reset());
     setDisplay(false);
   };
+  // const newArr = tasks.sort((a, b) => ((a.isPinned > b.isPinned) ? 1 : -1)
+  // const newArr = [...tasks].sort(function (x, y) {
+  //   return x.pinned === y.pinned ? 0 : x ? -1 : 1;
 
+  // });
+
+  // console.log(newArr);
   return (
-    <div className="px-4 pt-14 lg:pt-20 w-full">
+    <div className="px-4 pt-14 lg:pt-32 pb-5 w-full">
       <div className="custom-shadow rounded-lg p-1">
         <section className="p-2 bg-secondary rounded-lg  mb-5 custom-shadow">
           <h1 className="font-bold text-2xl">
@@ -63,29 +75,72 @@ function Dashboard() {
         <TaskForm />
       </div>
       <section className="mt-5 custom-shadow rounded-lg p-1">
+        <div className="flex gap-2 bg-secondary rounded-lg p-1 mb-2">
+          {sortList.map((item, index) => (
+            <button
+              type="button"
+              className={` flex-grow font-semibold text-l lg:text-xl  p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] nav-links w-[33%] ${
+                index === state
+                  ? "bg-primary hover:bg-[rgba(255,255,255)] border-2"
+                  : ""
+              }`}
+              key={index}
+              onClick={() => setState(index)}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
         <div className="rounded-lg h-full text-[0.75rem] lg:text-base">
-          {isError ? <div>{message}</div> : <></>}
-          {isError ? (
-            <div className="bg-red-400 p-4 rounded-lg flex justify-between items-center text-white hover:bg-opacity-80 mb-5 animate__animated animate__shakeX">
-              Bad Credentials <XIcon className="h-6" onClick={handleError} />
-            </div>
-          ) : (
-            <></>
-          )}
-
+          <Error
+            error={isError}
+            handleError={handleError}
+            text="Task could not be deleted... "
+          />
           {!isLoading ? (
             <>
-              {tasks && tasks.length > 0 ? (
+              {tasks.length > 0 && state === 0 ? (
                 <>
                   {tasks.map((task) => (
-                    <TaskItem key={task.id} task={task} />
+                    <React.Fragment key={task.id}>
+                      {task && <TaskItem key={task.id} task={task} />}
+                    </React.Fragment>
                   ))}
                 </>
-              ) : (
-                <h1 className="font-bold text-center mt-2">
-                  You have not set any goals
-                </h1>
-              )}
+              ) : null}
+              {tasks.length > 0 && state === 1 ? (
+                <>
+                  {tasks.map((task) => (
+                    <React.Fragment key={task.id}>
+                      {task.pinned === true && (
+                        <TaskItem key={task.id} task={task} />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </>
+              ) : null}
+              {tasks.length > 0 && state === 2 ? (
+                <>
+                  {tasks.map((task) => (
+                    <React.Fragment key={task.id}>
+                      {task.completed === true && (
+                        <TaskItem key={task.id} task={task} />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </>
+              ) : null}
+              {tasks.length > 0 && state === 3 ? (
+                <>
+                  {tasks.map((task) => (
+                    <React.Fragment key={task.id}>
+                      {task.expiresAt === true && (
+                        <TaskItem key={task.id} task={task} />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </>
+              ) : null}
             </>
           ) : (
             <Spinner />

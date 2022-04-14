@@ -16,7 +16,7 @@ function TaskItem({ task }) {
       <div className="min-w-full  relative group  flex flex-col sm:flex-row  sm:justify-between">
         <div className="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b sm:border-b-0  flex-1">
           <div className=" text-gray-900  py-4 text-left font-bold">Date</div>
-          {new Date(task.createdAt).toLocaleString("en-US")}
+          {new Date(task.expiresAt).toLocaleString("en-US")}
         </div>
         <div className="text-sm text-gray-900 font-light px-2 py-4 flex flex-col  justify-between border-b sm:border-b-0  flex-1">
           <div className=" text-gray-900  py-4 text-left font-bold">Title</div>
@@ -71,7 +71,7 @@ function TaskItem({ task }) {
       </div>
       <button
         className="absolute  z-20 top-1 right-2 hover:text-red-500 "
-        onClick={() => dispatch(deleteTask(task.id))}
+        onClick={handleDispatch}
       >
         <XCircleIcon className="h-[20px]" />
       </button>

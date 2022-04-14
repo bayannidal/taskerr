@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTask } from "../features/tasks/taskSlice";
 import { Switch } from "@headlessui/react";
+
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const [pinned, setPinned] = useState(false);
+  // const [expiresAt, setExpiresAt] = useState(new Date());
   const [expiresAt, setExpiresAt] = useState("2030-04-04 12:00:00");
   const dispatch = useDispatch();
   const onSubmit = (e) => {
@@ -47,6 +49,7 @@ function TaskForm() {
               className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
             />
           </div>
+          <div className="flex"></div>
 
           <div className="flex justify-between">
             {" "}

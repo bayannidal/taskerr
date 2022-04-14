@@ -78,6 +78,7 @@ export const taskSlice = createSlice({
             .addCase(createTask.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
+                state.isError = false
                 state.tasks.push(action.payload)
             })
             .addCase(createTask.rejected, (state, action) => {
@@ -110,6 +111,7 @@ export const taskSlice = createSlice({
             .addCase(deleteTask.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
+                state.isSuccess = false
                 state.message = action.payload
             })
     }
