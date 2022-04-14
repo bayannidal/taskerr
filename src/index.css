@@ -13,26 +13,30 @@ html {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #FAFAFA;
   font-family: 'PT Sans', sans-serif;
-  color: #323442;
-
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
 
-
-html,
-body,
-#root,
-#root>.App {
-  min-height: 100%;
+.App>div {
   min-height: -webkit-fill-available;
+  width: 100vw;
+  min-height: 100vh;
 
 }
 
-.App {
-  height: 100%;
+
+/* html>body>#root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
+
+
+
+
 
 
 

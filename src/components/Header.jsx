@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import LogoutIcon from "@heroicons/react/outline/LogoutIcon";
-function Header({ goingUp }) {
+function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -15,11 +15,7 @@ function Header({ goingUp }) {
   };
 
   return (
-    <header
-      className={`${
-        !goingUp ? "hidden" : "flex"
-      } justify-between items-center p-2 h-10 lg:h-20 fixed top-0 left-0 right-0 z-50 text-text dark:text-dText`}
-    >
+    <header className=" justify-between items-center p-2 h-10 lg:h-20 fixed top-0 left-0 right-0 z-50 text-text dark:text-dText">
       <div>
         <Link to="/" className="font-bold text-xl whitespace-nowrap">
           Taskerr. 📝
