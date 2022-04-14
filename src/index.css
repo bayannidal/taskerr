@@ -19,12 +19,13 @@ html {
 
 body {
   margin: 0;
+
 }
 
 .App>div {
-  min-height: -webkit-fill-available;
   width: 100vw;
   min-height: 100vh;
+  /* min-height: -webkit-fill-available; */
 
 }
 
