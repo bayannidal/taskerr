@@ -84,16 +84,7 @@ function Dashboard() {
           ))}
         </div>
         <div className="rounded-lg h-full text-[0.75rem] lg:text-base">
-<<<<<<< HEAD
           <Error error={isError} handleError={handleError} text={message} />
-=======
-          <Error
-            error={isError}
-            handleError={handleError}
-            text={message}
-            customStyle="mt-5"
-          />
->>>>>>> production
           {!isLoading ? (
             <>
               {tasks.length > 0 && state === 0 ? (
