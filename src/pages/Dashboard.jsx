@@ -8,7 +8,6 @@ import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
-import { selectErrors } from "../features/error/errorsSlice";
 function Dashboard() {
   const [state, setState] = useState(0);
   const [display, setDisplay] = useState(false);
@@ -87,11 +86,7 @@ function Dashboard() {
           ))}
         </div>
         <div className="rounded-lg h-full text-[0.75rem] lg:text-base">
-          <Error
-            error={isError}
-            handleError={handleError}
-            text={errorMessage}
-          />
+          <Error error={isError} handleError={handleError} text={message} />
           {!isLoading ? (
             <>
               {tasks.length > 0 && state === 0 ? (
