@@ -109,7 +109,7 @@ function Login() {
             </div>
           </div>
           <div className="mt-5 flex flex-col">
-            {!isLoading ? <Button /> : <ButtonLoading />}
+            {!isLoading ? <Button text="Login" /> : <ButtonLoading />}
             <Link
               to="/register"
               className="text-center mt-2 text-gray-600 dark:text-gray-200 underline"
