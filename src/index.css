@@ -22,10 +22,15 @@ body {
 }
 
 .App>div {
-  min-height: -webkit-fill-available;
   width: 100vw;
   min-height: 100vh;
+}
 
+@media screen and (max-width: 760px) {
+  .App>div {
+    width: 100vw;
+    min-height: 90vh;
+  }
 }
 
 
