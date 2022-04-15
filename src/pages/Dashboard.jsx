@@ -55,6 +55,10 @@ function Dashboard() {
     setDisplay(false);
   };
 
+  console.log(tasks);
+  console.log(
+    [...tasks].sort((a, b) => new Date(b.expiresAt) - new Date(a.expiresAt))
+  );
   return (
     <div className="px-2 lg:px-10  pt-14 lg:pt-32 pb-5 w-full">
       <div className="custom-shadow rounded-lg p-1">
@@ -87,48 +91,57 @@ function Dashboard() {
           <Error error={isError} handleError={handleError} text={message} />
           {!isLoading ? (
             <>
-              {tasks.length > 0 && state === 0 ? (
+              {tasks.length > 0 ? (
                 <>
-                  {tasks.map((task) => (
-                    <React.Fragment key={task.id}>
-                      {task && <TaskItem key={task.id} task={task} />}
-                    </React.Fragment>
-                  ))}
+                  {state === 0 ? (
+                    <>
+                      {tasks.map((task) => (
+                        <React.Fragment key={task.id}>
+                          {task && <TaskItem key={task.id} task={task} />}
+                        </React.Fragment>
+                      ))}
+                    </>
+                  ) : null}
+                  {state === 1 ? (
+                    <>
+                      {tasks.map((task) => (
+                        <React.Fragment key={task.id}>
+                          {task.pinned === true && (
+                            <TaskItem key={task.id} task={task} />
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </>
+                  ) : null}
+                  {state === 2 ? (
+                    <>
+                      {tasks.map((task) => (
+                        <React.Fragment key={task.id}>
+                          {task.completed === true && (
+                            <TaskItem key={task.id} task={task} />
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </>
+                  ) : null}
+                  {state === 3 ? (
+                    <>
+                      {[...tasks]
+                        .sort(
+                          (a, b) =>
+                            new Date(a.expiresAt) - new Date(b.expiresAt)
+                        )
+                        .map((task) => (
+                          <React.Fragment key={task.id}>
+                            {task && <TaskItem key={task.id} task={task} />}
+                          </React.Fragment>
+                        ))}
+                    </>
+                  ) : null}
                 </>
-              ) : null}
-              {tasks.length > 0 && state === 1 ? (
-                <>
-                  {tasks.map((task) => (
-                    <React.Fragment key={task.id}>
-                      {task.pinned === true && (
-                        <TaskItem key={task.id} task={task} />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </>
-              ) : null}
-              {tasks.length > 0 && state === 2 ? (
-                <>
-                  {tasks.map((task) => (
-                    <React.Fragment key={task.id}>
-                      {task.completed === true && (
-                        <TaskItem key={task.id} task={task} />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </>
-              ) : null}
-              {tasks.length > 0 && state === 3 ? (
-                <>
-                  {tasks.map((task) => (
-                    <React.Fragment key={task.id}>
-                      {task.expiresAt === true && (
-                        <TaskItem key={task.id} task={task} />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </>
-              ) : null}
+              ) : (
+                <h1>You have no tasks</h1>
+              )}
             </>
           ) : (
             <Spinner />

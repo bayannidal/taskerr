@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className="App bg-primary dark:bg-dPrimary">
+        <div className="App bg-primary dark:bg-dPrimary transition duration-500">
           <Header />
           <Routes>
             <Route path="/" element={<Dashboard />} />

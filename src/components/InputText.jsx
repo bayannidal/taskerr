@@ -8,6 +8,10 @@ export const InputText = ({
   placeholder,
   onChange,
   required,
+  customClass,
+  step,
+  onFocus,
+  onBlur,
 }) => {
   return (
     <input
@@ -18,7 +22,12 @@ export const InputText = ({
       placeholder={placeholder}
       onChange={onChange}
       required={required}
-      className="flex-grow  rounded-lg p-3 xs:p-4   mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-dText"
+      step={step}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      className={`${
+        customClass + " "
+      }flex-grow  rounded-lg p-3 xs:p-4   mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-dText`}
     />
   );
 };
