@@ -56,13 +56,13 @@ function Dashboard() {
   };
 
   return (
-    <div className="px-4  pt-14 lg:pt-32 pb-5 w-full">
+    <div className="px-2 lg:px-10  pt-14 lg:pt-32 pb-5 w-full">
       <div className="custom-shadow rounded-lg p-1">
         <section className="p-2 bg-secondary dark:bg-dSecondary dark:text-white rounded-lg  mb-5 custom-shadow">
           <h1 className="font-bold text-2xl">
             Welcome, {user && user.firstName + " " + user.lastName}!
           </h1>
-          <p className="font-semibold">Tasks Dashboard</p>
+          <p className="ml-2 mt-2 font-medium">Tasks Dashboard</p>
         </section>
         <TaskForm />
       </div>
