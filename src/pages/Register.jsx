@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register, reset } from "../features/auth/authSlice";
 import UserIcon from "@heroicons/react/outline/UserIcon";
 import Spinner from "../components/Spinner";
+import { InputText } from "../components/InputText";
+import Button from "../components/Button";
+import ButtonLoading from "../components/ButtonLoading";
 function Register() {
   const [formData, setFormData] = useState({
     username: "",
@@ -61,73 +64,69 @@ function Register() {
     return <Spinner />;
   }
   return (
-    <div className=" flex flex-col justify-between h-[90%]">
-      <section className="bg-third flex flex-col items-center text-black mb-2 rounded-b-lg py-2">
-        <div className="h-10 w-10">
-          <UserIcon />
+    <div className=" flex flex-col justify-between pt-12 lg:pt-20 text-text dark:text-white">
+      <section className="flex flex-col items-center  mb-2 justify-between p-4">
+        <div className="flex flex-col w-full items-center bg-third rounded-lg py-2 text-text">
+          <UserIcon className="h-10" />
+          <h1 className=" font-bold">Register</h1>
         </div>
-        <h1 className=" font-bold">Register</h1>
+        <h1 className=" font-bold">Register and add some tasks!</h1>
       </section>
       <section className="flex flex-col p-4">
         <form onSubmit={onSubmit} className="flex flex-col h-full">
           <div>
             <div className="flex">
-              <input
+              <InputText
                 type="text"
                 id="username"
                 name="username"
                 value={username}
                 placeholder="Username..."
                 onChange={onChange}
-                className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
               />
             </div>
             <div className="flex">
-              <input
+              <InputText
                 type="text"
                 id="firstName"
                 name="firstName"
                 value={firstName}
                 placeholder="First name..."
                 onChange={onChange}
-                className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
               />
             </div>
             <div className="flex">
-              <input
+              <InputText
                 type="text"
                 id="lastName"
                 name="lastName"
                 value={lastName}
                 placeholder="Last name..."
                 onChange={onChange}
-                className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
               />
             </div>
             <div className="flex">
-              <input
+              <InputText
                 type="email"
                 id="emailAddress"
                 name="emailAddress"
                 value={emailAddress}
                 placeholder="Email..."
                 onChange={onChange}
-                className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
               />
             </div>
             <div className="flex">
-              <input
+              <InputText
                 type="password"
                 id="password"
                 name="password"
                 value={password}
                 placeholder="Password..."
                 onChange={onChange}
-                className=" rounded-lg p-4 mb-2 bg-secondary flex-grow"
               />
             </div>
             <div className="flex">
-              <input
+              <InputText
                 type="password"
                 id="password2"
                 name="password2"
@@ -138,16 +137,18 @@ function Register() {
               />
             </div>
           </div>
-          <div>
-            <button
-              type="submit"
-              className="bg-third text-black w-full p-5 font-bold text-xl rounded-lg mt-2"
+          <div className=" flex flex-col mt-5">
+            {!isLoading ? (
+              <Button text="Create Account" type="submit" />
+            ) : (
+              <ButtonLoading />
+            )}
+            <Link
+              to="/login"
+              className="text-center mt-2 text-gray-600 dark:text-gray-200 underline"
             >
-              Create Account
-            </button>
-            <div className="text-center mt-2 text-gray-600">
               Already have an account?
-            </div>
+            </Link>
           </div>
         </form>
       </section>
