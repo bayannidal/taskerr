@@ -56,7 +56,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="px-4 pt-14 lg:pt-32 pb-5 w-full">
+    <div className="px-4  pt-14 lg:pt-32 pb-5 w-full">
       <div className="custom-shadow rounded-lg p-1">
         <section className="p-2 bg-secondary dark:bg-dSecondary dark:text-white rounded-lg  mb-5 custom-shadow">
           <h1 className="font-bold text-2xl">
