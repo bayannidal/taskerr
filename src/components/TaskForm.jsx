@@ -8,12 +8,17 @@ function TaskForm() {
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const [pinned, setPinned] = useState(false);
-  // const [expiresAt, setExpiresAt] = useState(new Date());
-  const [expiresAt, setExpiresAt] = useState("2030-04-04 12:00:00");
+  const [expiresAt, setExpiresAt] = useState("");
   const dispatch = useDispatch();
+  const expiresReplaced = expiresAt
+    .toString()
+    .replace("T", " ")
+    .replace("Z", " ");
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(createTask({ title, description, completed, pinned, expiresAt }));
+    dispatch(
+      createTask({ title, description, completed, pinned, expiresReplaced })
+    );
     setTitle("");
     setDescription("");
     setCompleted(false);
@@ -22,7 +27,7 @@ function TaskForm() {
   };
 
   return (
-    <section className=" text-text dark:text-dText">
+    <section className=" bg-secondary dark:bg-dPrimary text-text dark:text-dText">
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label htmlFor="text" className="font-bold ml-2">
@@ -30,33 +35,41 @@ function TaskForm() {
           </label>
           <div className="flex mt-5">
             <InputText
-              type="title"
+              type="text"
               name="title"
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What do yo have to do..."
             />
-            {/* <input
-           
-              className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
-            /> */}
           </div>
           <div className="flex">
             <InputText
-              type="description"
+              type="text"
               name="description"
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="How would you describe it..."
             />
-            {/* <input
-          
-              className="flex-grow  rounded-lg p-4 mb-2 bg-secondary"
-            /> */}
           </div>
-          <div className="flex"></div>
+          <div className="flex flex-col">
+            <label htmlFor="datetime" className=" ml-2 font-semibold">
+              Add expiry date (optional)
+            </label>
+            <InputText
+              type="text"
+              name="description"
+              id="description"
+              value={expiresAt}
+              onChange={(e) => setExpiresAt(e.target.value)}
+              step="1"
+              customClass="relative"
+              placeholder="Date & Time"
+              onFocus={(e) => (e.target.type = "datetime-local")}
+              onBlur={(e) => (e.target.type = "text")}
+            />
+          </div>
 
           <div className="flex justify-between">
             {" "}

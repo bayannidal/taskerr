@@ -64,7 +64,7 @@ function TaskItem({ task }) {
         </div>
       </div>
       <button
-        className="absolute  z-20 top-1 right-2 hover:text-red-500 "
+        className="absolute  z-20 top-1 right-2 hover:text-red-500"
         onClick={handleDispatch}
       >
         <XCircleIcon className="h-[20px]" />
