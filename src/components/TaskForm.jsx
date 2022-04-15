@@ -58,16 +58,13 @@ function TaskForm() {
               Add expiry date (optional)
             </label>
             <InputText
-              type="text"
+              type="datetime-local"
               name="description"
               id="description"
               value={expiresAt}
               onChange={(e) => setExpiresAt(e.target.value)}
               step="1"
               customClass="relative"
-              placeholder="Date & Time"
-              onFocus={(e) => (e.target.type = "datetime-local")}
-              onBlur={(e) => (e.target.type = "text")}
             />
           </div>
 

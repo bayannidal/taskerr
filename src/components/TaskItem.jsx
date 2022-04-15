@@ -13,16 +13,16 @@ function TaskItem({ task }) {
   };
   return (
     <div className="relative custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-1 last:mb-0 group">
-      <div className="min-w-full  relative group  flex flex-col sm:flex-row  sm:justify-between">
-        <div className="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b sm:border-b-0  flex-1">
+      <div className="min-w-full  relative group  flex flex-col md:flex-row  md:justify-between">
+        <div className="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b md:border-b-0  flex-1">
           <div className="  py-4 text-left font-bold">Date</div>
           {new Date(task.expiresAt).toLocaleString("en-US")}
         </div>
-        <div className="text-sm  font-light px-2 py-4 flex flex-col  justify-between border-b sm:border-b-0  flex-1">
+        <div className="text-sm  font-light px-2 py-4 flex flex-col  justify-between border-b md:border-b-0  flex-1">
           <div className="  py-4 text-left font-bold">Title</div>
           {task.title}
         </div>
-        <div className="text-sm font-light px-2 py-4 flex flex-col justify-between border-b sm:border-b-0 flex-1">
+        <div className="text-sm font-light px-2 py-4 flex flex-col justify-between border-b md:border-b-0 flex-1">
           <div className=" py-4 text-left font-bold">Description</div>
           {task.description}
         </div>
