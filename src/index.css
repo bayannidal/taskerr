@@ -25,11 +25,9 @@ html {
 
 
 
-.App {
-  min-height: 100vh;
-
+.App>div {
+  min-height: 100vh
 }
-
 
 @media screen and (max-width: 450px) {
   .App>div {
@@ -37,13 +35,6 @@ html {
   }
 }
 
-
-
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 
 .Toastify__toast-container {
