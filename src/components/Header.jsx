@@ -29,13 +29,13 @@ function Header() {
       <ul className="flex items-center">
         <li>
           <button
-            className="flex items-center mr-2 lg:mr-5 font-bold"
+            className="flex items-center mr-4 lg:mr-5 font-bold"
             onClick={() => setTheme(colorTheme)}
           >
             {colorTheme === "light" ? (
-              <SunOutline className="h-6 text-dThird dark:text-third " />
+              <SunOutline className="h-8 text-dThird dark:text-third " />
             ) : (
-              <MoonOutline className="h-6 text-dThird dark:text-third" />
+              <MoonOutline className="h-8 text-dThird dark:text-third" />
             )}
           </button>
         </li>
@@ -45,7 +45,7 @@ function Header() {
               className="flex items-center mr-2 lg:mr-5 font-bold"
               onClick={onLogout}
             >
-              <LogoutIcon className="text-third h-6 w-6 mr-1" />
+              <LogoutIcon className="text-third h-8 mr-2" />
               Logout
             </button>
           </li>

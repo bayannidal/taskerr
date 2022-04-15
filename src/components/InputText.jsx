@@ -23,8 +23,6 @@ export const InputText = ({
       onChange={onChange}
       required={required}
       step={step}
-      onFocus={onFocus}
-      onBlur={onBlur}
       className={`${
         customClass + " "
       }flex-grow  rounded-lg p-3 xs:p-4   mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-dText`}
