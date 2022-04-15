@@ -69,7 +69,7 @@ function Login() {
   };
 
   return (
-    <div className=" flex flex-col justify-between pt-12 lg:pt-20 text-black dark:text-white">
+    <div className="flex flex-col justify-between pt-12 lg:pt-20 text-black dark:text-white">
       <section className="flex flex-col items-center  mb-2 justify-between p-4 ">
         <div className=" flex flex-col w-full items-center bg-third rounded-lg py-2 text-black">
           <UserIcon className=" h-10" />
