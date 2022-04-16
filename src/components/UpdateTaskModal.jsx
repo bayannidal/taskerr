@@ -48,7 +48,7 @@ export default function MyModal({ task }) {
 
   return (
     <>
-      <div className="absolute  z-20 top-1 left-2">
+      <div className="absolute  z-5 top-1 left-2">
         <button type="button" onClick={openModal} className="hover:text-third">
           <PencilAltIcon className="h-[20px]" />
         </button>
@@ -70,7 +70,7 @@ export default function MyModal({ task }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10  backdrop-filter backdrop-blur-lg" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -188,16 +188,16 @@ export default function MyModal({ task }) {
                       type="submit"
                       className="bg-third hover:bg-opacity-90 w-full p-3 font-bold text-xl rounded-lg dark:text-black"
                     >
-                      Add Task
-                    </button>
-                    <button
-                      type="submit"
-                      className="w-full p-3 font-bold text-xl rounded-lg text-text dark:text-dText"
-                      onClick={closeModal}
-                    >
-                      Cancel
+                      Update
                     </button>
                   </form>
+                  <button
+                    type="submit"
+                    className="w-full p-3 font-bold text-xl rounded-lg text-text dark:text-dText"
+                    onClick={closeModal}
+                  >
+                    Cancel
+                  </button>
                 </section>
               </div>
             </Transition.Child>
