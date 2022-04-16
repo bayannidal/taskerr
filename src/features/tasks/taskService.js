@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const API_URL = 'https://taskr99.herokuapp.com/'
+// const API_URL = 'http://localhost:8080/'
 
 const createTask = async (taskData, token) => {
     const config = {
@@ -48,10 +49,29 @@ const deleteTask = async (id, token) => {
         return response.data
 }
 
+//Update Task
+const updateTask = async (taskData, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+
+        },
+    }
+    const { id, title, description, completed, pinned } = taskData
+
+    const response = await axios.put(API_URL + `task/${id}`, {
+        title, description, completed, pinned
+    }, config)
+    console.log(response)
+    return response.data
+}
 const taskService = {
     createTask,
     getTasks,
-    deleteTask
+    deleteTask,
+    updateTask
 }
 
 export default taskService
