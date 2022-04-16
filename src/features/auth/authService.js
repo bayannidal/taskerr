@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 const API_URL = 'https://taskr99.herokuapp.com/'
+// const API_URL = 'http://taskrr-env.eba-9mn8jbvw.us-east-1.elasticbeanstalk.com/'
 // const API_URL = 'http://localhost:8080/'
 
 const api = axios.create({
@@ -27,7 +28,6 @@ const authenticate = async (userData) => {
     if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
-
     return response.data
 }
 

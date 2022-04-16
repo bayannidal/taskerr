@@ -1,19 +1,23 @@
 import { Switch } from "@headlessui/react";
 import { useState } from "react";
-import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 import { useDispatch } from "react-redux";
 import { deleteTask, updateTask } from "../features/tasks/taskSlice";
 import UpdateTaskModal from "./UpdateTaskModal";
+import ModalDelete from "./ModalDelete";
+import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
+
 function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);
   const [pinned, setPinned] = useState(task.pinned);
 
   const dispatch = useDispatch();
+
+  if (setPinned && setCompleted && "abc") {
+  }
+
   const handleDispatch = () => {
     return dispatch(deleteTask(task.id));
   };
-  if (setPinned && setCompleted && "abc") {
-  }
   return (
     <div className="relative min-h-[10rem] custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-3 last:mb-0 group flex items-center justify-center">
       <div className="min-w-full  relative group  flex flex-col md:flex-row  md:justify-between">
@@ -88,12 +92,13 @@ function TaskItem({ task }) {
           </div>
         </div>
       </div>
-      <button
+      {/* <button
         className="absolute  z-10 top-1 right-2 hover:text-red-500"
         onClick={handleDispatch}
       >
-        <XCircleIcon className="h-[20px]" />
-      </button>
+        <XCircleIcon className="h-[25px]" />
+      </button> */}
+      <ModalDelete task={task} handleDispatch={handleDispatch} />
       <UpdateTaskModal task={task} />
     </div>
   );
