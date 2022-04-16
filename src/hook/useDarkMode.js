@@ -13,6 +13,6 @@ export default function useDarkMode() {
         const root = window.document.documentElement;
         root.classList.remove(colorTheme)
         root.classList.add(theme)
-    }, [theme])
+    }, [theme, colorTheme])
     return [colorTheme, setTheme]
 }

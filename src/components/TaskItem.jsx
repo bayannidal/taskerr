@@ -7,11 +7,13 @@ import UpdateTaskModal from "./UpdateTaskModal";
 function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);
   const [pinned, setPinned] = useState(task.pinned);
+
   const dispatch = useDispatch();
   const handleDispatch = () => {
     return dispatch(deleteTask(task.id));
   };
-
+  if (setPinned && setCompleted && "abc") {
+  }
   return (
     <div className="relative min-h-[10rem] custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-3 last:mb-0 group flex items-center justify-center">
       <div className="min-w-full  relative group  flex flex-col md:flex-row  md:justify-between">
