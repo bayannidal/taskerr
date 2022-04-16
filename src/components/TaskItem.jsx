@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { deleteTask, updateTask } from "../features/tasks/taskSlice";
 import UpdateTaskModal from "./UpdateTaskModal";
 import ModalDelete from "./ModalDelete";
-import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 
 function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);

@@ -1,7 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { useDispatch } from "react-redux";
-import { deleteTask } from "../features/tasks/taskSlice";
 import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 
 export default function MyModal({ task, handleDispatch }) {
