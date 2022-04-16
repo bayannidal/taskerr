@@ -10,7 +10,6 @@
   box-sizing: border-box;
 }
 
-body,
 html {
   margin: 0;
   padding: 0;
@@ -22,50 +21,25 @@ html {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'PT Sans', sans-serif;
   box-sizing: border-box;
+  height: calc(var(--vh) * 100);
+
 }
 
 
-html>body>#root {
-  min-height: 100vh;
-}
 
+.App {
+  min-height: calc(var(--vh, 1vh) * 100);
+}
 
 .App>div {
-  min-height: 100vh
+  min-height: calc(var(--vh, 1vh) * 100);
+
 }
 
-@media screen and (max-width: 450px) {
-  .App>div {
-    min-height: 90vh;
-  }
-}
-
-
-
-.Toastify__toast-container {
-  position: absolute;
-}
-
-.toastify--top-center {
-  position: absolute;
-}
-
-
-
-/** Used to define the position of the ToastContainer **/
-
-
-
-.temporary-bounce {
-  -webkit-animation-iteration-count: 3;
-  animation-iteration-count: 3;
-}
 
 .custom-shadow {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
-
-
 
 .position-center {
   position: absolute;
@@ -86,4 +60,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   width: auto;
   background: transparent;
   color: transparent;
+  -webkit-appearance: none;
+
+}
+
+input[type="datetime-local"] {
+  -webkit-appearance: none;
 }

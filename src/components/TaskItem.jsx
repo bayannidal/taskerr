@@ -3,7 +3,7 @@ import { useState } from "react";
 import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 import { useDispatch } from "react-redux";
 import { deleteTask } from "../features/tasks/taskSlice";
-
+import UpdateTaskModal from "./UpdateTaskModal";
 function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);
   const [pinned, setPinned] = useState(task.pinned);
@@ -11,6 +11,7 @@ function TaskItem({ task }) {
   const handleDispatch = () => {
     return dispatch(deleteTask(task.id));
   };
+
   return (
     <div className="relative custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-1 last:mb-0 group">
       <div className="min-w-full  relative group  flex flex-col md:flex-row  md:justify-between">
@@ -32,6 +33,15 @@ function TaskItem({ task }) {
             <Switch
               checked={completed}
               onChange={setCompleted}
+              onClick={() =>
+                dispatch({
+                  id: task.id,
+                  title: task.title,
+                  description: task.description,
+                  completed: !task.completed,
+                  pinned: task.pinned,
+                })
+              }
               className={`${
                 completed ? "bg-green-500" : "bg-gray-200 dark:bg-dPrimary"
               } relative inline-flex items-center h-6 rounded-full w-11`}
@@ -49,6 +59,15 @@ function TaskItem({ task }) {
             <Switch
               checked={pinned}
               onChange={setPinned}
+              onClick={() =>
+                dispatch({
+                  id: task.id,
+                  title: task.title,
+                  description: task.description,
+                  completed: task.completed,
+                  pinned: !task.pinned,
+                })
+              }
               className={`${
                 pinned ? "bg-purple-500" : "bg-gray-200 dark:bg-dPrimary"
               } relative inline-flex items-center h-6 rounded-full w-11`}
@@ -69,6 +88,7 @@ function TaskItem({ task }) {
       >
         <XCircleIcon className="h-[20px]" />
       </button>
+      <UpdateTaskModal task={task} />
     </div>
   );
 }

@@ -27,7 +27,7 @@ function TaskForm() {
   };
 
   return (
-    <section className=" bg-secondary dark:bg-dPrimary text-text dark:text-dText">
+    <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label htmlFor="text" className="font-bold ml-2">
@@ -64,7 +64,7 @@ function TaskForm() {
               value={expiresAt}
               onChange={(e) => setExpiresAt(e.target.value)}
               step="1"
-              customClass="relative"
+              customClass="relative min-w-[95%]"
             />
           </div>
 

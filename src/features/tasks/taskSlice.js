@@ -45,7 +45,7 @@ export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
 })
 
 export const deleteTask = createAsyncThunk(
-    'task',
+    'task/delete',
     async (id, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
@@ -62,12 +62,30 @@ export const deleteTask = createAsyncThunk(
     }
 )
 
+export const updateTask = createAsyncThunk(
+    'task/update',
+    async (taskData, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await taskService.updateTask(taskData, token)
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
 
 export const taskSlice = createSlice({
     name: 'task',
     initialState,
     reducers: {
         reset: (state) => initialState,
+
 
     },
     extraReducers: (builder) => {
@@ -109,6 +127,23 @@ export const taskSlice = createSlice({
 
             })
             .addCase(deleteTask.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.isSuccess = false
+                state.message = action.payload
+            })
+            .addCase(updateTask.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateTask.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = state.tasks.map((task) =>
+                    task.id === action.payload.id ? action.payload : task
+                )
+
+            })
+            .addCase(updateTask.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.isSuccess = false

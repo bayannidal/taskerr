@@ -21,24 +21,23 @@ function Header() {
 
   return (
     <header className="flex justify-between items-center p-2 h-10 lg:h-20 fixed top-0 left-0 right-0 z-50 text-text dark:text-dText bg-primary dark:bg-dPrimary">
-      <div className="flex">
-        <Link to="/" className="font-bold text-xl whitespace-nowrap">
+      <div className="flex items-center text-base sm:text-xl lg:text-3xl">
+        <Link to="/" className="font-bold  whitespace-nowrap">
           Taskerr. 📝
         </Link>
+        <button
+          className="flex items-center  lg:mr-5 font-bold"
+          onClick={() => setTheme(colorTheme)}
+        >
+          {colorTheme === "light" ? (
+            <SunOutline className="h-5 lg:h-10 ml-3 text-dPrimary dark:text-third " />
+          ) : (
+            <MoonOutline className="h-5 lg:h-10 ml-3 text-dPrimary dark:text-third" />
+          )}
+        </button>
       </div>
-      <ul className="flex items-center">
-        <li>
-          <button
-            className="flex items-center mr-4 lg:mr-5 font-bold"
-            onClick={() => setTheme(colorTheme)}
-          >
-            {colorTheme === "light" ? (
-              <SunOutline className="h-8 text-dThird dark:text-third " />
-            ) : (
-              <MoonOutline className="h-8 text-dThird dark:text-third" />
-            )}
-          </button>
-        </li>
+      <ul className="flex items-center text-xs sm:text-base lg:text-2xl">
+        <li></li>
         {user ? (
           <li>
             <button
@@ -55,7 +54,7 @@ function Header() {
             <li>
               <Link
                 to="login"
-                className="flex items-center mr-2 lg:mr-5 font-bold"
+                className="flex items-center mr-2 lg:mr-5 font-bold "
               >
                 <LoginIcon className="text-third h-6 w-6 mr-1" />
                 Login
