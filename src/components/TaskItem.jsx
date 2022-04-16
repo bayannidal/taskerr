@@ -2,7 +2,7 @@ import { Switch } from "@headlessui/react";
 import { useState } from "react";
 import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 import { useDispatch } from "react-redux";
-import { deleteTask } from "../features/tasks/taskSlice";
+import { deleteTask, updateTask } from "../features/tasks/taskSlice";
 import UpdateTaskModal from "./UpdateTaskModal";
 function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);
@@ -13,7 +13,7 @@ function TaskItem({ task }) {
   };
 
   return (
-    <div className="relative custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-1 last:mb-0 group">
+    <div className="relative min-h-[10rem] custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-3 last:mb-0 group flex items-center justify-center">
       <div className="min-w-full  relative group  flex flex-col md:flex-row  md:justify-between">
         <div className="px-2 py-4  text-sm font-medium text-gray-900flex flex-col  border-b md:border-b-0  flex-1">
           <div className="  py-4 text-left font-bold">Date</div>
@@ -30,18 +30,20 @@ function TaskItem({ task }) {
         <div className="text-sm font-light px-2 py-4 flex flex-row justify-between flex-1">
           <div className="flex flex-col">
             <div className="   py-4 text-left font-bold">Completed</div>
+
             <Switch
               checked={completed}
-              onChange={setCompleted}
-              onClick={() =>
-                dispatch({
-                  id: task.id,
-                  title: task.title,
-                  description: task.description,
-                  completed: !task.completed,
-                  pinned: task.pinned,
-                })
-              }
+              onChange={() => {
+                dispatch(
+                  updateTask({
+                    id: task.id,
+                    title: task.title,
+                    description: task.description,
+                    completed: !task.completed,
+                    pinned: task.pinned,
+                  })
+                );
+              }}
               className={`${
                 completed ? "bg-green-500" : "bg-gray-200 dark:bg-dPrimary"
               } relative inline-flex items-center h-6 rounded-full w-11`}
@@ -56,18 +58,20 @@ function TaskItem({ task }) {
           </div>
           <div className="flex flex-col">
             <div className="  py-4 text-left font-bold">Pinned</div>
+
             <Switch
               checked={pinned}
-              onChange={setPinned}
-              onClick={() =>
-                dispatch({
-                  id: task.id,
-                  title: task.title,
-                  description: task.description,
-                  completed: task.completed,
-                  pinned: !task.pinned,
-                })
-              }
+              onChange={() => {
+                dispatch(
+                  updateTask({
+                    id: task.id,
+                    title: task.title,
+                    description: task.description,
+                    completed: task.completed,
+                    pinned: !task.pinned,
+                  })
+                );
+              }}
               className={`${
                 pinned ? "bg-purple-500" : "bg-gray-200 dark:bg-dPrimary"
               } relative inline-flex items-center h-6 rounded-full w-11`}
