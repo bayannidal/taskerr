@@ -16,11 +16,13 @@
     "postcss-cli": "^9.1.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hot-toast": "^2.2.0",
     "react-icons": "^4.3.1",
     "react-redux": "^8.0.0-beta.4",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-toastify": "^8.2.0",
+    "react-viewport-height": "^1.2.0",
     "redux": "^4.1.2"
   },
   "scripts": {

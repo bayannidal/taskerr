@@ -10,8 +10,6 @@ export const InputText = ({
   required,
   customClass,
   step,
-  onFocus,
-  onBlur,
 }) => {
   return (
     <input
@@ -25,7 +23,7 @@ export const InputText = ({
       step={step}
       className={`${
         customClass + " "
-      }flex-grow  rounded-lg p-3 xs:p-4   mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-dText`}
+      }flex-grow  rounded-lg p-3 sm:p-4 mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-white`}
     />
   );
 };

@@ -5,11 +5,14 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Header from "./components/Header";
+import useVH from "react-viewport-height";
 function App() {
+  useVH();
+
   return (
     <>
       <Router>
-        <div className="App bg-primary dark:bg-dPrimary transition duration-500">
+        <div className="App bg-primary dark:bg-dPrimary">
           <Header />
           <Routes>
             <Route path="/" element={<Dashboard />} />

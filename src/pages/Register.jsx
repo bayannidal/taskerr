@@ -64,7 +64,7 @@ function Register() {
     return <Spinner />;
   }
   return (
-    <div className=" flex flex-col justify-between pt-12 lg:pt-20 text-text dark:text-white">
+    <div className="full-screen flex flex-col justify-between py-24 text-text dark:text-white">
       <section className="flex flex-col items-center  mb-2 justify-between p-4">
         <div className="flex flex-col w-full items-center bg-third rounded-lg py-2 text-text">
           <UserIcon className="h-10" />

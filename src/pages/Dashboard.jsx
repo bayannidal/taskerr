@@ -10,10 +10,8 @@ import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
 function Dashboard() {
   const [state, setState] = useState(0);
-  const [display, setDisplay] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log(display);
   const { user } = useSelector((state) => state.auth);
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
@@ -30,7 +28,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (isError) {
-      setDisplay(true);
+      // setTimeout(() => dispatch(reset()), 5000);
     }
     if (!user) {
       navigate("/login");
@@ -52,13 +50,8 @@ function Dashboard() {
 
   const handleError = () => {
     dispatch(reset());
-    setDisplay(false);
   };
 
-  console.log(tasks);
-  console.log(
-    [...tasks].sort((a, b) => new Date(b.expiresAt) - new Date(a.expiresAt))
-  );
   return (
     <div className="px-2 lg:px-10  pt-14 lg:pt-32 pb-5 w-full">
       <div className="custom-shadow rounded-lg p-1">
@@ -140,7 +133,9 @@ function Dashboard() {
                   ) : null}
                 </>
               ) : (
-                <h1>You have no tasks</h1>
+                <h1 className="text-center font-bold text-xl text-text dark:text-dText">
+                  You have no tasks
+                </h1>
               )}
             </>
           ) : (

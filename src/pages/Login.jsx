@@ -11,7 +11,6 @@ import Button from "../components/Button";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [display, setDisplay] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,18 +33,9 @@ function Login() {
     }
 
     if (isError) {
-      setDisplay(true);
+      setTimeout(() => dispatch(reset()), 5000);
     }
-  }, [
-    user,
-    isError,
-    isSuccess,
-    isLoading,
-    message,
-    navigate,
-    dispatch,
-    display,
-  ]);
+  }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -65,11 +55,10 @@ function Login() {
 
   const handleError = () => {
     dispatch(reset());
-    setDisplay(false);
   };
 
   return (
-    <div className="flex flex-col justify-between pt-12 lg:pt-20 text-text dark:text-white">
+    <div className=" flex flex-col justify-between  pt-24 text-text dark:text-white">
       <section className="flex flex-col items-center  mb-2 justify-between p-4 ">
         <div className=" flex flex-col w-full items-center bg-third rounded-lg py-2 text-text">
           <UserIcon className="h-10" />
