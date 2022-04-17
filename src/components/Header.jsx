@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <header className="flex justify-between items-center p-2 h-50 lg:h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10 backdrop-filter backdrop-blur-lg">
+    <header className="flex justify-between items-center p-2 h-50 lg:h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10 backdrop-filter backdrop-blur-lg firefox-bg  ">
       <div className="flex items-center text-base sm:text-xl lg:text-3xl">
         <Link to="/" className="font-bold  whitespace-nowrap">
           Taskerr. 📝
