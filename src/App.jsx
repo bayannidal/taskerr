@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router>
-        <div className="App bg-primary dark:bg-dPrimary">
+        <div className="App bg-primary dark:bg-dPrimary ">
           <Header />
           <Routes>
             <Route path="/" element={<Dashboard />} />
