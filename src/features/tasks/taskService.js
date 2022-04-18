@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const API_URL = 'https://taskr99.herokuapp.com/'
-// const API_URL = 'http://taskrr-env.eba-9mn8jbvw.us-east-1.elasticbeanstalk.com/'
+// const API_URL = 'https://taskr99.herokuapp.com/'
+const API_URL = 'http://taskrr-env.eba-9mn8jbvw.us-east-1.elasticbeanstalk.com/'
 
 // const API_URL = 'http://localhost:8080/'
 
@@ -61,10 +61,10 @@ const updateTask = async (taskData, token) => {
 
         },
     }
-    const { id, title, description, completed, pinned } = taskData
+    const { id, title, description, completed, pinned, expiresAt } = taskData
 
     const response = await axios.put(API_URL + `task/${id}`, {
-        title, description, completed, pinned
+        title, description, completed, pinned, expiresAt
     }, config)
     console.log(response)
     return response.data

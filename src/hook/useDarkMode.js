@@ -18,7 +18,10 @@ export default function useDarkMode() {
     }
     useEffect(() => {
         const root = window.document.documentElement;
+        document.querySelector('header').classList.remove(colorTheme)
+        document.querySelector('header').classList.add(theme)
         root.classList.remove(colorTheme)
+
         root.classList.add(theme)
     }, [theme, colorTheme])
     return [colorTheme, setTheme]

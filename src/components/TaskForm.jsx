@@ -3,12 +3,15 @@ import { useDispatch } from "react-redux";
 import { createTask } from "../features/tasks/taskSlice";
 import { Switch } from "@headlessui/react";
 import { InputText } from "./InputText";
+import CheckIcon from "@heroicons/react/outline/CheckIcon";
+import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
   const [pinned, setPinned] = useState(false);
   const [expiresAt, setExpiresAt] = useState("");
+
   const dispatch = useDispatch();
   const expiresReplaced = expiresAt
     .toString()
@@ -19,6 +22,7 @@ function TaskForm() {
     dispatch(
       createTask({ title, description, completed, pinned, expiresReplaced })
     );
+
     setTitle("");
     setDescription("");
     setCompleted(false);
@@ -28,7 +32,7 @@ function TaskForm() {
 
   return (
     <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-4">
           <label htmlFor="text" className="font-bold ml-2">
             Create a new Taskrr.
@@ -61,7 +65,7 @@ function TaskForm() {
               type="datetime-local"
               name="description"
               id="description"
-              value={expiresAt}
+              value={expiresReplaced}
               onChange={(e) => setExpiresAt(e.target.value)}
               step="1"
               customClass="relative min-w-[95%]"
@@ -70,7 +74,7 @@ function TaskForm() {
 
           <div className="flex justify-between">
             {" "}
-            <div className="flex gap-2 items-center pt-5 pl-2">
+            <div className="flex flex-col  gap-2 items-start pt-5 pl-2">
               <label htmlFor="completed" className="font-bold">
                 Completed
               </label>
@@ -78,18 +82,26 @@ function TaskForm() {
                 checked={completed}
                 onChange={setCompleted}
                 className={`${
-                  completed ? "bg-green-500" : "bg-gray-200 dark:bg-dSecondary"
+                  completed ? "bg-green-500" : "bg-secondary dark:bg-dSecondary"
                 } relative inline-flex items-center h-6 rounded-full w-11`}
               >
                 <span className="sr-only">Enable notifications</span>
                 <span
                   className={`${
-                    completed ? "translate-x-6" : "translate-x-1"
-                  } inline-block w-4 h-4 transform bg-white rounded-full`}
-                />
+                    completed
+                      ? "translate-x-6 bg-primary"
+                      : "translate-x-1 bg-green-500"
+                  } inline-block w-4 h-4 transform  rounded-full`}
+                >
+                  <CheckIcon
+                    className={`h-4 ${
+                      completed ? "text-green-500" : "text-dText"
+                    }  z-50`}
+                  />
+                </span>
               </Switch>
             </div>
-            <div className="flex gap-2 items-center pt-5 pr-2">
+            <div className="flex gap-2 flex-col items-end pt-5 pr-2">
               <label htmlFor="completed" className="font-bold">
                 Pinned
               </label>
@@ -97,22 +109,32 @@ function TaskForm() {
                 checked={pinned}
                 onChange={setPinned}
                 className={`${
-                  pinned ? "bg-purple-500" : "bg-gray-200 dark:bg-dSecondary"
+                  pinned ? "bg-purple-500" : "bg-secondary dark:bg-dSecondary"
                 } relative inline-flex items-center h-6 rounded-full w-11`}
               >
                 <span className="sr-only">Enable notifications</span>
                 <span
                   className={`${
-                    pinned ? "translate-x-6" : "translate-x-1"
-                  } inline-block w-4 h-4 transform bg-white rounded-full`}
-                />
+                    pinned
+                      ? "translate-x-6 bg-primary"
+                      : "translate-x-1 bg-purple-500"
+                  } inline-block w-4 h-4 transform  rounded-full`}
+                >
+                  {/* <FingerPrintIcon /> */}
+                  <PaperClipIcon
+                    className={`h-4 ${
+                      pinned ? "text-purple-500" : "text-dText"
+                    }  z-50`}
+                    src="https://cdn-icons.flaticon.com/png/512/2951/premium/2951412.png?token=exp=1650283850~hmac=51518933969d5c65aec424482d6facaf"
+                  />
+                </span>
               </Switch>
             </div>
           </div>
         </div>
         <button
           type="submit"
-          className="bg-third hover:bg-opacity-90 w-full p-3 font-bold text-xl rounded-lg dark:text-black"
+          className="bg-third hover:bg-opacity-90 w-full md:w-[50%] p-3 font-bold text-xl rounded-lg dark:text-black self-center"
         >
           Add Task
         </button>

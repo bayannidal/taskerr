@@ -48,16 +48,16 @@ export default function MyModal({ task }) {
 
   return (
     <>
-      <div className="absolute  z-5 top-1 left-2">
+      <div className="absolute  z-4 top-1 left-2">
         <button type="button" onClick={openModal} className="hover:text-third">
-          <PencilAltIcon className="h-[20px]" />
+          <PencilAltIcon className="h-[25px]" />
         </button>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
