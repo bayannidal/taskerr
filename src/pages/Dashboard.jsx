@@ -45,24 +45,21 @@ function Dashboard() {
     }
   }, [user, navigate, isError, message, dispatch]);
 
-  if (isLoading) {
-    <Spinner />;
-  }
-
   const handleError = () => {
     dispatch(reset());
   };
 
   return (
     <div className="px-2 lg:px-10  pt-14 lg:pt-32 pb-5 w-full flex flex-col items-center">
-      <div className="max-w-[100%] min-w-[100%] md:max-w-[90%] md:min-w-[90%]  lg:max-w-[80%] lg:min-w-[80%]">
+      <div className="max-w-[100%] min-w-[100%] md:max-w-[90%] md:min-w-[90%]  lg:max-w-[90%] lg:min-w-[90%]">
         <div className="custom-shadow rounded-lg p-1">
           <section className="p-2 bg-secondary dark:bg-dSecondary dark:text-white rounded-lg  mb-5 custom-shadow">
-            <h1 className="font-bold text-2xl">
+            <h1 className="ml-2 font-bold text-2xl">
               Welcome, {user && user.firstName + " " + user.lastName}!
             </h1>
-            <p className="ml-2 mt-2 font-medium">Tasks Dashboard</p>
+            <p className="ml-4 mt-2 font-[500]">Tasks Dashboard</p>
           </section>
+
           <TaskForm
             tasks={tasks}
             isError={isError}
@@ -72,7 +69,7 @@ function Dashboard() {
         </div>
         <section className="mt-5 custom-shadow rounded-lg p-1">
           <Error error={isError} handleError={handleError} text={message} />
-          <TaskFilter tasks={tasks} />
+          {!isLoading ? <TaskFilter tasks={tasks} /> : <Spinner />}
         </section>
       </div>
     </div>

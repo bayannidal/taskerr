@@ -7,33 +7,32 @@ import ModalDelete from "./ModalDelete";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 
-function TaskItem({ task, ...classNames }) {
+function TaskItem({ task }) {
   const [completed, setCompleted] = useState(task.completed);
   const [pinned, setPinned] = useState(task.pinned);
   const dispatch = useDispatch();
   const handleDispatch = () => {
     return dispatch(deleteTask(task.id));
   };
+  console.log(completed);
   return (
-    <div className="relative min-h-[10rem] custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText mb-3 last:mb-0 group flex items-center justify-center">
-      <div className="min-w-full  relative group  flex flex-col md:flex-row  md:justify-between mt-5">
-        <div className="text-sm font-light px-2 py-4 flex flex-col justify-between border-b md:border-b-0 flex-1">
-          <div className=" text-left font-bold">Date</div>
-          {new Date(task.expiresAt).toLocaleString()}
+    <div className="relative min-h-[10rem]  custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText  group">
+      <div className="min-w-full px-4  relative group flex my-8">
+        <div className="text-sm  font-light py-4 flex flex-col justify-evenly  flex-1">
+          <div className=" text-left font-extrabold text-xl mb-4">
+            {" "}
+            {task.title}
+          </div>
+          <div className="text-left font-normal text-base">
+            {" "}
+            {task.description}
+          </div>
         </div>
-        <div className="text-sm  font-light px-2 py-4 flex flex-col  justify-between border-b md:border-b-0  flex-1">
-          <div className=" text-left font-bold">Title</div>
-          {task.title}
-        </div>
-        <div className="text-sm font-light px-2 py-4 flex flex-col justify-between border-b md:border-b-0 flex-1">
-          <div className="text-left font-bold">Description</div>
-          {task.description}
-        </div>
-        <div className="text-sm font-light px-2 py-4 flex flex-row md:flex-col justify-between border-b md:border-b-0 gap-2">
+        <div className="text-sm font-light px-2 py-4 flex flex-col  justify-evenly gap-2">
           <Switch
             checked={completed}
-            onClick={setCompleted}
             onChange={() => {
+              setCompleted(!completed);
               dispatch(
                 updateTask({
                   id: task.id,
@@ -65,8 +64,8 @@ function TaskItem({ task, ...classNames }) {
           </Switch>
           <Switch
             checked={pinned}
-            onClick={setPinned}
             onChange={() => {
+              setPinned(!pinned);
               dispatch(
                 updateTask({
                   id: task.id,
@@ -98,6 +97,9 @@ function TaskItem({ task, ...classNames }) {
             </span>
           </Switch>
         </div>
+      </div>
+      <div className="absolute bottom-4 left-4 text-xs">
+        {new Date(task.createdAt).toLocaleString()}
       </div>
       <ModalDelete task={task} handleDispatch={handleDispatch} />
       <UpdateTaskModal task={task} />

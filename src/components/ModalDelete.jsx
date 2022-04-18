@@ -2,9 +2,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
 
-export default function MyModal({ task, handleDispatch }) {
+export default function MyModal({ handleDispatch }) {
   let [isOpen, setIsOpen] = useState(false);
-  //   const dispatch = useDispatch();
   function closeModal() {
     setIsOpen(false);
   }
@@ -12,9 +11,6 @@ export default function MyModal({ task, handleDispatch }) {
   function openModal() {
     setIsOpen(true);
   }
-  //   const handleDispatch = () => {
-  //     return dispatch(deleteTask(task.id));
-  //   };
 
   return (
     <>
@@ -79,12 +75,15 @@ export default function MyModal({ task, handleDispatch }) {
                 <div className="mt-4 flex justify-between">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-text bg-red-200 border border-transparent rounded-md hover:bg-red-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium bg-red-500 rounded-lg text-dText focus:outline-none"
                     onClick={handleDispatch}
                   >
                     Got it, thanks!
                   </button>
-                  <button onClick={closeModal} className="text-dText">
+                  <button
+                    onClick={closeModal}
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium  rounded-lg text-text dark:text-dText border-2 border-dPrimary dark:border-primary "
+                  >
                     Close
                   </button>
                 </div>

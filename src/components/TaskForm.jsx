@@ -32,7 +32,7 @@ function TaskForm() {
 
   return (
     <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-4">
           <label htmlFor="text" className="font-bold ml-2">
             Create a new Taskrr.
@@ -134,7 +134,7 @@ function TaskForm() {
         </div>
         <button
           type="submit"
-          className="bg-third hover:bg-opacity-90 w-full p-3 font-bold text-xl rounded-lg dark:text-black"
+          className="bg-third hover:bg-opacity-90 w-full md:w-[50%] p-3 font-bold text-xl rounded-lg dark:text-black self-center"
         >
           Add Task
         </button>
