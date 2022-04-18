@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Tab } from "@headlessui/react";
 import TaskItem from "./TaskItem";
-import Spinner from "./Spinner";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
