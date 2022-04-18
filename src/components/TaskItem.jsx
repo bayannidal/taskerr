@@ -6,7 +6,8 @@ import UpdateTaskModal from "./UpdateTaskModal";
 import ModalDelete from "./ModalDelete";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
-function TaskItem({ task }) {
+
+function TaskItem({ task, ...classNames }) {
   const [completed, setCompleted] = useState(task.completed);
   const [pinned, setPinned] = useState(task.pinned);
   const dispatch = useDispatch();

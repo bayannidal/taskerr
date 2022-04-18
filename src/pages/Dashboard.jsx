@@ -8,6 +8,7 @@ import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
+import TaskFilter from "../components/TaskFilter";
 function Dashboard() {
   const [state, setState] = useState(0);
   const navigate = useNavigate();
@@ -62,87 +63,16 @@ function Dashboard() {
             </h1>
             <p className="ml-2 mt-2 font-medium">Tasks Dashboard</p>
           </section>
-          <TaskForm />
+          <TaskForm
+            tasks={tasks}
+            isError={isError}
+            isLoading={isLoading}
+            handleError={handleError}
+          />
         </div>
         <section className="mt-5 custom-shadow rounded-lg p-1">
-          <div className="flex gap-2 bg-secondary dark:bg-dSecondary  rounded-lg p-1 mb-2">
-            {sortList.map((item, index) => (
-              <button
-                type="button"
-                className={` flex-grow font-semibold text-l lg:text-xl dark:text-white  p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] dark:hover:bg-dPrimary nav-links w-[33%] ${
-                  index === state
-                    ? "bg-primary dark:bg-dPrimary hover:bg-[rgba(255,255,255)] dark:hover:bg-[rgba(0,0,0,0.2)] border-2"
-                    : ""
-                }`}
-                key={index}
-                onClick={() => setState(index)}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-          <div className="rounded-lg h-full text-[0.75rem] lg:text-base">
-            <Error error={isError} handleError={handleError} text={message} />
-            {!isLoading ? (
-              <>
-                {tasks.length > 0 ? (
-                  <>
-                    {state === 0 ? (
-                      <>
-                        {tasks.map((task) => (
-                          <React.Fragment key={task.id}>
-                            {task && <TaskItem key={task.id} task={task} />}
-                          </React.Fragment>
-                        ))}
-                      </>
-                    ) : null}
-                    {state === 1 ? (
-                      <>
-                        {tasks.map((task) => (
-                          <React.Fragment key={task.id}>
-                            {task.pinned === true && (
-                              <TaskItem key={task.id} task={task} />
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </>
-                    ) : null}
-                    {state === 2 ? (
-                      <>
-                        {tasks.map((task) => (
-                          <React.Fragment key={task.id}>
-                            {task.completed === true && (
-                              <TaskItem key={task.id} task={task} />
-                            )}
-                          </React.Fragment>
-                        ))}
-                      </>
-                    ) : null}
-                    {state === 3 ? (
-                      <>
-                        {[...tasks]
-                          .sort(
-                            (a, b) =>
-                              new Date(a.expiresAt) - new Date(b.expiresAt)
-                          )
-                          .map((task) => (
-                            <React.Fragment key={task.id}>
-                              {task && <TaskItem key={task.id} task={task} />}
-                            </React.Fragment>
-                          ))}
-                      </>
-                    ) : null}
-                  </>
-                ) : (
-                  <h1 className="text-center font-bold text-xl text-text dark:text-dText">
-                    You have no tasks
-                  </h1>
-                )}
-              </>
-            ) : (
-              <Spinner />
-            )}
-          </div>
+          <Error error={isError} handleError={handleError} text={message} />
+          <TaskFilter tasks={tasks} />
         </section>
       </div>
     </div>
