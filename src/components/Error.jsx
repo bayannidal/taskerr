@@ -10,7 +10,7 @@ const Error = ({ error, handleError, text, customStyle }) => {
     <div
       className={`${
         customStyle + " "
-      }bg-red-400 dark:bg-red-500 font-bold text-base p-3 xs:p-4 rounded-lg flex justify-between items-center text-white hover:bg-opacity-80 mb-5 animate__animated animate__shakeX custom-shadow`}
+      } bg-[rgb(240,40,40)] dark:bg-[rgb(220,40,40)] font-bold text-base p-2 sm:p-3 rounded-lg flex justify-between items-center text-white hover:bg-opacity-80 mb-5 animate__animated animate__shakeX custom-shadow`}
     >
       {text}
       <XIcon className="h-6" onClick={handleError} />

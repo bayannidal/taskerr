@@ -20,8 +20,8 @@ function Header() {
   };
 
   return (
-    <header className="flex justify-between items-center p-2 h-50 lg:h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10 backdrop-filter backdrop-blur-lg firefox-bg  ">
-      <div className="flex items-center text-base sm:text-xl lg:text-3xl">
+    <header className="flex justify-between items-center p-2 h-50 lg:h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText bg-primary dark:bg-dPrimary">
+      <div className="flex items-center text-base sm:text-2xl lg:text-3xl">
         <Link to="/" className="font-bold  whitespace-nowrap">
           Taskerr. 📝
         </Link>
@@ -36,8 +36,7 @@ function Header() {
           )}
         </button>
       </div>
-      <ul className="flex items-center text-xs sm:text-base lg:text-2xl">
-        <li></li>
+      <ul className="flex items-center text-xs sm:text-xl lg:text-2xl">
         {user ? (
           <li>
             <button

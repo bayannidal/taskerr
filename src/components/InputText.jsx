@@ -10,6 +10,8 @@ export const InputText = ({
   required,
   customClass,
   step,
+  register,
+  label,
 }) => {
   return (
     <input
@@ -23,7 +25,7 @@ export const InputText = ({
       step={step}
       className={`${
         customClass + " "
-      }flex-grow  rounded-lg p-3 sm:p-4 mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-white`}
+      }flex-grow  rounded-lg p-3 sm:p-4 mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-white caret-third outline-none focus:border focus:border-third`}
     />
   );
 };

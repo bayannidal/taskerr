@@ -61,10 +61,10 @@ const updateTask = async (taskData, token) => {
 
         },
     }
-    const { id, title, description, completed, pinned } = taskData
+    const { id, title, description, completed, pinned, expiresAt } = taskData
 
     const response = await axios.put(API_URL + `task/${id}`, {
-        title, description, completed, pinned
+        title, description, completed, pinned, expiresAt
     }, config)
     console.log(response)
     return response.data

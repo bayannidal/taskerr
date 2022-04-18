@@ -6,7 +6,6 @@ export default function MyModal({ task, handleDispatch }) {
   let [isOpen, setIsOpen] = useState(false);
   //   const dispatch = useDispatch();
   function closeModal() {
-    handleDispatch();
     setIsOpen(false);
   }
 
@@ -32,7 +31,7 @@ export default function MyModal({ task, handleDispatch }) {
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
+          className="fixed inset-0 z-50 overflow-y-auto"
           onClose={closeModal}
         >
           <div className="min-h-screen px-4 text-center">
@@ -45,7 +44,7 @@ export default function MyModal({ task, handleDispatch }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10  backdrop-filter backdrop-blur-lg" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -64,7 +63,7 @@ export default function MyModal({ task, handleDispatch }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-primary dark:bg-secondary custom-shadow rounded-2xl">
+              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-primary dark:bg-dPrimary custom-shadow rounded-2xl">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-red-500"
@@ -77,13 +76,16 @@ export default function MyModal({ task, handleDispatch }) {
                   </p>
                 </div>
 
-                <div className="mt-4">
+                <div className="mt-4 flex justify-between">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-text bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
-                    onClick={closeModal}
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-text bg-red-200 border border-transparent rounded-md hover:bg-red-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+                    onClick={handleDispatch}
                   >
                     Got it, thanks!
+                  </button>
+                  <button onClick={closeModal} className="text-dText">
+                    Close
                   </button>
                 </div>
               </div>
