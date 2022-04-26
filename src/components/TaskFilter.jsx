@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example({ tasks, isLoading, isError, handleError }) {
+export default function Example({ tasks }) {
   const [state, setState] = useState(0);
   const sortList = ["All", "Pinned", "Completed"];
   console.log(state);

@@ -1,24 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTasks, reset } from "../features/tasks/taskSlice";
 import { logout, reset as resetAuth } from "../features/auth/authSlice";
 import TaskForm from "../components/TaskForm";
-import TaskItem from "../components/TaskItem";
 import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
 import TaskFilter from "../components/TaskFilter";
 function Dashboard() {
-  const [state, setState] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   );
-
-  const sortList = ["All", "Pinned", "Completed", "Expiry"];
 
   useEffect(() => {
     return () => {
@@ -29,7 +25,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (isError) {
-      // setTimeout(() => dispatch(reset()), 5000);
+      setTimeout(() => dispatch(reset()), 5000);
     }
     if (!user) {
       navigate("/login");
