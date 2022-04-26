@@ -72,8 +72,6 @@ export default function MyModal({ task }) {
             >
               <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10  backdrop-filter backdrop-blur-lg" />
             </Transition.Child>
-
-            {/* This element is to trick the browser into centering the modal contents. */}
             <span
               className="inline-block h-screen align-middle"
               aria-hidden="true"
@@ -116,24 +114,6 @@ export default function MyModal({ task }) {
                           placeholder="How would you describe it..."
                         />
                       </div>
-                      <div className="flex flex-col">
-                        <label
-                          htmlFor="datetime"
-                          className=" ml-2 font-semibold"
-                        >
-                          Add expiry date (optional)
-                        </label>
-                        <InputText
-                          type="datetime-local"
-                          name="description"
-                          id="description"
-                          value={expiresAt}
-                          onChange={(e) => setExpiresAt(e.target.value)}
-                          step="1"
-                          customClass="relative min-w-[95%]"
-                        />
-                      </div>
-
                       <div className="flex justify-between">
                         {" "}
                         <div className="flex gap-2 items-center pt-5 pl-2">

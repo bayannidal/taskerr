@@ -59,13 +59,16 @@ function Login() {
   return (
     <div className=" flex flex-col justify-between  pt-24 text-text dark:text-white">
       <section className="flex flex-col items-center  mb-2 justify-between p-4 ">
-        <div className=" flex flex-col w-full  items-center bg-third rounded-lg min-h-[15vh] py-2 text-text">
+        <div className=" flex flex-col w-full justify-center  items-center bg-third rounded-lg min-h-[10vh] py-2 text-text">
           <UserIcon className="h-10" />
           <h1 className=" font-bold">Login</h1>
         </div>
-        <h1 className=" font-bold">Login and take care of the tasks!</h1>
       </section>
       <section className="flex flex-col justify-between p-4 relative">
+        <h1 className=" text-center mb-5 font-bold">
+          Login and take care of the tasks!
+        </h1>
+
         <Error
           error={isError}
           handleError={handleError}

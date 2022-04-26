@@ -16,8 +16,7 @@ function Register() {
     active: false,
     message: "",
   });
-  // const [errorMessage, setErrorMessage] = useState("");
-  // const [error, setError] = useState(false);
+
   const [formData, setFormData] = useState({
     username: "",
     firstName: "",
@@ -29,6 +28,14 @@ function Register() {
 
   const { username, emailAddress, password, password2, firstName, lastName } =
     formData;
+
+  const isEnabled =
+    username.length > 4 &&
+    emailAddress.length > 0 &&
+    password.length > 4 &&
+    password2.length > 4 &&
+    firstName > 0 &&
+    lastName.length > 0;
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
@@ -62,6 +69,8 @@ function Register() {
     } else {
       setError({ active: false, message: "" });
 
+      if (username.length < 4) {
+      }
       const userData = {
         username,
         firstName,
@@ -79,13 +88,16 @@ function Register() {
   return (
     <div className="full-screen flex flex-col justify-between pt-24  text-text dark:text-white">
       <section className="flex flex-col items-center  mb-2 justify-between p-4">
-        <div className="flex flex-col w-full items-center bg-third rounded-lg py-2 text-text">
+        <div className="flex flex-col w-full justify-center  items-center bg-third rounded-lg min-h-[10vh] py-2 text-text">
           <UserIcon className="h-10" />
           <h1 className=" font-bold">Register</h1>
         </div>
-        <h1 className=" font-bold">Register and add some tasks!</h1>
       </section>
       <section className="flex flex-col p-4">
+        <h1 className=" text-center mb-5 font-bold">
+          Register and add some tasks!
+        </h1>
+
         <Error
           error={error.active}
           text={error.message}
@@ -101,6 +113,7 @@ function Register() {
                 value={username}
                 placeholder="Username..."
                 onChange={onChange}
+                required={true}
               />
             </div>
             <div className="flex">
@@ -111,6 +124,7 @@ function Register() {
                 value={firstName}
                 placeholder="First name..."
                 onChange={onChange}
+                required={true}
               />
             </div>
             <div className="flex">
@@ -121,6 +135,7 @@ function Register() {
                 value={lastName}
                 placeholder="Last name..."
                 onChange={onChange}
+                required={true}
               />
             </div>
             <div className="flex">
@@ -131,6 +146,7 @@ function Register() {
                 value={emailAddress}
                 placeholder="Email..."
                 onChange={onChange}
+                required={true}
               />
             </div>
             <div className="flex">
@@ -141,6 +157,7 @@ function Register() {
                 value={password}
                 placeholder="Password..."
                 onChange={onChange}
+                required={true}
               />
             </div>
             <div className="flex">
@@ -151,6 +168,7 @@ function Register() {
                 value={password2}
                 placeholder="Confirm Password..."
                 onChange={onChange}
+                required={true}
                 className=" rounded-lg p-4 mb-2 bg-secondary flex-grow"
               />
             </div>

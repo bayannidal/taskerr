@@ -11,10 +11,14 @@ export default function Example({ tasks }) {
   const sortList = ["All", "Pinned", "Completed"];
   console.log(state);
   if (tasks.length === 0) {
-    return <div className="text-center">No tasks found</div>;
+    return (
+      <div className="text-center font-bold text-text dark:text-dText">
+        No tasks found
+      </div>
+    );
   }
   return (
-    <div className="w-full  sm:px-0">
+    <div className="w-full">
       <Tab.Group onChange={(idx) => setState(idx)}>
         <Tab.List className="flex p-1 space-x-1 bg-secondary dark:bg-dSecondary  rounded-lg mb-2 ">
           {sortList.map((category) => (
@@ -37,7 +41,7 @@ export default function Example({ tasks }) {
         <Tab.Panels className="mt-2">
           <Tab.Panel
             className={classNames(
-              "rounded-lg p-1 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3  gap-2",
+              "rounded-lg  flex flex-col gap-2",
               "focus:outline-none"
             )}
           >
@@ -55,7 +59,7 @@ export default function Example({ tasks }) {
           </Tab.Panel>
           <Tab.Panel
             className={classNames(
-              "rounded-lg p-1 flex flex-col md:grid md:grid-cols-2  gap-2",
+              "rounded-lg flex flex-col  gap-2",
               "focus:outline-none"
             )}
           >
@@ -70,12 +74,12 @@ export default function Example({ tasks }) {
                 ))}
               </>
             ) : (
-              <>a</>
+              <></>
             )}
           </Tab.Panel>
           <Tab.Panel
             className={classNames(
-              "rounded-lg p-1 flex flex-col md:grid md:grid-cols-2  gap-2",
+              "rounded-lg flex flex-col   gap-2",
               "focus:outline-none"
             )}
           >
@@ -95,7 +99,7 @@ export default function Example({ tasks }) {
           </Tab.Panel>
           <Tab.Panel
             className={classNames(
-              "rounded-lg p-1 flex flex-col md:grid md:grid-cols-2  gap-2",
+              "rounded-lg flex flex-col  gap-2",
               "focus:outline-none"
             )}
           >

@@ -57,20 +57,6 @@ function TaskForm() {
               placeholder="How would you describe it..."
             />
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="datetime" className=" ml-2 font-semibold">
-              Add expiry date (optional)
-            </label>
-            <InputText
-              type="datetime-local"
-              name="description"
-              id="description"
-              value={expiresReplaced}
-              onChange={(e) => setExpiresAt(e.target.value)}
-              step="1"
-              customClass="relative min-w-[95%]"
-            />
-          </div>
 
           <div className="flex justify-between">
             {" "}
