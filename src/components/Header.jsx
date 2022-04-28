@@ -3,9 +3,8 @@ import UserIcon from "@heroicons/react/outline/UserIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
-import LogoutIcon from "@heroicons/react/outline/LogoutIcon";
 // import DashboardIcon from "@heroicons/react/outline/ViewGridIcon";
-
+import Dropdown from "./Dropdown";
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,7 +25,8 @@ function Header() {
           Taskerr.
         </Link>
       </div>
-      <ul className="flex items-center text-xs sm:text-base lg:text-2xl">
+      {user ? <Dropdown onLogout={onLogout} /> : null}
+      {/* <ul className="flex items-center text-xs sm:text-base lg:text-2xl">
         {user ? (
           <li
             onClick={onLogout}
@@ -58,7 +58,7 @@ function Header() {
             </li>
           </>
         )}
-      </ul>
+      </ul> */}
     </header>
   );
 }

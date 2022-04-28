@@ -7,7 +7,7 @@ import { InputText } from "./InputText";
 import { updateTask } from "../features/tasks/taskSlice";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
-import Button from "./Button";
+import Button from "./ButtonComponents/Button";
 export default function MyModal({ task }) {
   let [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState(task.title);

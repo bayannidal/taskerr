@@ -5,9 +5,12 @@ import { toast } from "react-toastify";
 import { register, reset } from "../features/auth/authSlice";
 import UserIcon from "@heroicons/react/outline/UserIcon";
 import { InputText } from "../components/InputText";
-import Button from "../components/Button";
-import ButtonLoading from "../components/ButtonLoading";
+import Button from "../components/ButtonComponents/Button";
+import ButtonLoading from "../components/ButtonComponents/ButtonLoading";
 import Error from "../components/Error";
+import AuthTop from "../components/AuthComponents/AuthTop";
+import AuthBottom from "../components/AuthComponents/AuthBottom";
+import AuthContainer from "../components/AuthComponents/AuthContainer";
 function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -76,14 +79,14 @@ function Register() {
   };
 
   return (
-    <div className="layout flex flex-col justify-between  text-text dark:text-white max-w-full">
-      <section className="flex flex-col items-center  mb-2 justify-between">
-        <div className="flex flex-col w-full justify-center  items-center bg-third rounded-lg min-h-[10vh] py-2 text-text">
-          <UserIcon className="h-10" />
+    <AuthContainer reversed={true}>
+      <AuthTop>
+        <div className="flex flex-col w-full lg:h-full  justify-center mt-4 lg:mt-0 items-center bg-third rounded-lg lg:rounded-none py-5 text-text">
+          <UserIcon className="h-10 lg:h-40" />
           <h1 className=" font-bold">Register</h1>
         </div>
-      </section>
-      <section className="flex flex-col max-w-full">
+      </AuthTop>
+      <AuthBottom>
         <h1 className=" text-center mb-5 font-bold  text-sm md:text-base">
           Register and add some tasks!
         </h1>
@@ -98,7 +101,7 @@ function Register() {
           text={error.message}
           handleError={() => setError({ active: false, message: "" })}
         />
-        <form onSubmit={onSubmit} className="flex flex-col max-w-full h-full">
+        <form onSubmit={onSubmit} className="flex flex-col">
           <div className="max-w-full">
             <div className="flex">
               <InputText
@@ -181,8 +184,8 @@ function Register() {
             </Link>
           </div>
         </form>
-      </section>
-    </div>
+      </AuthBottom>
+    </AuthContainer>
   );
 }
 
