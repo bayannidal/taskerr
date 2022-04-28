@@ -6,8 +6,11 @@ import UserIcon from "@heroicons/react/outline/UserIcon";
 import Error from "../components/Error";
 import "animate.css";
 import { InputText } from "../components/InputText";
-import ButtonLoading from "../components/ButtonLoading";
-import Button from "../components/Button";
+import ButtonLoading from "../components/ButtonComponents/ButtonLoading";
+import Button from "../components/ButtonComponents/Button";
+import AuthTop from "../components/AuthComponents/AuthTop";
+import AuthBottom from "../components/AuthComponents//AuthBottom";
+import AuthContainer from "../components/AuthComponents/AuthContainer";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,7 +31,7 @@ function Login() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess || user) {
       dispatch(reset());
       navigate("/");
     }
@@ -58,14 +61,14 @@ function Login() {
     dispatch(reset());
   };
   return (
-    <div className="layout flex flex-col justify-between  text-text dark:text-white">
-      <section className="flex flex-col items-center  mb-2 justify-between ">
-        <div className=" flex flex-col w-full justify-center  items-center bg-third rounded-lg min-h-[10vh] py-2 text-text">
-          <UserIcon className="h-10" />
+    <AuthContainer>
+      <AuthTop>
+        <div className=" flex flex-col w-full lg:h-full  justify-center mt-4 lg:mt-0 items-center bg-third rounded-lg lg:rounded-none py-5 text-text">
+          <UserIcon className="h-10 lg:h-40" />
           <h1 className=" font-bold">Login</h1>
         </div>
-      </section>
-      <section className="flex flex-col justify-between relative">
+      </AuthTop>
+      <AuthBottom>
         <h1 className=" text-center mb-5 font-bold text-sm md:text-base">
           Login and take care of the tasks!
         </h1>
@@ -115,8 +118,8 @@ function Login() {
             </Link>
           </div>
         </form>
-      </section>
-    </div>
+      </AuthBottom>
+    </AuthContainer>
   );
 }
 

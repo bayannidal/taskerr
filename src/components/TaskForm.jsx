@@ -5,7 +5,7 @@ import { Switch } from "@headlessui/react";
 import { InputText } from "./InputText";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
-import Button from "./Button";
+import Button from "./ButtonComponents/Button";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
