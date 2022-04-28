@@ -17,12 +17,12 @@ function TaskItem({ task }) {
   return (
     <div className="relative  custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText  group">
       <div className="min-w-full px-4  relative group flex flex-col my-8">
-        <div className="text-sm  font-light flex flex-col">
-          <div className=" text-left font-bold text-lg pb-4 overflow-x-auto ">
+        <div className="text-sm mb-4 font-light flex flex-col">
+          <div className=" text-left font-bold text-lg pb-4 overflow-x-auto overflow-y-hidden custom-scroll">
             {" "}
             {task.title}
           </div>
-          <div className="text-left font-normal text-base pb-4 overflow-x-auto">
+          <div className="text-left font-normal text-base pb-4 overflow-x-auto overflow-y-hidden  custom-scroll">
             {" "}
             {task.description}
           </div>
