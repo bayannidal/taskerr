@@ -20,6 +20,7 @@ function Login() {
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+
   useEffect(() => {
     return () => {
       dispatch(reset());
@@ -57,17 +58,22 @@ function Login() {
     dispatch(reset());
   };
   return (
-    <div className=" flex flex-col justify-between  pt-24 text-text dark:text-white">
-      <section className="flex flex-col items-center  mb-2 justify-between p-4 ">
+    <div className="layout flex flex-col justify-between  text-text dark:text-white">
+      <section className="flex flex-col items-center  mb-2 justify-between ">
         <div className=" flex flex-col w-full justify-center  items-center bg-third rounded-lg min-h-[10vh] py-2 text-text">
           <UserIcon className="h-10" />
           <h1 className=" font-bold">Login</h1>
         </div>
       </section>
-      <section className="flex flex-col justify-between p-4 relative">
-        <h1 className=" text-center mb-5 font-bold">
+      <section className="flex flex-col justify-between relative">
+        <h1 className=" text-center mb-5 font-bold text-sm md:text-base">
           Login and take care of the tasks!
         </h1>
+        {isLoading ? (
+          <h2 className="text-center mb-2 text-xs md:text-base">
+            Server may take some time until it wakes up due to free plan...
+          </h2>
+        ) : null}
 
         <Error
           error={isError}
@@ -103,7 +109,7 @@ function Login() {
             {!isLoading ? <Button text="Login" /> : <ButtonLoading />}
             <Link
               to="/register"
-              className="text-center mt-2 text-gray-600 dark:text-gray-200 underline"
+              className="text-center text-sm mt-2 text-gray-600 dark:text-gray-200 underline"
             >
               New user? Create an account
             </Link>

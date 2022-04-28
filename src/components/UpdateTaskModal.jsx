@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { Switch } from "@headlessui/react";
 import { InputText } from "./InputText";
 import { updateTask } from "../features/tasks/taskSlice";
-
+import CheckIcon from "@heroicons/react/outline/CheckIcon";
+import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
+import Button from "./Button";
 export default function MyModal({ task }) {
   let [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState(task.title);
@@ -50,7 +52,7 @@ export default function MyModal({ task }) {
     <>
       <div className="absolute  z-4 top-1 left-2">
         <button type="button" onClick={openModal} className="hover:text-third">
-          <PencilAltIcon className="h-[25px]" />
+          <PencilAltIcon className="h-[20px]" />
         </button>
       </div>
 
@@ -70,7 +72,7 @@ export default function MyModal({ task }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10  backdrop-filter backdrop-blur-lg" />
+              <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-60 dark:bg-opacity-60  backdrop-filter backdrop-blur-lg" />
             </Transition.Child>
             <span
               className="inline-block h-screen align-middle"
@@ -116,17 +118,14 @@ export default function MyModal({ task }) {
                       </div>
                       <div className="flex justify-between">
                         {" "}
-                        <div className="flex gap-2 items-center pt-5 pl-2">
-                          <label htmlFor="completed" className="font-bold">
-                            Completed
-                          </label>
+                        <div className="">
                           <Switch
                             checked={completed}
                             onChange={setCompleted}
                             className={`${
                               completed
                                 ? "bg-green-500"
-                                : "bg-gray-200 dark:bg-dSecondary"
+                                : "bg-secondary dark:bg-dSecondary"
                             } relative inline-flex items-center h-6 rounded-full w-11`}
                           >
                             <span className="sr-only">
@@ -134,22 +133,27 @@ export default function MyModal({ task }) {
                             </span>
                             <span
                               className={`${
-                                completed ? "translate-x-6" : "translate-x-1"
-                              } inline-block w-4 h-4 transform bg-white rounded-full`}
-                            />
+                                completed
+                                  ? "translate-x-6 bg-primary"
+                                  : "translate-x-1 bg-green-500"
+                              } inline-block w-4 h-4 transform  rounded-full`}
+                            >
+                              <CheckIcon
+                                className={`h-4 ${
+                                  completed ? "text-green-500" : "text-dText"
+                                }  z-50`}
+                              />
+                            </span>
                           </Switch>
                         </div>
-                        <div className="flex gap-2 items-center pt-5 pr-2">
-                          <label htmlFor="completed" className="font-bold">
-                            Pinned
-                          </label>
+                        <div className="">
                           <Switch
                             checked={pinned}
                             onChange={setPinned}
                             className={`${
                               pinned
                                 ? "bg-purple-500"
-                                : "bg-gray-200 dark:bg-dSecondary"
+                                : "bg-secondary dark:bg-dSecondary"
                             } relative inline-flex items-center h-6 rounded-full w-11`}
                           >
                             <span className="sr-only">
@@ -157,19 +161,23 @@ export default function MyModal({ task }) {
                             </span>
                             <span
                               className={`${
-                                pinned ? "translate-x-6" : "translate-x-1"
-                              } inline-block w-4 h-4 transform bg-white rounded-full`}
-                            />
+                                pinned
+                                  ? "translate-x-6 bg-primary"
+                                  : "translate-x-1 bg-purple-500"
+                              } inline-block w-4 h-4 transform  rounded-full`}
+                            >
+                              {/* <FingerPrintIcon /> */}
+                              <PaperClipIcon
+                                className={`h-4 ${
+                                  pinned ? "text-purple-500" : "text-dText"
+                                }  z-50`}
+                              />
+                            </span>
                           </Switch>
                         </div>
                       </div>
                     </div>
-                    <button
-                      type="submit"
-                      className="bg-third hover:bg-opacity-90 w-full p-3 font-bold text-xl rounded-lg dark:text-black"
-                    >
-                      Update
-                    </button>
+                    <Button type="submit" text="Update" />
                   </form>
                   <button
                     type="submit"

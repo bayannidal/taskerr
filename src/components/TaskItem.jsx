@@ -14,21 +14,20 @@ function TaskItem({ task }) {
   const handleDispatch = () => {
     return dispatch(deleteTask(task.id));
   };
-  console.log(completed);
   return (
-    <div className="relative min-h-[10rem]  custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText  group">
-      <div className="min-w-full px-4  relative group flex my-8">
-        <div className="text-sm  font-light py-4 flex flex-col justify-evenly  flex-1">
-          <div className=" text-left font-extrabold text-xl mb-4">
+    <div className="relative  custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText  group">
+      <div className="min-w-full px-4  relative group flex flex-col my-8">
+        <div className="text-sm  font-light flex flex-col">
+          <div className=" text-left font-bold text-lg pb-4 overflow-x-auto ">
             {" "}
             {task.title}
           </div>
-          <div className="text-left font-normal text-base">
+          <div className="text-left font-normal text-base pb-4 overflow-x-auto">
             {" "}
             {task.description}
           </div>
         </div>
-        <div className="text-sm font-light px-2 py-4 flex flex-col  justify-evenly gap-2">
+        <div className="text-sm font-light mb-4 flex flex-row   justify-between gap-2">
           <Switch
             checked={completed}
             onChange={() => {
@@ -47,7 +46,7 @@ function TaskItem({ task }) {
               completed ? "bg-green-500" : "bg-primary dark:bg-dPrimary"
             } relative inline-flex items-center h-6 rounded-full w-11`}
           >
-            <span className="sr-only">Enable notifications</span>
+            <span className="sr-only">Task completed</span>
             <span
               className={`${
                 completed
@@ -99,7 +98,7 @@ function TaskItem({ task }) {
         </div>
       </div>
       <div className="absolute bottom-4 left-4 text-xs">
-        {new Date(task.createdAt).toLocaleString()}
+        {new Date(task.lastEditedAt).toLocaleString()}
       </div>
       <ModalDelete task={task} handleDispatch={handleDispatch} />
       <UpdateTaskModal task={task} />

@@ -5,6 +5,7 @@ import { Switch } from "@headlessui/react";
 import { InputText } from "./InputText";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
+import Button from "./Button";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -34,7 +35,7 @@ function TaskForm() {
     <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-4">
-          <label htmlFor="text" className="font-bold ml-2">
+          <label htmlFor="text" className="font-bold ml-2 text-purple-500">
             Create a new Taskrr.
           </label>
           <div className="flex mt-5">
@@ -111,19 +112,13 @@ function TaskForm() {
                     className={`h-4 ${
                       pinned ? "text-purple-500" : "text-dText"
                     }  z-50`}
-                    src="https://cdn-icons.flaticon.com/png/512/2951/premium/2951412.png?token=exp=1650283850~hmac=51518933969d5c65aec424482d6facaf"
                   />
                 </span>
               </Switch>
             </div>
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-third hover:bg-opacity-90 w-full md:w-[50%] p-3 font-bold text-xl rounded-lg dark:text-black self-center"
-        >
-          Add Task
-        </button>
+        <Button type="submit" text="Add Task" />
       </form>
     </section>
   );

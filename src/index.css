@@ -1,8 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap");
 
 *,
 *::after,
@@ -13,26 +12,29 @@
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'PT Sans', sans-serif;
   box-sizing: border-box;
   height: calc(var(--vh) * 100);
-
 }
 
+html.light {
+  @apply bg-primary;
+}
 
+html.dark {
+  @apply bg-dPrimary;
+}
 
 .App {
   min-height: calc(var(--vh, 1vh) * 100);
 }
 
-.App>div {
+.App > div {
   min-height: calc(var(--vh, 1vh) * 100);
-
 }
-
 
 .custom-shadow {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
@@ -60,19 +62,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   -webkit-appearance: none;
 }
 
-
-
 input[type="datetime-local"] {
   -webkit-appearance: none;
 }
 
-@-moz-document url-prefix() {
-  header {
-    opacity: 1;
-  }
-
-
-
-
-
+.layout {
+  @apply pt-20 lg:pt-24 px-2 lg:px-28 pb-10;
 }

@@ -9,7 +9,6 @@ function classNames(...classes) {
 export default function Example({ tasks }) {
   const [state, setState] = useState(0);
   const sortList = ["All", "Pinned", "Completed"];
-  console.log(state);
   if (tasks.length === 0) {
     return (
       <div className="text-center font-bold text-text dark:text-dText">
@@ -26,10 +25,10 @@ export default function Example({ tasks }) {
               key={category}
               className={({ selected }) =>
                 classNames(
-                  "w-[33%] py-2.5 leading-5  text-text dark:text-dText font-semibold text-sm lg:text-xl p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] dark:hover:bg-dPrimary ",
+                  "w-[33%] py-2.5 leading-5  text-text dark:text-dText font-semibold text-[0.7rem] lg:text-xl p-2 rounded-lg hover:bg-[rgba(0,0,0,0.05)] dark:hover:bg-dPrimary ",
                   "focus:outline-none",
                   selected
-                    ? "bg-primary dark:bg-dPrimary hover:bg-[rgba(255,255,255)] dark:hover:bg-[rgba(0,0,0,0.2)] border-2"
+                    ? "bg-primary dark:bg-dPrimary hover:bg-[rgba(255,255,255)] dark:hover:bg-[rgba(0,0,0,0.2)] "
                     : ""
                 )
               }

@@ -20,7 +20,7 @@ export default function MyModal({ handleDispatch }) {
           onClick={openModal}
           className="hover:text-red-500"
         >
-          <XCircleIcon className="h-[25px]" />
+          <XCircleIcon className="h-[20px]" />
         </button>
       </div>
 
@@ -40,7 +40,7 @@ export default function MyModal({ handleDispatch }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-10 dark:bg-opacity-10  backdrop-filter backdrop-blur-lg" />
+              <Dialog.Overlay className="fixed inset-0 bg-primary dark:bg-dPrimary  bg-opacity-60 dark:bg-opacity-60 backdrop-filter backdrop-blur-lg" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -72,7 +72,7 @@ export default function MyModal({ handleDispatch }) {
                   </p>
                 </div>
 
-                <div className="mt-4 flex justify-between">
+                <div className="mt-4 flex flex-col md:flex-row gap-2 justify-between">
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium bg-red-500 rounded-lg text-dText focus:outline-none"
