@@ -8,16 +8,16 @@ function classNames(...classes) {
 
 export default function Example({ tasks }) {
   const [state, setState] = useState(0);
-  const [type, setType] = useState("all");
+  // const [type, setType] = useState("all");
   const sortList = ["All", "Pinned", "Completed"];
-  useEffect(() => {
-    sortList.forEach((item, idx) => {
-      if (idx === state) {
-        setType(item.toLowerCase());
-      }
-    });
-  }, [state, type]);
-  console.log(type);
+  // useEffect(() => {
+  //   sortList.forEach((item, idx) => {
+  //     if (idx === state) {
+  //       setType(item.toLowerCase());
+  //     }
+  //   });
+  // }, [state, type]);
+  // console.log(type);
   if (tasks.length === 0) {
     return (
       <div className="text-center font-bold text-text dark:text-dText">
@@ -52,45 +52,6 @@ export default function Example({ tasks }) {
           ))}
         </Tab.List>
         <Tab.Panels className="mt-2">
-          {/* <Tab.Panel
-            className={classNames(
-              "rounded-lg  flex flex-col gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 0 ? (
-              <>
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    {task && <TaskItem key={task.id} task={task} />}
-                  </React.Fragment>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel> */}
-          {/* <Tab.Panel
-            className={classNames(
-              "rounded-lg flex flex-col  gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 1 ? (
-              <>
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    {task.pinned === true && (
-                      <TaskItem key={task.id} task={task} />
-                    )}
-                  </React.Fragment>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel> */}
-
           {sortList.map((item, idx) => (
             <Tab.Panel
               className={classNames(
@@ -99,56 +60,27 @@ export default function Example({ tasks }) {
               )}
               key={idx}
             >
-              {tasks.map((task) => (
-                <React.Fragment key={task.id}>
-                  {task[item.toLowerCase()] === true && (
-                    <TaskItem key={task.id} task={task} />
-                  )}
-                </React.Fragment>
-              ))}
-            </Tab.Panel>
-          ))}
-
-          {/* <Tab.Panel
-            className={classNames(
-              "rounded-lg flex flex-col   gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 2 ? (
-              <>
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    {task.completed === true && (
-                      <TaskItem key={task.id} task={task} />
-                    )}
-                  </React.Fragment>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel>
-          <Tab.Panel
-            className={classNames(
-              "rounded-lg flex flex-col  gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 3 ? (
-              <>
-                {[...tasks]
-                  .sort((a, b) => new Date(a.expiresAt) - new Date(b.expiresAt))
-                  .map((task) => (
+              {idx !== 0 ? (
+                <>
+                  {tasks.map((task) => (
+                    <React.Fragment key={task.id}>
+                      {task[item.toLowerCase()] === true && (
+                        <TaskItem key={task.id} task={task} />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {tasks.map((task) => (
                     <React.Fragment key={task.id}>
                       {task && <TaskItem key={task.id} task={task} />}
                     </React.Fragment>
                   ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel> */}
+                </>
+              )}
+            </Tab.Panel>
+          ))}
         </Tab.Panels>
       </Tab.Group>
     </div>
