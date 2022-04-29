@@ -8,16 +8,7 @@ function classNames(...classes) {
 
 export default function Example({ tasks }) {
   const [state, setState] = useState(0);
-  // const [type, setType] = useState("all");
   const sortList = ["All", "Pinned", "Completed"];
-  // useEffect(() => {
-  //   sortList.forEach((item, idx) => {
-  //     if (idx === state) {
-  //       setType(item.toLowerCase());
-  //     }
-  //   });
-  // }, [state, type]);
-  // console.log(type);
   if (tasks.length === 0) {
     return (
       <div className="text-center font-bold text-text dark:text-dText">
@@ -25,7 +16,6 @@ export default function Example({ tasks }) {
       </div>
     );
   }
-  console.log(state);
   return (
     <div className="">
       <Tab.Group
