@@ -71,7 +71,7 @@ input[type="datetime-local"] {
 }
 
 .layout {
-  @apply pt-20 md:px-16 lg:pt-24 px-4 lg:px-20 pb-10;
+  @apply pt-24 md:px-16 lg:pt-28 px-4 lg:px-20 pb-10;
 }
 
 .layout-auth {
