@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { register, reset } from "../features/auth/authSlice";
 import UserIcon from "@heroicons/react/outline/UserIcon";
 import { InputText } from "../components/InputText";
@@ -37,7 +36,6 @@ function Register() {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
       dispatch(reset());
     }
     if (isSuccess || user) {
@@ -79,10 +77,10 @@ function Register() {
   };
 
   return (
-    <AuthContainer reversed={true}>
+    <AuthContainer reversed={false}>
       <AuthTop>
-        <div className="flex flex-col w-full lg:h-full  justify-center mt-4 lg:mt-0 items-center bg-third rounded-lg lg:rounded-none py-5 text-text">
-          <UserIcon className="h-10 lg:h-40" />
+        <div className="flex flex-col w-full md:h-full  justify-center mt-4 md:mt-0 items-center bg-third rounded-lg md:rounded-none py-5 text-text">
+          <UserIcon className="h-10 md:h-40" />
           <h1 className=" font-bold">Register</h1>
         </div>
       </AuthTop>

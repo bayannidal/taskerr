@@ -6,6 +6,7 @@ import { InputText } from "./InputText";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 import Button from "./ButtonComponents/Button";
+import { Textarea } from "./Textarea";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -35,7 +36,10 @@ function TaskForm() {
     <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-4">
-          <label htmlFor="text" className="font-bold ml-2 text-purple-500">
+          <label
+            htmlFor="text"
+            className="font-bold ml-2 text-text dark:text-dText"
+          >
             Create a new Taskrr.
           </label>
           <div className="flex mt-5">
@@ -49,7 +53,15 @@ function TaskForm() {
             />
           </div>
           <div className="flex">
-            <InputText
+            {/* <InputText
+              type="text"
+              name="description"
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="How would you describe it..."
+            /> */}
+            <Textarea
               type="text"
               name="description"
               id="description"

@@ -23,7 +23,7 @@ module.exports = {
         third: '#FEDE55',
         dThird: '#323FA6',
         text: '#323442',
-        dText: "#FAFAFF"
+        dText: "#FFFF"
       }
     },
     screens: {

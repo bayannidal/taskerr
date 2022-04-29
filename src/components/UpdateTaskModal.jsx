@@ -8,6 +8,7 @@ import { updateTask } from "../features/tasks/taskSlice";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 import Button from "./ButtonComponents/Button";
+import { Textarea } from "./Textarea";
 export default function MyModal({ task }) {
   let [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState(task.title);
@@ -107,7 +108,7 @@ export default function MyModal({ task }) {
                         />
                       </div>
                       <div className="flex">
-                        <InputText
+                        <Textarea
                           type="text"
                           name="description"
                           id="description"

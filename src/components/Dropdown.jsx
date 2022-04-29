@@ -1,10 +1,12 @@
 import { Menu, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import LogoutIcon from "@heroicons/react/outline/LogoutIcon";
 import MoonOutline from "@heroicons/react/solid/MoonIcon";
 import SunOutline from "@heroicons/react/solid/SunIcon";
 import useDarkMode from "../hook/useDarkMode";
+// import DashboardIcon from "@heroicons/react/outline/ViewGridIcon";
+
 export default function Example({ onLogout }) {
   const [colorTheme, setTheme] = useDarkMode();
   return (
