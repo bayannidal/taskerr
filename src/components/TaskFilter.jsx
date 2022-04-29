@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 import TaskItem from "./TaskItem";
 
@@ -18,7 +18,11 @@ export default function Example({ tasks }) {
   }
   return (
     <div className="">
-      <Tab.Group onChange={(idx) => setState(idx)}>
+      <Tab.Group
+        onChange={(idx) => {
+          setState(idx);
+        }}
+      >
         <Tab.List className="flex p-1 space-x-1 bg-secondary dark:bg-dSecondary  rounded-lg mb-2 ">
           {sortList.map((category) => (
             <Tab
@@ -38,84 +42,35 @@ export default function Example({ tasks }) {
           ))}
         </Tab.List>
         <Tab.Panels className="mt-2">
-          <Tab.Panel
-            className={classNames(
-              "rounded-lg  flex flex-col gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 0 ? (
-              <>
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    {task && <TaskItem key={task.id} task={task} />}
-                  </React.Fragment>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel>
-          <Tab.Panel
-            className={classNames(
-              "rounded-lg flex flex-col  gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 1 ? (
-              <>
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    {task.pinned === true && (
-                      <TaskItem key={task.id} task={task} />
-                    )}
-                  </React.Fragment>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel>
-          <Tab.Panel
-            className={classNames(
-              "rounded-lg flex flex-col   gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 2 ? (
-              <>
-                {tasks.map((task) => (
-                  <React.Fragment key={task.id}>
-                    {task.completed === true && (
-                      <TaskItem key={task.id} task={task} />
-                    )}
-                  </React.Fragment>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel>
-          <Tab.Panel
-            className={classNames(
-              "rounded-lg flex flex-col  gap-2",
-              "focus:outline-none"
-            )}
-          >
-            {tasks && state === 3 ? (
-              <>
-                {[...tasks]
-                  .sort((a, b) => new Date(a.expiresAt) - new Date(b.expiresAt))
-                  .map((task) => (
+          {sortList.map((item, idx) => (
+            <Tab.Panel
+              className={classNames(
+                "rounded-lg flex flex-col  gap-2",
+                "focus:outline-none"
+              )}
+              key={idx}
+            >
+              {idx !== 0 ? (
+                <>
+                  {tasks.map((task) => (
+                    <React.Fragment key={task.id}>
+                      {task[item.toLowerCase()] === true && (
+                        <TaskItem key={task.id} task={task} />
+                      )}
+                    </React.Fragment>
+                  ))}
+                </>
+              ) : (
+                <>
+                  {tasks.map((task) => (
                     <React.Fragment key={task.id}>
                       {task && <TaskItem key={task.id} task={task} />}
                     </React.Fragment>
                   ))}
-              </>
-            ) : (
-              <></>
-            )}
-          </Tab.Panel>
+                </>
+              )}
+            </Tab.Panel>
+          ))}
         </Tab.Panels>
       </Tab.Group>
     </div>

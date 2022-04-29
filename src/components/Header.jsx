@@ -13,7 +13,7 @@ function Header() {
   };
 
   return (
-    <header className="flex justify-between items-center py-4 px-4 lg:px-8 h-14 lg:h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText  backdrop-filter backdrop-blur-lg bg-opacity-60 dark:bg-opacity-60 bg-primary dark:bg-dPrimary">
+    <header className="flex justify-between items-center px-4 md:px-16  lg:px-20 pb-10; h-14 lg:h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText  backdrop-filter backdrop-blur-lg bg-opacity-60 dark:bg-opacity-60 bg-primary dark:bg-dPrimary">
       <div className="flex items-center ">
         <Link
           to="/"
