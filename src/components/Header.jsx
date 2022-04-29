@@ -1,9 +1,6 @@
-import LoginIcon from "@heroicons/react/outline/LoginIcon";
-import UserIcon from "@heroicons/react/outline/UserIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
-// import DashboardIcon from "@heroicons/react/outline/ViewGridIcon";
 import Dropdown from "./Dropdown";
 function Header() {
   const navigate = useNavigate();
@@ -26,39 +23,6 @@ function Header() {
         </Link>
       </div>
       {user ? <Dropdown onLogout={onLogout} /> : null}
-      {/* <ul className="flex items-center text-xs sm:text-base lg:text-2xl">
-        {user ? (
-          <li
-            onClick={onLogout}
-            className="flex items-center mr-2 lg:mr-5 font-bold cursor-pointer"
-          >
-            <LogoutIcon className="text-third h-4 md:h-8 mr-1" />
-            Logout
-          </li>
-        ) : (
-          <>
-            {" "}
-            <li>
-              <Link
-                to="login"
-                className="flex items-center mr-2 lg:mr-5 font-bold "
-              >
-                <LoginIcon className="text-third h-4 md:h-8 mr-1" />
-                Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="register"
-                className="flex items-center mr-2 lg:mr-5 font-bold"
-              >
-                <UserIcon className="text-third h-4 md:h-8 mr-1" />
-                Register
-              </Link>
-            </li>
-          </>
-        )}
-      </ul> */}
     </header>
   );
 }

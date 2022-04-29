@@ -37,7 +37,7 @@ function Login() {
     }
 
     if (isError) {
-      setTimeout(() => dispatch(reset()), 5000);
+      // setTimeout(() => dispatch(reset()), 5000);
     }
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 
@@ -63,8 +63,8 @@ function Login() {
   return (
     <AuthContainer>
       <AuthTop>
-        <div className=" flex flex-col w-full lg:h-full  justify-center mt-4 lg:mt-0 items-center bg-third rounded-lg lg:rounded-none py-5 text-text">
-          <UserIcon className="h-10 lg:h-40" />
+        <div className=" flex flex-col w-full md:h-full  justify-center mt-4 md:mt-0 items-center bg-third rounded-lg md:rounded-none py-5 text-text">
+          <UserIcon className="h-10 md:h-40" />
           <h1 className=" font-bold">Login</h1>
         </div>
       </AuthTop>

@@ -71,11 +71,11 @@ input[type="datetime-local"] {
 }
 
 .layout {
-  @apply pt-20 lg:pt-24 px-2 lg:px-28 pb-10;
+  @apply pt-20 md:px-16 lg:pt-24 px-4 lg:px-20 pb-10;
 }
 
 .layout-auth {
-  @apply px-2 pb-4 lg:pb-0 lg:px-0 lg:pt-0;
+  @apply px-2 pb-4 md:pb-0 md:px-0 lg:pt-0;
 }
 
 .custom-scroll::-webkit-scrollbar {

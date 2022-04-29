@@ -4,7 +4,7 @@ const AuthContainer = ({ children, reversed }) => {
   return (
     <div
       className={`layout-auth flex flex-col ${
-        !reversed ? "lg:flex-row" : " lg:flex-row-reverse"
+        !reversed ? "md:flex-row" : " md:flex-row-reverse"
       } justify-between  text-text dark:text-white`}
     >
       {children}

@@ -36,7 +36,10 @@ function TaskForm() {
     <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-4">
-          <label htmlFor="text" className="font-bold ml-2 text-purple-500">
+          <label
+            htmlFor="text"
+            className="font-bold ml-2 text-text dark:text-dText"
+          >
             Create a new Taskrr.
           </label>
           <div className="flex mt-5">

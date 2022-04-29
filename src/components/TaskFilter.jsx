@@ -17,7 +17,7 @@ export default function Example({ tasks }) {
     );
   }
   return (
-    <div className="w-full">
+    <div className="">
       <Tab.Group onChange={(idx) => setState(idx)}>
         <Tab.List className="flex p-1 space-x-1 bg-secondary dark:bg-dSecondary  rounded-lg mb-2 ">
           {sortList.map((category) => (
