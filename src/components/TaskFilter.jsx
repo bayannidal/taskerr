@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Tab } from "@headlessui/react";
 import TaskItem from "./TaskItem";
 
@@ -8,7 +8,16 @@ function classNames(...classes) {
 
 export default function Example({ tasks }) {
   const [state, setState] = useState(0);
+  const [type, setType] = useState("all");
   const sortList = ["All", "Pinned", "Completed"];
+  useEffect(() => {
+    sortList.forEach((item, idx) => {
+      if (idx === state) {
+        setType(item.toLowerCase());
+      }
+    });
+  }, [state, type]);
+  console.log(type);
   if (tasks.length === 0) {
     return (
       <div className="text-center font-bold text-text dark:text-dText">
@@ -16,9 +25,14 @@ export default function Example({ tasks }) {
       </div>
     );
   }
+  console.log(state);
   return (
     <div className="">
-      <Tab.Group onChange={(idx) => setState(idx)}>
+      <Tab.Group
+        onChange={(idx) => {
+          setState(idx);
+        }}
+      >
         <Tab.List className="flex p-1 space-x-1 bg-secondary dark:bg-dSecondary  rounded-lg mb-2 ">
           {sortList.map((category) => (
             <Tab
@@ -38,7 +52,7 @@ export default function Example({ tasks }) {
           ))}
         </Tab.List>
         <Tab.Panels className="mt-2">
-          <Tab.Panel
+          {/* <Tab.Panel
             className={classNames(
               "rounded-lg  flex flex-col gap-2",
               "focus:outline-none"
@@ -55,8 +69,8 @@ export default function Example({ tasks }) {
             ) : (
               <></>
             )}
-          </Tab.Panel>
-          <Tab.Panel
+          </Tab.Panel> */}
+          {/* <Tab.Panel
             className={classNames(
               "rounded-lg flex flex-col  gap-2",
               "focus:outline-none"
@@ -75,8 +89,27 @@ export default function Example({ tasks }) {
             ) : (
               <></>
             )}
-          </Tab.Panel>
-          <Tab.Panel
+          </Tab.Panel> */}
+
+          {sortList.map((item, idx) => (
+            <Tab.Panel
+              className={classNames(
+                "rounded-lg flex flex-col  gap-2",
+                "focus:outline-none"
+              )}
+              key={idx}
+            >
+              {tasks.map((task) => (
+                <React.Fragment key={task.id}>
+                  {task[item.toLowerCase()] === true && (
+                    <TaskItem key={task.id} task={task} />
+                  )}
+                </React.Fragment>
+              ))}
+            </Tab.Panel>
+          ))}
+
+          {/* <Tab.Panel
             className={classNames(
               "rounded-lg flex flex-col   gap-2",
               "focus:outline-none"
@@ -115,7 +148,7 @@ export default function Example({ tasks }) {
             ) : (
               <></>
             )}
-          </Tab.Panel>
+          </Tab.Panel> */}
         </Tab.Panels>
       </Tab.Group>
     </div>

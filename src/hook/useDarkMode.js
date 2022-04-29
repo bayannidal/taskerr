@@ -15,7 +15,6 @@ export default function useDarkMode() {
             .querySelector('meta[name="theme-color"]')
             .setAttribute("content", "#121212");
     }
-    console.log(theme)
 
     useEffect(() => {
         const root = window.document.documentElement;
