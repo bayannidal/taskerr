@@ -22,7 +22,7 @@ function Header() {
           Taskerr.
         </Link>
       </div>
-      {user ? <Dropdown onLogout={onLogout} /> : null}
+      <Dropdown onLogout={onLogout} />
     </header>
   );
 }

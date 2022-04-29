@@ -77,7 +77,7 @@ function Register() {
   };
 
   return (
-    <AuthContainer reversed={true}>
+    <AuthContainer reversed={false}>
       <AuthTop>
         <div className="flex flex-col w-full md:h-full  justify-center mt-4 md:mt-0 items-center bg-third rounded-lg md:rounded-none py-5 text-text">
           <UserIcon className="h-10 md:h-40" />

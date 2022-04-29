@@ -7,13 +7,13 @@ export const DarkModeBtn = () => {
   const [colorTheme, setTheme] = useDarkMode();
   return (
     <button
-      className={` hidden  font-bold`}
+      className={`  fixed bottom-4 right-4 font-bold`}
       onClick={() => setTheme(colorTheme)}
     >
       {colorTheme === "light" ? (
         <SunOutline className="h-7 md:h-10 text-third " />
       ) : (
-        <MoonOutline className="h-7 md:h-10 text-dPrimary" />
+        <MoonOutline className="h-7 md:h-10 text-third" />
       )}
     </button>
   );

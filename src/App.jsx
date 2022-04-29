@@ -11,7 +11,6 @@ import useDarkMode from "./hook/useDarkMode";
 import MissingPage from "./pages/MissingPage";
 function App() {
   useVH();
-  useDarkMode();
   const { user } = useSelector((state) => state.auth);
 
   return (
