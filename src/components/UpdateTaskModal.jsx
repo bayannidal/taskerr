@@ -127,7 +127,7 @@ export default function MyModal({ task }) {
                               completed
                                 ? "bg-green-500"
                                 : "bg-secondary dark:bg-dSecondary"
-                            } relative inline-flex items-center h-6 rounded-full w-11`}
+                            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
                           >
                             <span className="sr-only">
                               Enable notifications
@@ -155,7 +155,7 @@ export default function MyModal({ task }) {
                               pinned
                                 ? "bg-purple-500"
                                 : "bg-secondary dark:bg-dSecondary"
-                            } relative inline-flex items-center h-6 rounded-full w-11`}
+                            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
                           >
                             <span className="sr-only">
                               Enable notifications

@@ -9,6 +9,8 @@ export const Textarea = ({
   required,
   customClass,
   step,
+  bgColor,
+  validation,
 }) => {
   return (
     <textarea
@@ -20,7 +22,11 @@ export const Textarea = ({
       onChange={onChange}
       required={required}
       step={step}
-      className={`${customClass} w-full min-h-[7rem] font-medium rounded-lg text-[0.5rem] placeholder:text-[0.5rem] sm:text-base md:text-base sm:placeholder:text-[0.8rem] placeholder:md:text-base p-3 mb-2 bg-secondary dark:bg-dSecondary text-text dark:text-white caret-third placeholder:font-medium`}
+      className={`${customClass} ${
+        !bgColor ? "bg-secondary dark:bg-dSecondary" : bgColor
+      } ${
+        validation === true ? "border-2 border-red-500" : null
+      } w-full min-h-[7rem] font-medium rounded-lg text-[0.5rem] placeholder:text-[0.5rem] sm:text-base md:text-base sm:placeholder:text-[0.8rem] placeholder:md:text-base p-3 mb-2  text-text dark:text-white caret-third placeholder:font-medium custom-shadow`}
     />
   );
 };

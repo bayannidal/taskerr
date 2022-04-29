@@ -50,14 +50,13 @@ function Dashboard() {
 
   return (
     <div className="layout min-w-full flex flex-col max-w-full min-h-full">
-      <div className="flex  flex-col md:flex-row md:gap-2">
-        <div className=" flex flex-col max-h-fit md:max-w-[35%] md:min-w-[35%] rounded-lg p-1">
-          <section className="p-2 bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-5">
-            <h1 className=" p-2 font-extrabold text-lg">
-              Welcome, {user && user.firstName + " " + user.lastName}!
-            </h1>
-          </section>
-
+      <section className="p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
+        <h1 className=" p-2 font-extrabold text-lg">
+          Welcome, {user && user.firstName + " " + user.lastName}!
+        </h1>
+      </section>
+      <div className="flex max-w-full flex-col  md:flex-row md:gap-3">
+        <div className="md:flex-[1] min-w-0 max-h-fit rounded-lg mb-3">
           <TaskForm
             tasks={tasks}
             isError={isError}
@@ -65,7 +64,7 @@ function Dashboard() {
             handleError={handleError}
           />
         </div>
-        <section className="mt-5  md:mt-0 md:max-w-[65%] md:min-w-[65%] rounded-lg p-1">
+        <section className="md:flex-[2] min-w-0  md:mt-0 rounded-lg">
           <Error error={isError} handleError={handleError} text={message} />
           {!isLoading ? <TaskFilter tasks={tasks} /> : <Spinner />}
         </section>

@@ -64,7 +64,7 @@ export default function MyModal({ handleDispatch }) {
                   as="h3"
                   className="text-lg font-medium leading-6 text-red-500"
                 >
-                  Warning task will be deleted
+                  Warning!
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-500">
@@ -75,16 +75,16 @@ export default function MyModal({ handleDispatch }) {
                 <div className="mt-4 flex flex-col md:flex-row gap-2 justify-between">
                   <button
                     type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium bg-red-500 rounded-lg text-dText focus:outline-none"
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium bg-[rgba(239,68,68,0.9)] hover:bg-red-500 rounded-lg transition-all text-dText focus:outline-none"
                     onClick={handleDispatch}
                   >
                     Got it, thanks!
                   </button>
                   <button
                     onClick={closeModal}
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium  rounded-lg text-text dark:text-dText border-2 border-dPrimary dark:border-primary "
+                    className="inline-flex justify-center px-4 py-2 text-sm font-medium  rounded-lg text-text hover:bg-[rgba(0,0,0,0.1)]  dark:text-dText border-2 border-dPrimary dark:border-primary "
                   >
-                    Close
+                    Cancel
                   </button>
                 </div>
               </div>

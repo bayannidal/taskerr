@@ -7,7 +7,6 @@ import Header from "./components/Header";
 import useVH from "react-viewport-height";
 // import Landing from "./pages/Landing";
 import { useSelector } from "react-redux";
-import useDarkMode from "./hook/useDarkMode";
 import MissingPage from "./pages/MissingPage";
 function App() {
   useVH();
