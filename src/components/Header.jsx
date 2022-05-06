@@ -14,7 +14,7 @@ function Header() {
   };
 
   return (
-    <header className="flex justify-between items-end px-4 md:px-16  py-4 lg:px-20  min-h-14 lg:min-h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText  backdrop-filter backdrop-blur-lg bg-opacity-60 dark:bg-opacity-60 bg-primary dark:bg-dPrimary">
+    <header className="flex justify-between items-center px-4 md:px-16  py-4 lg:px-20  min-h-14 lg:min-h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText  backdrop-filter backdrop-blur-lg bg-opacity-60 dark:bg-opacity-60 bg-primary dark:bg-dPrimary">
       <Link
         to="/"
         className="font-bold h-full text-base sm:text-2xl lg:text-3xl  whitespace-nowrap"

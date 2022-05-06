@@ -18,6 +18,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
   height: calc(var(--vh) * 100);
+  width: 100%;
 }
 
 html.light,

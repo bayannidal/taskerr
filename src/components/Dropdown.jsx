@@ -5,10 +5,12 @@ import LogoutIcon from "@heroicons/react/outline/LogoutIcon";
 import MoonOutline from "@heroicons/react/solid/MoonIcon";
 import SunOutline from "@heroicons/react/solid/SunIcon";
 import useDarkMode from "../hook/useDarkMode";
+// import useLogoDark from "../hook/useLogoDark";
 // import DashboardIcon from "@heroicons/react/outline/ViewGridIcon";
 
-export default function Example({ onLogout }) {
+export default function Dropdown({ onLogout }) {
   const [colorTheme, setTheme] = useDarkMode();
+  // const [logo, setLogo] = useLogoDark();
   return (
     <div className="">
       <Menu as="div" className="relative inline-block text-left">
@@ -59,7 +61,10 @@ export default function Example({ onLogout }) {
                         ? "bg-sky-500 text-dText"
                         : "text-text dark:text-dText"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    onClick={() => setTheme(colorTheme)}
+                    onClick={
+                      () => setTheme(colorTheme)
+                      // && setLogo(logo)
+                    }
                   >
                     {colorTheme === "dark" ? (
                       <MoonOutline
