@@ -90,7 +90,7 @@ export default function MyModal({ task }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="bg-primary dark:bg-dPrimary text-text dark:text-dText inline-block w-full max-w-[95%] lg:max-w-[80%] p-8 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-2xl">
+              <div className="bg-primary dark:bg-dPrimary text-text dark:text-dText inline-block w-full max-w-[95%] lg:max-w-[800px] p-8 my-8 overflow-hidden text-left align-middle transition-all transform shadow-xl rounded-2xl">
                 <section className=" ">
                   <form onSubmit={onSubmit}>
                     <div className="mb-4">
@@ -127,7 +127,7 @@ export default function MyModal({ task }) {
                               completed
                                 ? "bg-green-500"
                                 : "bg-secondary dark:bg-dSecondary"
-                            } relative inline-flex items-center h-6 rounded-full w-11`}
+                            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
                           >
                             <span className="sr-only">
                               Enable notifications
@@ -155,7 +155,7 @@ export default function MyModal({ task }) {
                               pinned
                                 ? "bg-purple-500"
                                 : "bg-secondary dark:bg-dSecondary"
-                            } relative inline-flex items-center h-6 rounded-full w-11`}
+                            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
                           >
                             <span className="sr-only">
                               Enable notifications
@@ -180,13 +180,14 @@ export default function MyModal({ task }) {
                     </div>
                     <Button type="submit" text="Update" />
                   </form>
-                  <button
+                  <Button
                     type="submit"
                     className="w-full p-3 font-bold text-xl rounded-lg text-text dark:text-dText"
                     onClick={closeModal}
-                  >
-                    Cancel
-                  </button>
+                    text="Cancel"
+                    customClass="mt-2"
+                    bgColor="bg-transparent dark:bg-dSecondary hover:bg-[rgba(0,0,0,0.01)] dark:text-dText"
+                  />
                 </section>
               </div>
             </Transition.Child>

@@ -44,7 +44,7 @@ function TaskItem({ task }) {
             }}
             className={`${
               completed ? "bg-green-500" : "bg-primary dark:bg-dPrimary"
-            } relative inline-flex items-center h-6 rounded-full w-11`}
+            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
           >
             <span className="sr-only">Task completed</span>
             <span
@@ -77,7 +77,7 @@ function TaskItem({ task }) {
             }}
             className={`${
               pinned ? "bg-purple-500" : "bg-primary dark:bg-dPrimary"
-            } relative inline-flex items-center h-6 rounded-full w-11`}
+            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
           >
             <span className="sr-only">Enable notifications</span>
             <span

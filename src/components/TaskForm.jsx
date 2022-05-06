@@ -13,7 +13,7 @@ function TaskForm() {
   const [completed, setCompleted] = useState(false);
   const [pinned, setPinned] = useState(false);
   const [expiresAt, setExpiresAt] = useState("");
-
+  const [validation, setValidation] = useState(false);
   const dispatch = useDispatch();
   const expiresReplaced = expiresAt
     .toString()
@@ -21,10 +21,15 @@ function TaskForm() {
     .replace("Z", " ");
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      createTask({ title, description, completed, pinned, expiresReplaced })
-    );
-
+    if (title.length > 0 && description.length > 0) {
+      dispatch(
+        createTask({ title, description, completed, pinned, expiresReplaced })
+      );
+      setValidation(false);
+    } else {
+      setValidation(true);
+    }
+    setTimeout(() => setValidation(false), 2000);
     setTitle("");
     setDescription("");
     setCompleted(false);
@@ -33,9 +38,9 @@ function TaskForm() {
   };
 
   return (
-    <section className=" bg-primary dark:bg-dPrimary text-text dark:text-dText rounded-lg">
+    <section className="p-2 bg-secondary custom-shadow dark:bg-dSecondary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
-        <div className="mb-4">
+        <div className="mb-3">
           <label
             htmlFor="text"
             className="font-bold ml-2 text-text dark:text-dText"
@@ -50,17 +55,11 @@ function TaskForm() {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What do yo have to do..."
+              bgColor="bg-primary dark:bg-dPrimary"
+              validation={validation}
             />
           </div>
           <div className="flex">
-            {/* <InputText
-              type="text"
-              name="description"
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="How would you describe it..."
-            /> */}
             <Textarea
               type="text"
               name="description"
@@ -68,11 +67,12 @@ function TaskForm() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="How would you describe it..."
+              bgColor="bg-primary dark:bg-dPrimary"
+              validation={validation}
             />
           </div>
 
           <div className="flex justify-between">
-            {" "}
             <div className="flex flex-col  gap-2 items-start pt-5 pl-2">
               <label htmlFor="completed" className="font-bold">
                 Completed
@@ -81,7 +81,7 @@ function TaskForm() {
                 checked={completed}
                 onChange={setCompleted}
                 className={`${
-                  completed ? "bg-green-500" : "bg-secondary dark:bg-dSecondary"
+                  completed ? "bg-green-500" : "bg-primary dark:bg-dPrimary"
                 } relative inline-flex items-center h-6 rounded-full w-11`}
               >
                 <span className="sr-only">Enable notifications</span>
@@ -108,8 +108,8 @@ function TaskForm() {
                 checked={pinned}
                 onChange={setPinned}
                 className={`${
-                  pinned ? "bg-purple-500" : "bg-secondary dark:bg-dSecondary"
-                } relative inline-flex items-center h-6 rounded-full w-11`}
+                  pinned ? "bg-purple-500" : "bg-primary dark:bg-dPrimary"
+                } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
               >
                 <span className="sr-only">Enable notifications</span>
                 <span
@@ -117,7 +117,7 @@ function TaskForm() {
                     pinned
                       ? "translate-x-6 bg-primary"
                       : "translate-x-1 bg-purple-500"
-                  } inline-block w-4 h-4 transform  rounded-full`}
+                  } inline-block w-4 h-4 transform  rounded-full custom-shadow`}
                 >
                   {/* <FingerPrintIcon /> */}
                   <PaperClipIcon
