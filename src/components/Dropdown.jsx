@@ -5,6 +5,7 @@ import LogoutIcon from "@heroicons/react/outline/LogoutIcon";
 import MoonOutline from "@heroicons/react/solid/MoonIcon";
 import SunOutline from "@heroicons/react/solid/SunIcon";
 import useDarkMode from "../hook/useDarkMode";
+import { Link } from "react-router-dom";
 // import useLogoDark from "../hook/useLogoDark";
 // import DashboardIcon from "@heroicons/react/outline/ViewGridIcon";
 
@@ -76,6 +77,21 @@ export default function Dropdown({ onLogout }) {
                     )}
                     {colorTheme === "dark" ? <>Dark</> : <>Light</>}
                   </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <Link
+                    className={`${
+                      active
+                        ? "bg-sky-500 text-dText"
+                        : "text-text dark:text-dText"
+                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                    to="/user/edit"
+                  >
+                    <SunOutline className="mr-2 h-5 w-5" aria-hidden="true" />
+                    User settings
+                  </Link>
                 )}
               </Menu.Item>
             </div>

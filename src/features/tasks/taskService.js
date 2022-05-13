@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-const API_URL = 'https://taskr99.herokuapp.com/'
+// const API_URL = 'https://taskr99.herokuapp.com/'
 
-// const API_URL = 'http://localhost:8080/'
+const API_URL = 'http://localhost:8080/'
 
 const createTask = async (taskData, token) => {
     const config = {
@@ -25,10 +25,8 @@ const getTasks = async (token) => {
             "Content-Type": "application/json",
         }
     }
-
     const response = await axios.get(API_URL + 'task/user', config)
     console.log(response)
-
     return response.data
 }
 

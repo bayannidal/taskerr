@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Header from "./components/Header";
 import useVH from "react-viewport-height";
 // import Landing from "./pages/Landing";
+import UserEdit from "./pages/UserEdit";
 import { useSelector } from "react-redux";
 import MissingPage from "./pages/MissingPage";
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/user/edit" element={<UserEdit />} />
             <Route path="*" element={<MissingPage />} />
           </Routes>
         </div>
