@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import Dropdown from "./Dropdown";
 import Logo from "./Logo";
-function Header() {
+function HeaderDashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { user } = useSelector((state) => state.auth);
@@ -26,4 +26,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderDashboard;

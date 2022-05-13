@@ -40,7 +40,7 @@ function Register() {
     }
     if (isSuccess || user) {
       dispatch(reset());
-      navigate("/");
+      navigate("/dashboard");
     }
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 

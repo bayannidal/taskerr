@@ -20,6 +20,7 @@ module.exports = {
         // dSecondary: '#224069',
         // dPrimary: '#122F5D',
         comp: '#FAFAFF',
+        // third: '#ffd700',
         third: '#FEDE55',
         dThird: '#323FA6',
         text: '#323442',

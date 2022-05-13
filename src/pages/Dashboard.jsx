@@ -8,6 +8,7 @@ import Spinner from "../components/Spinner";
 import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
 import TaskFilter from "../components/TaskFilter";
+import HeaderDashboard from "../components/HeaderDashboard";
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,10 +29,10 @@ function Dashboard() {
       setTimeout(() => dispatch(reset()), 5000);
     }
     if (!user) {
-      navigate("/login");
+      navigate("/");
     }
     if (user) {
-      navigate("/");
+      navigate("/dashboard");
     }
 
     if (user && !isError) {
@@ -48,8 +49,10 @@ function Dashboard() {
     dispatch(reset());
   };
 
+  const Nav = () => {};
   return (
     <div className="layout min-w-full flex flex-col max-w-full min-h-full">
+      {user ? <HeaderDashboard /> : null}
       <section className="p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
         <h1 className=" p-2 font-extrabold text-lg">
           Welcome, {user && user.firstName + " " + user.lastName}!

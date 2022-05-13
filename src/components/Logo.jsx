@@ -4,11 +4,10 @@ import LogoSvg from "../img/Logo.svg";
 const Logo = () => {
   return (
     <div className="h-full">
-      {/* <div className="focus:outline-none inline-flex w-full justify-center items-center rounded-md tracking-wider  bg-violet-500 px-2 sm:px-4 py-2 text-sm sm:text-lg font-bold text-third  custom-shadow  ">
+      <div className="focus:outline-none inline-flex w-full justify-center items-baseline rounded-md tracking-wider  text-sm sm:text-lg font-bold text-text dark:text-dText">
+        <img id="logo" className=" ml-2  h-[40px]" alt="logo" src={LogoSvg} />
         Taskerr.{" "}
-        <BadgeIcon className="ml-2 -mr-1 h-4 sm:h-6 sm:w-6 text-third" />
-      </div> */}
-      <img id="logo" className="h-[50px]" alt="logo" src={LogoSvg} />
+      </div>
     </div>
   );
 };
