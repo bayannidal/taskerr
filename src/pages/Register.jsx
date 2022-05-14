@@ -37,7 +37,7 @@ function Register() {
 
   useEffect(() => {
     if (isError) {
-      // dispatch(reset());
+      dispatch(reset());
     }
     if (isSuccess) {
       // dispatch(reset());

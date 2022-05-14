@@ -52,7 +52,7 @@ export default function Example({ tasks }) {
           {sortList.map((item, idx) => (
             <Tab.Panel
               className={classNames(
-                "rounded-lg flex flex-col  gap-2",
+                "rounded-lg flex flex-wrap  gap-1",
                 "focus:outline-none"
               )}
               key={idx}
