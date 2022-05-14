@@ -1,4 +1,5 @@
 import { Switch } from "@headlessui/react";
+import SwitchItem from "./SwitchItem";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteTask, updateTask } from "../features/tasks/taskSlice";
@@ -28,8 +29,8 @@ function TaskItem({ task }) {
           </div>
         </div>
         <div className="text-sm font-light mb-4 flex flex-row   justify-between gap-2">
-          <Switch
-            checked={completed}
+          <SwitchItem
+            type={completed}
             onChange={() => {
               setCompleted(!completed);
               dispatch(
@@ -42,27 +43,14 @@ function TaskItem({ task }) {
                 })
               );
             }}
-            className={`${
-              completed ? "bg-green-500" : "bg-primary dark:bg-dPrimary"
-            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
-          >
-            <span className="sr-only">Task completed</span>
-            <span
-              className={`${
-                completed
-                  ? "translate-x-6 bg-white"
-                  : "translate-x-1 bg-green-500"
-              } inline-block w-4 h-4 transform  rounded-full`}
-            >
-              <CheckIcon
-                className={`h-4 ${
-                  completed ? "text-green-500" : "text-dText"
-                }  z-50`}
-              />
-            </span>
-          </Switch>
-          <Switch
-            checked={pinned}
+            icon={<CheckIcon />}
+            primaryColor="bg-comp"
+            bgColor="bg-primary"
+            dBgColor="dark:bg-dPrimary"
+            txtColor="text-text"
+          />
+          <SwitchItem
+            type={pinned}
             onChange={() => {
               setPinned(!pinned);
               dispatch(
@@ -75,26 +63,13 @@ function TaskItem({ task }) {
                 })
               );
             }}
-            className={`${
-              pinned ? "bg-purple-500" : "bg-primary dark:bg-dPrimary"
-            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
-          >
-            <span className="sr-only">Enable notifications</span>
-            <span
-              className={`${
-                pinned
-                  ? "translate-x-6 bg-primary"
-                  : "translate-x-1 bg-purple-500"
-              } inline-block w-4 h-4 transform  rounded-full`}
-            >
-              <PaperClipIcon
-                className={`h-4 ${
-                  pinned ? "text-purple-500" : "text-dText"
-                }  z-50`}
-                src="https://cdn-icons.flaticon.com/png/512/2951/premium/2951412.png?token=exp=1650283850~hmac=51518933969d5c65aec424482d6facaf"
-              />
-            </span>
-          </Switch>
+            icon={<PaperClipIcon />}
+            primaryColor="bg-third"
+            bgColor="bg-primary"
+            dBgColor="dark:bg-dPrimary"
+            dTxtColor="text-dtext"
+            txtColor="text-text"
+          />
         </div>
       </div>
       <div className="absolute bottom-4 left-4 text-xs">

@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // const API_URL = 'https://taskr99.herokuapp.com/'
 const API_URL = 'http://localhost:8080/'
+// const API_URL = 'https://9175-188-24-71-26.ngrok.io/'
 
 const api = axios.create({
     headers: {
@@ -14,9 +15,9 @@ const api = axios.create({
 const register = async (userData) => {
     const response = await api.post(API_URL + 'register', userData)
     console.log(response)
-    if (response.data) {
-        localStorage.setItem('user', JSON.stringify(response.data))
-    }
+    // if (response.data) {
+    //     localStorage.setItem('user', JSON.stringify(response.data))
+    // }
     return response.data
 }
 
@@ -39,10 +40,10 @@ const updateUser = async (userData, token) => {
 
         },
     }
-    const { username, firstName, lastName } = userData
+    const { username, emailAddress, firstName, lastName } = userData
 
     const response = await axios.put(API_URL + `user/edit`, {
-        username, firstName, lastName
+        username, emailAddress, firstName, lastName
     }, config)
 
     console.log(response)

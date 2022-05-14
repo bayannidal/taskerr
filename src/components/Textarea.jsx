@@ -26,7 +26,7 @@ export const Textarea = ({
         !bgColor ? "bg-secondary dark:bg-dSecondary" : bgColor
       } ${
         validation === true ? "border-2 border-red-500" : null
-      } w-full min-h-[7rem] font-medium rounded-lg text-[0.5rem] placeholder:text-[0.5rem] sm:text-base md:text-base sm:placeholder:text-[0.8rem] placeholder:md:text-base p-3 mb-2  text-text dark:text-white caret-third placeholder:font-medium custom-shadow`}
+      } w-full min-h-[7rem] font-medium rounded-lg text-[0.5rem] placeholder:text-[0.5rem] sm:text-base md:text-base sm:placeholder:text-[0.8rem] placeholder:md:text-base p-3 mb-2  text-text dark:text-white caret-third placeholder:font-medium custom-shadow focus:bg-[rgba(240,214,133,0.3)] dark:focus:bg-[rgba(240,214,133,0.3)]`}
     />
   );
 };

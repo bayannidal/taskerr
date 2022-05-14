@@ -13,7 +13,6 @@ html {
   margin: 0;
   padding: 0;
   font-family: "M PLUS Rounded 1c", sans-serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -52,6 +51,25 @@ body.dark,
   transform: translate(-50%, -50%);
 }
 
+input:focus {
+  @apply shadow-lightOutline dark:shadow-darkOutline shadow-third dark:shadow-third;
+  border: none;
+  border-radius: 5pt;
+  outline: none;
+  transition: 0.1s;
+  /* renders box-shadow/outline correctly on ios browsers */
+  /* rgba(240, 214, 113, 0.5) */
+  -webkit-appearance: none;
+}
+
+textarea:focus {
+  @apply shadow-lightOutline dark:shadow-darkOutline shadow-third dark:shadow-third;
+  border: none;
+  border-radius: 5pt;
+  outline: none;
+  transition: 0.1s;
+  -webkit-appearance: none;
+}
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   bottom: 0;
   color: transparent;
@@ -64,7 +82,6 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   width: auto;
   background: transparent;
   color: transparent;
-  -webkit-appearance: none;
 }
 
 input[type="datetime-local"] {

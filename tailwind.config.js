@@ -19,9 +19,11 @@ module.exports = {
         // dSecondary: '#4C688D',
         // dSecondary: '#224069',
         // dPrimary: '#122F5D',
-        comp: '#FAFAFF',
-        third: '#FEDE55',
-        dThird: '#323FA6',
+        //third: '#FEDE55',
+        // third: '#FEB822',
+        third: '#F2ED6F',
+        // comp: 'rgb(167, 139, 250)',
+        comp: '#49C195',
         text: '#323442',
         dText: "#FFFF"
       }
@@ -238,6 +240,8 @@ module.exports = {
       '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
       inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
       none: 'none',
+      lightOutline: `0 0 0 3px`,
+      darkOutline: '0 0 0 3px'
     },
     boxShadowColor: ({ theme }) => theme('colors'),
     caretColor: ({ theme }) => theme('colors'),
