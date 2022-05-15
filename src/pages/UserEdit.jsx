@@ -1,5 +1,5 @@
 import Label from "../components/Label";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { InputText } from "../components/InputText";
 import Title from "../components/Title";
@@ -7,7 +7,7 @@ import Layout from "../styles/Layout";
 import { useDispatch } from "react-redux";
 import { updateUser, reset } from "../features/auth/authSlice";
 import Button from "../components/ButtonComponents/Button";
-import Spinner from "../components/Spinner";
+// import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 const UserEdit = () => {
@@ -25,19 +25,21 @@ const UserEdit = () => {
     e.preventDefault();
     dispatch(updateUser({ username, emailAddress, firstName, lastName }));
   };
-
   let updateToast;
   if (isLoading) {
     updateToast = toast.loading("Updating...");
+    dispatch(reset());
   }
 
   if (isSuccess) {
     toast.remove(updateToast);
     toast.success("User settings updated!");
+    dispatch(reset());
   }
 
   if (isError) {
     toast.error("User details could not be updated");
+    dispatch(reset());
   }
 
   return (

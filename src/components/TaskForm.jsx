@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTask } from "../features/tasks/taskSlice";
-import { Switch } from "@headlessui/react";
 import { InputText } from "./InputText";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";

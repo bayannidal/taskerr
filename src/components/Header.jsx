@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import Dropdown from "./Dropdown";
 import Logo from "./Logo";
-import gradient from "../img/gradient.svg";
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
