@@ -15,9 +15,6 @@ const api = axios.create({
 const register = async (userData) => {
     const response = await api.post(API_URL + 'register', userData)
     console.log(response)
-    // if (response.data) {
-    //     localStorage.setItem('user', JSON.stringify(response.data))
-    // }
     return response.data
 }
 
@@ -40,13 +37,18 @@ const updateUser = async (userData, token) => {
 
         },
     }
-    const { username, emailAddress, firstName, lastName } = userData
 
+    const { username, emailAddress, firstName, lastName } = userData
     const response = await axios.put(API_URL + `user/edit`, {
         username, emailAddress, firstName, lastName
     }, config)
 
     console.log(response)
+    if (response.data) {
+        const updatedUser = response.data;
+        updatedUser.token = token;
+        localStorage.setItem('user', JSON.stringify(updatedUser))
+    }
     return response.data
 }
 //Logout user

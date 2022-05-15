@@ -15,8 +15,8 @@ function Header() {
   };
 
   return (
-    <header className="mx-4 md:mx-16  my-4 lg:mx-20 min-h-14 lg:min-h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText  backdrop-filter backdrop-blur-lg ">
-      <div className=" bg-gradient-to-r from-comp to-comp py-2 px-2 w-full flex justify-between items-center rounded-lg relative">
+    <header className="mx-4 md:mx-16 my-4 lg:mx-20 min-h-14 lg:min-h-20 fixed top-0 left-0 right-0 z-40 text-text dark:text-dText   ">
+      <div className=" bg-comp bg-opacity-[0.85] backdrop-filter backdrop-blur-sm   py-2 px-2 w-full flex justify-between items-center rounded-lg relative">
         {/* <img
           src={gradient}
           alt=""

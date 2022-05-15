@@ -10,6 +10,7 @@ import UserEdit from "./pages/UserEdit";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import MissingPage from "./pages/MissingPage";
+import { Toaster } from "react-hot-toast";
 function App() {
   useVH();
   const { user } = useSelector((state) => state.auth);
@@ -30,6 +31,7 @@ function App() {
             <Route path="/user/edit" element={<UserEdit />} />
             <Route path="*" element={<MissingPage />} />
           </Routes>
+          <Toaster />
         </div>
       </Router>
     </>

@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap");
-
 *,
 *::after,
 *::before {
   box-sizing: border-box;
 }
-
+:root {
+  --third: rgba(242, 237, 111);
+  --comp: rgba(73, 193, 149);
+}
 html {
   margin: 0;
   padding: 0;
@@ -52,18 +54,26 @@ body.dark,
 }
 
 input:focus {
-  @apply shadow-lightOutline dark:shadow-darkOutline shadow-third dark:shadow-third;
+  @apply shadow-third;
   border: none;
   border-radius: 5pt;
   outline: none;
   transition: 0.1s;
   /* renders box-shadow/outline correctly on ios browsers */
-  /* rgba(240, 214, 113, 0.5) */
   -webkit-appearance: none;
 }
 
 textarea:focus {
-  @apply shadow-lightOutline dark:shadow-darkOutline shadow-third dark:shadow-third;
+  @apply shadow-third;
+  border: none;
+  border-radius: 5pt;
+  outline: none;
+  transition: 0.1s;
+  -webkit-appearance: none;
+}
+
+.border-inset-btn {
+  @apply shadow-comp;
   border: none;
   border-radius: 5pt;
   outline: none;

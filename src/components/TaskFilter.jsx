@@ -30,17 +30,17 @@ export default function Example({ tasks }) {
           setState(idx);
         }}
       >
-        <Tab.List className="flex p-1 space-x-1 bg-secondary dark:bg-dSecondary  rounded-lg mb-3 custom-shadow ">
+        <Tab.List className="flex p-1 space-x-2 bg-secondary dark:bg-dSecondary  rounded-lg mb-3 custom-shadow ">
           {sortList.map((category) => (
             <Tab
               key={category}
               className={({ selected }) =>
                 classNames(
-                  "w-[33%] py-2.5 leading-5   font-semibold text-[0.7rem] lg:text-xl p-2 rounded-lg  hover:bg-comp hover:bg-opacity-60",
+                  "w-[33%] py-2.5 leading-5   font-semibold text-[0.7rem] lg:text-xl p-2 rounded-lg ",
                   "focus:outline-none",
                   selected
-                    ? "bg-comp custom-shadow text-dText dark:text-dText hover:bg-opacity-100"
-                    : "text-text dark:text-dText"
+                    ? " bg-comp bg-opacity-30 border-inset-btn custom-shadow text-text dark:text-dText"
+                    : "text-text dark:text-dText hover:bg-comp hover:bg-opacity-20"
                 )
               }
             >
@@ -52,7 +52,7 @@ export default function Example({ tasks }) {
           {sortList.map((item, idx) => (
             <Tab.Panel
               className={classNames(
-                "rounded-lg flex flex-wrap  gap-1",
+                "rounded-lg flex flex-wrap  gap-2",
                 "focus:outline-none"
               )}
               key={idx}
