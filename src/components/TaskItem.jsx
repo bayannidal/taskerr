@@ -66,8 +66,8 @@ function TaskItem({ task }) {
             primaryColor="bg-third"
             bgColor="bg-primary"
             dBgColor="dark:bg-dPrimary"
-            dTxtColor="text-dtext"
             txtColor="text-text"
+            dTxtColor="text-text"
           />
         </div>
       </div>

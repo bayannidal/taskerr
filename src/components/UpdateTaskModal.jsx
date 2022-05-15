@@ -125,8 +125,8 @@ export default function MyModal({ task }) {
                             onChange={setCompleted}
                             icon={<CheckIcon />}
                             primaryColor="bg-comp"
-                            bgColor="bg-primary"
-                            dBgColor="dark:bg-dPrimary"
+                            bgColor="bg-secondary"
+                            dBgColor="dark:bg-dSecondary"
                             txtColor="text-text"
                           />
                         </div>
@@ -136,8 +136,8 @@ export default function MyModal({ task }) {
                             onChange={setPinned}
                             icon={<PaperClipIcon />}
                             primaryColor="bg-third"
-                            bgColor="bg-primary"
-                            dBgColor="dark:bg-dPrimary"
+                            bgColor="bg-secondary"
+                            dBgColor="dark:bg-dSecondary"
                             dTxtColor="text-text"
                             txtColor="text-text"
                           />
