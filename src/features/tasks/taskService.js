@@ -2,8 +2,8 @@ import axios from 'axios'
 import { config } from '../util/utilities'
 // const API_URL = 'https://taskr99.herokuapp.com/'
 
-// const API_URL = 'http://localhost:8080/'
-const API_URL = 'https://b86c-188-24-71-26.ngrok.io/'
+const API_URL = 'http://localhost:8080/'
+// const API_URL = 'https://b86c-188-24-71-26.ngrok.io/'
 
 
 
