@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import MissingPage from "./pages/MissingPage";
 import { Toaster } from "react-hot-toast";
+import ResetPassword from "./pages/ResetPassword";
 function App() {
   useVH();
   const { user } = useSelector((state) => state.auth);
@@ -26,9 +27,10 @@ function App() {
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Dashboard />} />
             </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/user/edit" element={<UserEdit />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="user/edit" element={<UserEdit />} />
+            <Route path="password/reset" element={<ResetPassword />} />
             <Route path="*" element={<MissingPage />} />
           </Routes>
           <Toaster />

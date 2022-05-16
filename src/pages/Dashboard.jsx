@@ -17,6 +17,9 @@ function Dashboard() {
     (state) => state.tasks
   );
 
+  const username = JSON.parse(localStorage.getItem("user")).username;
+  console.log(username);
+
   useEffect(() => {
     return () => {
       dispatch(reset());
@@ -25,9 +28,6 @@ function Dashboard() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isError) {
-      setTimeout(() => dispatch(reset()), 5000);
-    }
     if (!user) {
       navigate("/login");
     }

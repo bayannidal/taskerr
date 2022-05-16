@@ -1,9 +1,8 @@
 import axios from 'axios'
 
-
 // const API_URL = 'https://taskr99.herokuapp.com/'
-// const API_URL = 'http://localhost:8080/'
-const API_URL = 'https://5b5e-188-24-71-26.ngrok.io/'
+const API_URL = 'http://localhost:8080/'
+// const API_URL = 'https://5b5e-188-24-71-26.ngrok.io/'
 
 const api = axios.create({
     headers: {
@@ -29,16 +28,16 @@ const authenticate = async (userData) => {
 }
 
 const updateUser = async (userData, token) => {
+    const { username, emailAddress, firstName, lastName } = userData
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
             Accept: "application/json",
             "Content-Type": "application/json",
-
+            "subject": username
         },
     }
 
-    const { username, emailAddress, firstName, lastName } = userData
     const response = await axios.put(API_URL + `user/edit`, {
         username, emailAddress, firstName, lastName
     }, config)
@@ -51,6 +50,28 @@ const updateUser = async (userData, token) => {
     }
     return response.data
 }
+const resetPassowrd = async (password, token) => {
+
+    const username = JSON.parse(localStorage.getItem("user")).username
+    console.log(username)
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "subject": username
+        },
+    }
+
+    const { oldPassword, newPassword } = password
+    const response = await axios.post(API_URL + `user/password/reset`, {
+        oldPassword, newPassword
+    }, config)
+
+    console.log(response)
+
+    return response.data
+}
 //Logout user
 const logout = async () => {
     localStorage.removeItem('user')
@@ -61,7 +82,8 @@ const authService = {
     register,
     logout,
     authenticate,
-    updateUser
+    updateUser,
+    resetPassowrd
 }
 
 export default authService

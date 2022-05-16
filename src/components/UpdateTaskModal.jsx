@@ -52,7 +52,7 @@ export default function MyModal({ task }) {
   return (
     <>
       <div className="absolute  z-4 top-1 left-2">
-        <button type="button" onClick={openModal} className="hover:text-third">
+        <button type="button" onClick={openModal} className="hover:text-comp">
           <PencilAltIcon className="h-[20px]" />
         </button>
       </div>

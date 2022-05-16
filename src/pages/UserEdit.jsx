@@ -14,7 +14,6 @@ const UserEdit = () => {
   const { user, isSuccess, isError, isLoading } = useSelector(
     (state) => state.auth
   );
-
   const dispatch = useDispatch();
   const [username] = useState(user.username);
   const [emailAddress] = useState(user.emailAddress);
@@ -70,6 +69,20 @@ const UserEdit = () => {
             <InputText type="text" value={emailAddress} disabled={true} />
             <Link
               to="email"
+              className=" self-end text-sky-500 cursor-pointer underline"
+            >
+              Change
+            </Link>
+          </div>
+          <div className="flex flex-col">
+            <Label
+              htmlFor="password"
+              className="text-text dark:text-dText font-bold ml-1 mb-2 inline-block"
+              text="Password"
+            />
+            <InputText type="password" value="nothing" disabled={true} />
+            <Link
+              to="/password/reset"
               className=" self-end text-sky-500 cursor-pointer underline"
             >
               Change
