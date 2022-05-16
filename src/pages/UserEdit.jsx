@@ -1,5 +1,5 @@
 import Label from "../components/Label";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { InputText } from "../components/InputText";
 import Title from "../components/Title";
@@ -24,22 +24,27 @@ const UserEdit = () => {
     e.preventDefault();
     dispatch(updateUser({ username, emailAddress, firstName, lastName }));
   };
-  let updateToast;
-  if (isLoading) {
-    updateToast = toast.loading("Updating...");
-    dispatch(reset());
-  }
+  useEffect(() => {
+    let updateToast;
 
-  if (isSuccess) {
-    toast.remove(updateToast);
-    toast.success("User settings updated!");
-    dispatch(reset());
-  }
+    if (isLoading) {
+      updateToast = toast.loading("Updating...");
+      dispatch(reset());
+    }
 
-  if (isError) {
-    toast.error("User details could not be updated");
-    dispatch(reset());
-  }
+    if (isSuccess) {
+      toast.remove(updateToast);
+      toast.success("User settings updated!");
+      dispatch(reset());
+    }
+
+    if (isError) {
+      toast.remove(updateToast);
+
+      toast.error("User details could not be updated");
+      dispatch(reset());
+    }
+  });
 
   return (
     <Layout customClass="flex items-center justify-center">

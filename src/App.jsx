@@ -23,14 +23,13 @@ function App() {
           {user ? <Header /> : null}
           <Routes>
             {/* <Route path="/" element={<Landing />} /> */}
-
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Dashboard />} />
+              <Route path="user/edit" element={<UserEdit />} />
+              <Route path="password/reset" element={<ResetPassword />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
-            <Route path="user/edit" element={<UserEdit />} />
-            <Route path="password/reset" element={<ResetPassword />} />
             <Route path="*" element={<MissingPage />} />
           </Routes>
           <Toaster />
