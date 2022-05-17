@@ -26,7 +26,7 @@ function App() {
             <Route element={<ProtectedRoute user={user} />}>
               <Route path="/" element={<Dashboard />} />
               <Route path="user/edit" element={<UserEdit />} />
-              <Route path="password/reset" element={<ResetPassword />} />
+              <Route path="password/change" element={<ResetPassword />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

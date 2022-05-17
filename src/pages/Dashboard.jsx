@@ -17,9 +17,6 @@ function Dashboard() {
     (state) => state.tasks
   );
 
-  const username = JSON.parse(localStorage.getItem("user")).username;
-  console.log(username);
-
   useEffect(() => {
     return () => {
       dispatch(reset());

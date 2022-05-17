@@ -13,6 +13,8 @@ export const InputText = ({
   bgColor,
   validation,
   disabled,
+  autoComplete,
+  showPassword,
 }) => {
   return (
     <input
@@ -25,6 +27,7 @@ export const InputText = ({
       required={required}
       step={step}
       disabled={disabled}
+      autoComplete={autoComplete ? autoComplete : "on"}
       className={`${customClass} ${
         !bgColor ? "bg-secondary dark:bg-dSecondary" : bgColor
       } ${validation === true ? "border-2 border-red-500" : null} ${

@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { logout } from "../auth/authSlice";
 import taskService from "./taskService";
 
 const initialState = {
@@ -34,6 +35,9 @@ export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
         return await taskService.getTasks(token)
     } catch (error) {
+        if (error.response.status) {
+            thunkAPI.dispatch(logout())
+        }
         const message =
             (error.response &&
                 error.response.data &&

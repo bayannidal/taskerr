@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../styles/Layout";
 import Label from "../components/Label";
 import { InputText } from "../components/InputText";
 import Title from "../components/Title";
 import Button from "../components/ButtonComponents/Button";
-import Error from "../components/Error";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, resetPassword } from "../features/auth/authSlice";
+import { logout, reset, resetPassword } from "../features/auth/authSlice";
+import { toast } from "react-hot-toast";
 
 const ResetPassword = () => {
-  const [error, setError] = useState({
-    active: false,
-    message: "",
-  });
-  const { isSuccess, isLoading, isError } = useSelector((state) => state.auth);
+  const { isSuccess } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
@@ -21,18 +17,20 @@ const ResetPassword = () => {
   const [inputType, setInputType] = useState("password");
   const onSubmit = (e) => {
     e.preventDefault();
-
     if (newPass !== confirmedNewPass) {
-      setError({ active: true, message: "Passwords do not match!" });
+      toast.error("Passwords do not match!");
     } else {
-      setError({ active: false, message: "" });
       dispatch(resetPassword({ oldPass, newPass }));
     }
   };
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Password successfully changed, login!");
+      dispatch(logout());
+      dispatch(reset());
+    }
+  });
 
-  if (isSuccess) {
-    dispatch(logout());
-  }
   return (
     <Layout>
       <Layout customClass="flex items-center justify-center">
@@ -45,6 +43,7 @@ const ResetPassword = () => {
               text="Old password"
             />
             <InputText
+              autoComplete="current-password"
               type={inputType}
               value={oldPass}
               onChange={(e) => setOldPass(e.target.value)}
@@ -55,6 +54,7 @@ const ResetPassword = () => {
               text="New Password"
             />
             <InputText
+              autoComplete="new-password"
               type={inputType}
               value={newPass}
               onChange={(e) => setNewPass(e.target.value)}
@@ -65,16 +65,12 @@ const ResetPassword = () => {
               text="Confirm New Password"
             />
             <InputText
+              autoComplete="new-password"
               type={inputType}
               value={confirmedNewPass}
               onChange={(e) => setConfirmedNewPass(e.target.value)}
             />
             <Button text="Update" type="submit" customClass="my-2" />
-            <Error
-              error={error.active}
-              text={error.message}
-              handleError={() => setError({ active: false, message: "" })}
-            />
           </form>
         </div>
       </Layout>

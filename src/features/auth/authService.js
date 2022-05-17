@@ -36,6 +36,8 @@ const updateUser = async (userData, token) => {
         username, emailAddress, firstName, lastName
     }, config(token))
 
+
+
     console.log(response)
 
     if (response.data) {
@@ -47,7 +49,7 @@ const updateUser = async (userData, token) => {
 }
 const resetPassowrd = async (password, token) => {
     const { oldPass, newPass } = password
-    const response = await axios.post(API_URL + `user/password/reset`, {
+    const response = await axios.post(API_URL + `user/password/change`, {
         oldPass, newPass
     }, config(token))
 

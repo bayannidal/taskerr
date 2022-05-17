@@ -16,6 +16,9 @@ const createTask = async (taskData, token) => {
 const getTasks = async (token) => {
     const response = await axios.get(API_URL + 'task/user', config(token))
     console.log(response)
+    if (response.status === 403) {
+        return response.status
+    }
     return response.data
 }
 
@@ -23,8 +26,10 @@ const getTasks = async (token) => {
 const deleteTask = async (id, token) => {
     const response = await axios.delete(API_URL + `task/${id}`, config(token))
     console.log(response)
-    if (response.status === 200)
+    if (response.status === 200) {
         return { id }
+    }
+
     else
         return response.data
 }
