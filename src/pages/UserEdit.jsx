@@ -130,7 +130,6 @@ const UserEdit = () => {
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <input type="username" />
           <Button text="Update" type="submit" customClass="mt-2" />
         </form>
       </div>

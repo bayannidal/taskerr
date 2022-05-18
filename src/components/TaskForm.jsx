@@ -7,6 +7,7 @@ import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 import Button from "./ButtonComponents/Button";
 import { Textarea } from "./Textarea";
 import SwitchItem from "./SwitchItem";
+import Title from "./Title";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -41,12 +42,8 @@ function TaskForm() {
     <section className="p-2 bg-secondary custom-shadow dark:bg-dSecondary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-3">
-          <label
-            htmlFor="text"
-            className="font-bold ml-2 text-text dark:text-dText"
-          >
-            Create a new Taskrr.
-          </label>
+          <Title text="Create a new Taskrr." />
+
           <div className="flex mt-5">
             <InputText
               type="text"

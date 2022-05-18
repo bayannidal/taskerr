@@ -35,7 +35,26 @@ export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
         const token = thunkAPI.getState().auth.user.token
         return await taskService.getTasks(token)
     } catch (error) {
-        if (error.response.status) {
+        if (error.response.status === 403) {
+            thunkAPI.dispatch(logout())
+        }
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const getBinnedTasks = createAsyncThunk('task/user/binned', async (_, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await taskService.getTasks(token)
+    } catch (error) {
+        if (error.response.status === 403) {
             thunkAPI.dispatch(logout())
         }
         const message =
@@ -89,8 +108,6 @@ export const taskSlice = createSlice({
     initialState,
     reducers: {
         reset: (state) => initialState,
-
-
     },
     extraReducers: (builder) => {
         builder
@@ -117,6 +134,19 @@ export const taskSlice = createSlice({
                 state.tasks = action.payload
             })
             .addCase(getTasks.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(getBinnedTasks.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(getBinnedTasks.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = action.payload
+            })
+            .addCase(getBinnedTasks.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

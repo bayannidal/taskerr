@@ -16,9 +16,6 @@ const createTask = async (taskData, token) => {
 const getTasks = async (token) => {
     const response = await axios.get(API_URL + 'task/user', config(token))
     console.log(response)
-    if (response.status === 403) {
-        return response.status
-    }
     return response.data
 }
 
@@ -29,9 +26,14 @@ const deleteTask = async (id, token) => {
     if (response.status === 200) {
         return { id }
     }
-
     else
         return response.data
+}
+
+const getBinnedTasks = async (token) => {
+    const response = await axios.get(API_URL + `task/user/binned`, config(token))
+    console.log(response)
+    return response.data
 }
 
 //Update Task
@@ -48,7 +50,8 @@ const taskService = {
     createTask,
     getTasks,
     deleteTask,
-    updateTask
+    updateTask,
+    getBinnedTasks
 }
 
 export default taskService
