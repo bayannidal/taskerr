@@ -19,6 +19,8 @@ function Dashboard() {
     (state) => state.tasks
   );
 
+  const { binnedTasks } = useSelector((state) => state.tasks);
+
   useEffect(() => {
     return () => {
       dispatch(reset());
@@ -67,8 +69,8 @@ function Dashboard() {
             />
             <div className="flex flex-col gap-2 p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
               <Title text="Binned tasks" />
-              {tasks.map((task) => (
-                <BinnedTaskItem task={task} key={task.id} />
+              {binnedTasks.map((task) => (
+                <BinnedTaskItem binnedTasks={task} key={binnedTasks.id} />
               ))}
             </div>
           </div>

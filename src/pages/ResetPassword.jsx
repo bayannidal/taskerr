@@ -5,7 +5,7 @@ import { InputText } from "../components/InputText";
 import Title from "../components/Title";
 import Button from "../components/ButtonComponents/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, reset, resetPassword } from "../features/auth/authSlice";
+import { logout, reset, changePassword } from "../features/auth/authSlice";
 import { toast } from "react-hot-toast";
 
 const ResetPassword = () => {
@@ -20,7 +20,7 @@ const ResetPassword = () => {
     if (newPass !== confirmedNewPass) {
       toast.error("Passwords do not match!");
     } else {
-      dispatch(resetPassword({ oldPass, newPass }));
+      dispatch(changePassword({ oldPass, newPass }));
     }
   };
   useEffect(() => {

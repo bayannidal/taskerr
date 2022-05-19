@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import XCircleIcon from "@heroicons/react/solid/XCircleIcon";
+import XCircleIcon from "@heroicons/react/outline/XCircleIcon";
 
 export default function MyModal({ handleDispatch }) {
   let [isOpen, setIsOpen] = useState(false);

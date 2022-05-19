@@ -2,13 +2,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import PencilAltIcon from "@heroicons/react/solid/PencilAltIcon";
 import { useDispatch } from "react-redux";
-import SwitchItem from "./SwitchItem";
-import { InputText } from "./InputText";
-import { updateTask } from "../features/tasks/taskSlice";
+import SwitchItem from "../SwitchItem";
+import { InputText } from "../InputText";
+import { updateTask } from "../../features/tasks/taskSlice";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
-import Button from "./ButtonComponents/Button";
-import { Textarea } from "./Textarea";
+import Button from "../ButtonComponents/Button";
+import { Textarea } from "../Textarea";
+
 export default function MyModal({ task }) {
   let [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState(task.title);

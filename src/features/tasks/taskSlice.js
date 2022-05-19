@@ -4,6 +4,7 @@ import taskService from "./taskService";
 
 const initialState = {
     tasks: [],
+    binnedTasks: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
@@ -52,7 +53,7 @@ export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
 export const getBinnedTasks = createAsyncThunk('task/user/binned', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await taskService.getTasks(token)
+        return await taskService.getBinnedTasks(token)
     } catch (error) {
         if (error.response.status === 403) {
             thunkAPI.dispatch(logout())
@@ -67,8 +68,25 @@ export const getBinnedTasks = createAsyncThunk('task/user/binned', async (_, thu
     }
 })
 
-export const deleteTask = createAsyncThunk(
-    'task/delete',
+export const trashTask = createAsyncThunk(
+    'task/trash',
+    async (id, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await taskService.trashTask(id, token)
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+export const deleteBinnedTask = createAsyncThunk(
+    'task/delete/binned',
     async (id, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token
@@ -102,6 +120,25 @@ export const updateTask = createAsyncThunk(
         }
     }
 )
+export const restoreBinnedTask = createAsyncThunk(
+    'task/restore',
+    async (id, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await taskService.restoreBinnedTask(id, token)
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+
 
 export const taskSlice = createSlice({
     name: 'task',
@@ -144,23 +181,37 @@ export const taskSlice = createSlice({
             .addCase(getBinnedTasks.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                state.tasks = action.payload
+                state.binnedTasks = action.payload
             })
             .addCase(getBinnedTasks.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(deleteTask.pending, (state) => {
+            .addCase(trashTask.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(deleteTask.fulfilled, (state, action) => {
+            .addCase(trashTask.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.tasks = state.tasks.filter(task => task.id !== action.payload.id)
-
+                state.binnedTasks = state.binnedTasks.push(state.tasks.filter(task => task.id === action.payload.id))
             })
-            .addCase(deleteTask.rejected, (state, action) => {
+            .addCase(trashTask.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.isSuccess = false
+                state.message = action.payload
+            })
+            .addCase(restoreBinnedTask.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(restoreBinnedTask.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = state.tasks.filter(task => task.id !== action.payload.id)
+            })
+            .addCase(restoreBinnedTask.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.isSuccess = false

@@ -3,11 +3,17 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
-
+import { restoreBinnedTask } from "../features/tasks/taskSlice";
+import AlertModal from "./Modals/AlertModal";
+import PlusCircleIcon from "@heroicons/react/outline/PlusCircleIcon";
+import MinusCircleIcon from "@heroicons/react/outline/MinusCircleIcon";
 function TaskItem({ task }) {
   const [completed] = useState(task.completed);
   const [pinned] = useState(task.pinned);
-
+  const dispatch = useDispatch();
+  const handleDispatch = () => {
+    return dispatch(restoreBinnedTask(task.id));
+  };
   return (
     <div className="relative min-w-full custom-shadow rounded-lg bg-primary dark:bg-dPrimary  text-text dark:text-dText  group">
       <div className="min-w-full px-4  relative group flex flex-col my-8">
@@ -21,7 +27,25 @@ function TaskItem({ task }) {
             {task.description}
           </div>
         </div>
-        <div className="text-sm font-light mb-4 flex flex-row   justify-between gap-2">
+        <div className="text-sm font-light mb-4 flex flex-row justify-between gap-2">
+          <AlertModal
+            icon={
+              <SwitchItem
+                type={completed}
+                icon={<CheckIcon />}
+                primaryColor="bg-comp"
+                bgColor="bg-secondary"
+                dBgColor="dark:bg-dSecondary"
+                txtColor="text-text"
+                disabled={true}
+              />
+            }
+            bgColor="bg-comp"
+            text="This task will be restored!"
+            title="Restore Task"
+            btnText="Ok!"
+          />
+
           <SwitchItem
             type={completed}
             icon={<CheckIcon />}
@@ -29,6 +53,7 @@ function TaskItem({ task }) {
             bgColor="bg-secondary"
             dBgColor="dark:bg-dSecondary"
             txtColor="text-text"
+            disabled={true}
           />
           <SwitchItem
             type={pinned}
@@ -38,12 +63,21 @@ function TaskItem({ task }) {
             dBgColor="dark:bg-dSecondary"
             txtColor="text-text"
             dTxtColor="text-text"
+            disabled={true}
           />
         </div>
       </div>
       <div className="absolute bottom-4 left-4 text-xs">
         {new Date(task.lastEditedAt).toLocaleString()}
       </div>
+      <PlusCircleIcon
+        className="absolute  z-4 top-1 left-2 hover:text-comp h-[20px]"
+        onClick={handleDispatch}
+      />
+      <MinusCircleIcon
+        className="absolute  z-4 top-1 right-2 hover:text-red-500 h-[20px]"
+        onClick={handleDispatch}
+      />
     </div>
   );
 }

@@ -50,10 +50,10 @@ export const updateUser = createAsyncThunk(
     }
 )
 
-export const resetPassword = createAsyncThunk('user/password/change', async (password, thunkAPI) => {
+export const changePassword = createAsyncThunk('user/password/change', async (password, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
-        return await authService.resetPassowrd(password, token)
+        return await authService.changePassword(password, token)
     } catch (error) {
         const message =
             (error.response &&
@@ -126,16 +126,16 @@ export const authSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
-            .addCase(resetPassword.pending, (state) => {
+            .addCase(changePassword.pending, (state) => {
                 state.isLoading = true
             })
-            .addCase(resetPassword.fulfilled, (state, action) => {
+            .addCase(changePassword.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.isError = false
                 state.user = action.payload
             })
-            .addCase(resetPassword.rejected, (state, action) => {
+            .addCase(changePassword.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

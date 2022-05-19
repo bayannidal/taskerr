@@ -1,9 +1,9 @@
 import SwitchItem from "./SwitchItem";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteTask, updateTask } from "../features/tasks/taskSlice";
-import UpdateTaskModal from "./UpdateTaskModal";
-import ModalDelete from "./ModalDelete";
+import { trashTask, updateTask } from "../features/tasks/taskSlice";
+import UpdateTaskModal from "./Modals/UpdateTaskModal";
+import ModalDelete from "./Modals/ModalDelete";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 
@@ -12,7 +12,7 @@ function TaskItem({ task }) {
   const [pinned, setPinned] = useState(task.pinned);
   const dispatch = useDispatch();
   const handleDispatch = () => {
-    return dispatch(deleteTask(task.id));
+    return dispatch(trashTask(task.id));
   };
   return (
     <div className="relative flex-1 min-w-full md:min-w-[calc(50%-0.5rem)] 2xl:min-w-[calc(33%-0.5rem)] max-w-full custom-shadow rounded-lg bg-secondary dark:bg-dSecondary  text-text dark:text-dText  group">

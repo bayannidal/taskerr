@@ -19,32 +19,30 @@ const UserEdit = () => {
   const [emailAddress] = useState(user.emailAddress);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-
+  console.log(isSuccess);
   const onSubmit = (e) => {
     e.preventDefault();
-    // dispatch(updateUser({ username, emailAddress, firstName, lastName }));
-    toast.promise(
-      dispatch(updateUser({ username, emailAddress, firstName, lastName })),
-      {
-        loading: "Saving...",
-        success: <b>Settings saved!</b>,
-        error: <b>Could not save.</b>,
-      }
-    );
+    dispatch(updateUser({ username, emailAddress, firstName, lastName }));
   };
   useEffect(() => {
+    let loadingTast;
     if (isLoading) {
-      dispatch(reset());
+      loadingTast = toast.loading("Loading...");
     }
-
     if (isSuccess) {
+      toast.remove(loadingTast);
+      toast.success("Successfuly updated settings!");
       dispatch(reset());
     }
-
     if (isError) {
+      toast.remove(loadingTast);
+      toast.error("Settings could not be updated! ");
       dispatch(reset());
     }
-  });
+    return () => {
+      dispatch(reset());
+    };
+  }, [isLoading, isError, isSuccess, dispatch]);
 
   return (
     <Layout customClass="flex items-center justify-center">
