@@ -9,12 +9,13 @@ import { logout, reset, changePassword } from "../features/auth/authSlice";
 import { toast } from "react-hot-toast";
 
 const ResetPassword = () => {
-  const { isSuccess } = useSelector((state) => state.auth);
+  const { isSuccess, message } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [oldPass, setOldPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [confirmedNewPass, setConfirmedNewPass] = useState("");
   const [inputType, setInputType] = useState("password");
+  console.log(message.errorMessage);
   const onSubmit = (e) => {
     e.preventDefault();
     if (newPass !== confirmedNewPass) {
@@ -23,13 +24,28 @@ const ResetPassword = () => {
       dispatch(changePassword({ oldPass, newPass }));
     }
   };
+
   useEffect(() => {
-    if (isSuccess) {
+    let isErrorMessageEmpty = false;
+    if (message.errorMessage == null) {
+      isErrorMessageEmpty = true;
+    }
+    if (isSuccess && isErrorMessageEmpty) {
       toast.success("Password successfully changed, login!");
       dispatch(logout());
       dispatch(reset());
     }
-  });
+    if (message.errorMessage === "BAD_CREDENTIALS") {
+      toast.error("Bad credentials!");
+      dispatch(reset());
+    }
+  }, [dispatch, isSuccess, message.errorMessage]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
 
   return (
     <Layout>

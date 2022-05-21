@@ -44,6 +44,12 @@ const UserEdit = () => {
     };
   }, [isLoading, isError, isSuccess, dispatch]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(reset());
+    };
+  }, [dispatch]);
+
   return (
     <Layout customClass="flex items-center justify-center">
       <div className="w-full h-full flex flex-col items-center justify-center">

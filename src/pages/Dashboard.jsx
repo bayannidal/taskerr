@@ -18,10 +18,9 @@ function Dashboard() {
   const { tasks, isLoading, isError, message, binnedTasks } = useSelector(
     (state) => state.tasks
   );
-  console.log(tasks && tasks.find((task) => task.id === task.id));
   useEffect(() => {
     return () => {
-      // dispatch(reset());
+      dispatch(reset());
       dispatch(resetAuth());
     };
   }, [dispatch]);
@@ -45,7 +44,7 @@ function Dashboard() {
   }, [user, navigate, isError, message, dispatch]);
 
   const handleError = () => {
-    // dispatch(reset());
+    dispatch(reset());
   };
 
   return (
@@ -64,14 +63,14 @@ function Dashboard() {
               isLoading={isLoading}
               handleError={handleError}
             />
-            {/* <div className="flex flex-col gap-2 p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
+            <div className="flex flex-col gap-2 p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
               <Title text="Binned tasks" />
               {!isLoading ? (
                 <BinnedTasks binnedTasks={binnedTasks} />
               ) : (
                 <Spinner />
               )}
-            </div> */}
+            </div>
           </div>
           <section className="md:flex-[2] min-w-0  md:mt-0 rounded-lg">
             <Error error={isError} handleError={handleError} text={message} />

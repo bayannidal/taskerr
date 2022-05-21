@@ -33,12 +33,13 @@ export const createTask = createAsyncThunk(
 
 export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
-        return await taskService.getTasks(token)
+        // const token = thunkAPI.getState().auth.user.token
+        // console.log(token)
+        return await taskService.getTasks()
     } catch (error) {
-        if (error.response.status === 403) {
-            thunkAPI.dispatch(logout())
-        }
+        // if (error.response.status === 403) {
+        //     thunkAPI.dispatch(logout())
+        // }
         const message =
             (error.response &&
                 error.response.data &&
@@ -49,25 +50,23 @@ export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
         return thunkAPI.rejectWithValue(message)
     }
 })
-
 export const getBinnedTasks = createAsyncThunk('task/user/binned', async (_, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
-        return await taskService.getBinnedTasks(token)
+        return await taskService.getBinnedTasks()
     } catch (error) {
-        if (error.response.status === 403) {
-            thunkAPI.dispatch(logout())
-        }
+        // if (error.response.status === 403) {
+        //     thunkAPI.dispatch(logout())
+        // }
         const message =
             (error.response &&
                 error.response.data &&
                 error.response.data.message) ||
             error.message ||
             error.toString()
+
         return thunkAPI.rejectWithValue(message)
     }
 })
-
 
 export const deleteBinnedTask = createAsyncThunk(
     'task/delete/binned',
@@ -195,10 +194,25 @@ export const taskSlice = createSlice({
             .addCase(trashTask.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
-                // state.binnedTasks = state.binnedTasks.push(state.tasks.find((task) => task.id === action.payload.id))
+                state.binnedTasks = [...state.binnedTasks, state.tasks.find((task) => task.id === action.payload.id)]
                 state.tasks = state.tasks.filter(task => task.id !== action.payload.id)
             })
             .addCase(trashTask.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.isSuccess = false
+                state.message = action.payload
+            })
+            .addCase(restoreBinnedTask.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(restoreBinnedTask.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.tasks = [...state.tasks, state.binnedTasks.find((binnedTask) => binnedTask.id === action.payload.id)]
+                state.binnedTasks = state.binnedTasks.filter((task) => task.id !== action.payload.id)
+            })
+            .addCase(restoreBinnedTask.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.isSuccess = false
@@ -218,20 +232,7 @@ export const taskSlice = createSlice({
                 state.isSuccess = false
                 state.message = action.payload
             })
-            .addCase(restoreBinnedTask.pending, (state) => {
-                state.isLoading = true
-            })
-            .addCase(restoreBinnedTask.fulfilled, (state, action) => {
-                state.isLoading = false
-                state.isSuccess = true
-                // state.binnedTasks = state.binnedTasks.push(action.payload)
-            })
-            .addCase(restoreBinnedTask.rejected, (state, action) => {
-                state.isLoading = false
-                state.isError = true
-                state.isSuccess = false
-                state.message = action.payload
-            })
+
             .addCase(updateTask.pending, (state) => {
                 state.isLoading = true
             })
