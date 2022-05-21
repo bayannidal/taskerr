@@ -21,13 +21,9 @@ export default function AlertModal({
   return (
     <>
       <div className="absolute  z-5 top-1 right-2">
-        <button
-          type="button"
-          onClick={openModal}
-          className="hover:text-red-500"
-        >
+        <div type="button" onClick={openModal} className="hover:text-red-500">
           {icon}
-        </button>
+        </div>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -79,7 +75,7 @@ export default function AlertModal({
                 </div>
 
                 <div className="mt-4 flex flex-col md:flex-row gap-2 justify-between">
-                  <button
+                  <div
                     type="button"
                     className={`inline-flex justify-center px-4 py-2 text-sm font-medium ${
                       bgColor ? bgColor : "bg-third"
@@ -87,7 +83,7 @@ export default function AlertModal({
                     onClick={() => setIsOpen(false)}
                   >
                     {btnText}
-                  </button>
+                  </div>
                 </div>
               </div>
             </Transition.Child>

@@ -9,21 +9,19 @@ import jwt_decoded from "jwt-decode";
 import Error from "../components/Error";
 import TaskFilter from "../components/TaskFilter";
 import Layout from "../styles/Layout";
-import BinnedTaskItem from "../components/BinnedTaskItem";
 import Title from "../components/Title";
+import BinnedTasks from "../components/BinnedTasks";
 function Dashboard() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { tasks, isLoading, isError, message } = useSelector(
+  const { tasks, isLoading, isError, message, binnedTasks } = useSelector(
     (state) => state.tasks
   );
-
-  const { binnedTasks } = useSelector((state) => state.tasks);
-
+  console.log(tasks && tasks.find((task) => task.id === task.id));
   useEffect(() => {
     return () => {
-      dispatch(reset());
+      // dispatch(reset());
       dispatch(resetAuth());
     };
   }, [dispatch]);
@@ -35,7 +33,6 @@ function Dashboard() {
     if (user) {
       navigate("/");
     }
-
     if (user && !isError) {
       dispatch(getTasks());
       dispatch(getBinnedTasks());
@@ -48,7 +45,7 @@ function Dashboard() {
   }, [user, navigate, isError, message, dispatch]);
 
   const handleError = () => {
-    dispatch(reset());
+    // dispatch(reset());
   };
 
   return (
@@ -67,12 +64,14 @@ function Dashboard() {
               isLoading={isLoading}
               handleError={handleError}
             />
-            <div className="flex flex-col gap-2 p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
+            {/* <div className="flex flex-col gap-2 p-2 custom-shadow bg-secondary dark:bg-dSecondary text-text dark:text-dText rounded-lg  mb-3">
               <Title text="Binned tasks" />
-              {binnedTasks.map((task) => (
-                <BinnedTaskItem binnedTasks={task} key={binnedTasks.id} />
-              ))}
-            </div>
+              {!isLoading ? (
+                <BinnedTasks binnedTasks={binnedTasks} />
+              ) : (
+                <Spinner />
+              )}
+            </div> */}
           </div>
           <section className="md:flex-[2] min-w-0  md:mt-0 rounded-lg">
             <Error error={isError} handleError={handleError} text={message} />
