@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { config } from '../util/utilities'
+import api from '../util/utilities'
 
 // const API_URL = 'https://taskr99.herokuapp.com/'
 const API_URL = 'http://localhost:8080/'
@@ -15,9 +15,7 @@ const register = async (userData) => {
 //Login user
 const authenticate = async (userData) => {
     const response = await axios.post(API_URL + 'authenticate', userData)
-    // console.log(response)
-    console.log(response.data.token)
-
+    console.log(response)
     if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
@@ -27,9 +25,7 @@ const authenticate = async (userData) => {
 //Update user
 const updateUser = async (userData, token) => {
     const { username, emailAddress, firstName, lastName } = userData;
-    const response = await axios.put(API_URL + `users/edit`, {
-        username, emailAddress, firstName, lastName
-    }, config(token))
+    const response = await api.put(`users/edit`, userData)
     console.log(response)
     if (response.data && response.status === 200) {
         const updatedUser = response.data;
@@ -42,9 +38,7 @@ const updateUser = async (userData, token) => {
 //Change password
 const changePassword = async (password, token) => {
     const { oldPass, newPass } = password
-    const response = await axios.post(API_URL + `users/password/change`, {
-        oldPass, newPass
-    }, config(token))
+    const response = await api.post(`users/password/change`, password)
     console.log(response)
 
     return response.data

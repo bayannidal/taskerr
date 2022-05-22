@@ -42,7 +42,7 @@ function TaskForm() {
     <section className="p-2 bg-secondary custom-shadow dark:bg-dSecondary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-3">
-          <Title text="Create a new Taskrr." />
+          <Title text="Create a new Taskrr." customClass="text-center" />
 
           <div className="flex mt-5">
             <InputText

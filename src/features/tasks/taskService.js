@@ -1,16 +1,8 @@
-import axios from 'axios'
-import { config } from '../util/utilities'
+
+import api from '../util/utilities'
 const API_URL = 'http://localhost:8080/'
 
-const api = axios.create({
-    baseURL: API_URL,
-    headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "subject": JSON.parse(localStorage.getItem('user')).username
-    }
-})
+
 
 //Create Task
 const createTask = async (taskData) => {
@@ -39,7 +31,7 @@ const trashTask = async (id) => {
 
 //Get All Binned Tasks
 const getBinnedTasks = async () => {
-    const response = await api.get(`tasks/user`)
+    const response = await api.get(`tasks/user/binned`)
     // console.log(response)
     return response.data
 }

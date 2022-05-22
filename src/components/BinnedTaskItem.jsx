@@ -21,7 +21,7 @@ const BinnedTaskItem = ({ binnedTask }) => {
     return dispatch(deleteBinnedTask(binnedTask.id));
   };
   return (
-    <div className="relative min-w-full custom-shadow rounded-lg bg-primary dark:bg-dPrimary  text-text dark:text-dText  group">
+    <div className="relative flex-1 min-w-full md:min-w-[calc(50%-0.5rem)] 2xl:min-w-[calc(33%-0.5rem)] custom-shadow rounded-lg bg-primary dark:bg-dPrimary  text-text dark:text-dText  group">
       <div className="min-w-full px-4  relative group flex flex-col my-8">
         <div className="text-sm mb-4 font-light flex flex-col">
           <div className=" text-left font-bold text-lg pb-4 overflow-x-auto overflow-y-hidden custom-scroll">

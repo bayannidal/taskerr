@@ -6,6 +6,7 @@ import Title from "../components/Title";
 import Button from "../components/ButtonComponents/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, reset, changePassword } from "../features/auth/authSlice";
+import { reset as resetTask } from "../features/tasks/taskSlice";
 import { toast } from "react-hot-toast";
 
 const ResetPassword = () => {

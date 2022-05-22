@@ -29,7 +29,7 @@ export default function Example({ tasks }) {
           setState(idx);
         }}
       >
-        <Tab.List className="flex p-1 space-x-2 bg-secondary dark:bg-dSecondary  rounded-lg mb-3 custom-shadow ">
+        <Tab.List className="flex p-1 space-x-2 bg-secondary dark:bg-dSecondary  rounded-lg mb-2 custom-shadow ">
           {sortList.map((category) => (
             <Tab
               key={category}
