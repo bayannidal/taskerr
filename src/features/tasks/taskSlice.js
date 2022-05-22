@@ -15,7 +15,6 @@ export const createTask = createAsyncThunk(
     'task/insert',
     async (taskData, thunkAPI) => {
         try {
-            const token = thunkAPI.getState().auth.user.token
             return await taskService.createTask(taskData)
         } catch (error) {
             const message =
@@ -33,13 +32,11 @@ export const createTask = createAsyncThunk(
 
 export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
-        console.log(token)
-        return await taskService.getTasks(token)
+        return await taskService.getTasks()
     } catch (error) {
-        // if (error.response.status === 403) {
-        //     thunkAPI.dispatch(logout())
-        // }
+        if (error.response.status === 403) {
+            thunkAPI.dispatch(logout())
+        }
         const message =
             (error.response &&
                 error.response.data &&
@@ -52,12 +49,11 @@ export const getTasks = createAsyncThunk('task/user', async (_, thunkAPI) => {
 })
 export const getBinnedTasks = createAsyncThunk('task/user/binned', async (_, thunkAPI) => {
     try {
-        const token = thunkAPI.getState().auth.user.token
-        return await taskService.getBinnedTasks(token)
+        return await taskService.getBinnedTasks()
     } catch (error) {
-        // if (error.response.status === 403) {
-        //     thunkAPI.dispatch(logout())
-        // }
+        if (error.response.status === 403) {
+            thunkAPI.dispatch(logout())
+        }
         const message =
             (error.response &&
                 error.response.data &&
@@ -73,7 +69,6 @@ export const deleteBinnedTask = createAsyncThunk(
     'task/delete/binned',
     async (id, thunkAPI) => {
         try {
-            const token = thunkAPI.getState().auth.user.token
             return await taskService.deleteBinnedTask(id)
         } catch (error) {
             const message =
@@ -91,7 +86,6 @@ export const updateTask = createAsyncThunk(
     'task/update',
     async (taskData, thunkAPI) => {
         try {
-            const token = thunkAPI.getState().auth.user.token
             return await taskService.updateTask(taskData)
         } catch (error) {
             const message =
@@ -108,7 +102,6 @@ export const trashTask = createAsyncThunk(
     'task/trash',
     async (id, thunkAPI) => {
         try {
-            const token = thunkAPI.getState().auth.user.token
             return await taskService.trashTask(id)
         } catch (error) {
             const message =
@@ -125,7 +118,6 @@ export const restoreBinnedTask = createAsyncThunk(
     'task/restore',
     async (id, thunkAPI) => {
         try {
-            const token = thunkAPI.getState().auth.user.token
             return await taskService.restoreBinnedTask(id)
         } catch (error) {
             const message =

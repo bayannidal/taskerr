@@ -3,15 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-// import Header from "./components/HeaderDashboardDashboard";
+import Header from "./components/Header";
 import useVH from "react-viewport-height";
-<<<<<<< HEAD
-import Landing from "./pages/Landing";
-=======
 // import Landing from "./pages/Landing";
 import UserEdit from "./pages/UserEdit";
 import ProtectedRoute from "./components/ProtectedRoute";
->>>>>>> redux-update
 import { useSelector } from "react-redux";
 import MissingPage from "./pages/MissingPage";
 import { Toaster } from "react-hot-toast";
@@ -22,15 +18,6 @@ function App() {
   return (
     <>
       <Router>
-<<<<<<< HEAD
-        <div className="App bg-primary  dark:bg-dPrimary  ">
-          {/* <Header /> */}
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-=======
         <div className="App bg-primary  dark:bg-dPrimary">
           {user ? <Header /> : null}
           <Routes>
@@ -42,7 +29,6 @@ function App() {
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
->>>>>>> redux-update
             <Route path="*" element={<MissingPage />} />
           </Routes>
           <Toaster />

@@ -1,13 +1,7 @@
 
-<<<<<<< HEAD
-// const API_URL = 'https://taskr99.herokuapp.com/'
-
-const API_URL = 'http://localhost:8080/'
-=======
 import api from '../util/utilities'
 const API_URL = 'http://localhost:8080/'
 
->>>>>>> redux-update
 
 
 //Create Task

@@ -33,7 +33,7 @@ function Login() {
   useEffect(() => {
     if (isSuccess || user) {
       dispatch(reset());
-      navigate("/dashboard");
+      navigate("/");
     }
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 

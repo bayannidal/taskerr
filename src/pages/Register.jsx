@@ -39,14 +39,9 @@ function Register() {
     if (isError) {
       dispatch(reset());
     }
-<<<<<<< HEAD
-    if (isSuccess || user) {
-      dispatch(reset());
-      navigate("/dashboard");
-=======
     if (isSuccess) {
-      // dispatch(reset());
->>>>>>> redux-update
+      navigate("/login");
+      dispatch(reset());
     }
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 

@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import Dropdown from "./Dropdown";
 import Logo from "./Logo";
-function HeaderDashboard() {
+function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const { user } = useSelector((state) => state.auth);
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
@@ -33,11 +32,7 @@ function HeaderDashboard() {
   );
 }
 
-<<<<<<< HEAD:src/components/HeaderDashboard.jsx
-export default HeaderDashboard;
-=======
 export default Header;
 
 //bg-opacity-60 dark:bg-opacity-60 bg-primary dark:bg-dPrimary border-b border-gray-100
 //bg-gradient-to-r from-green-400 via-comp to-third
->>>>>>> redux-update:src/components/Header.jsx

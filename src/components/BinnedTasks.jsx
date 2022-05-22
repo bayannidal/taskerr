@@ -19,13 +19,12 @@ const BinnedTasks = ({ binnedTasks }) => {
 
       <div className="rounded-lg flex flex-wrap  gap-2">
         {binnedTasks &&
-          binnedTasks.map((binnedTask) => (
-            <>
-              {binnedTask && (
+          binnedTasks.map(
+            (binnedTask) =>
+              binnedTask && (
                 <BinnedTaskItem key={binnedTask.id} binnedTask={binnedTask} />
-              )}
-            </>
-          ))}
+              )
+          )}
       </div>
     </div>
   );

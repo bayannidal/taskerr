@@ -30,7 +30,7 @@ function Dashboard() {
       navigate("/");
     }
     if (user) {
-      navigate("/dashboard");
+      navigate("/");
     }
     if (user && !isError) {
       dispatch(getTasks());
@@ -47,7 +47,6 @@ function Dashboard() {
     dispatch(reset());
   };
 
-  const Nav = () => {};
   return (
     <Layout>
       <div className=" min-w-full flex flex-col max-w-full min-h-full">

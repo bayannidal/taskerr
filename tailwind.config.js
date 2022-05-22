@@ -11,21 +11,8 @@ module.exports = {
         secondary: '#F8F8F9',
         dPrimary: '#121212',
         dSecondary: '#1E1E1E',
-<<<<<<< HEAD
-        // dPrimary: '#292929',
-        // dSecondary: '#353536',
-        // dPrimary: '#3F5A7D',
-        // dSecondary: '#4C688D',
-        // dSecondary: '#224069',
-        // dPrimary: '#122F5D',
-        comp: '#FAFAFF',
-        // third: '#ffd700',
-        third: '#FEDE55',
-        dThird: '#323FA6',
-=======
         third: '#F2ED6F',
         comp: '#49C195',
->>>>>>> redux-update
         text: '#323442',
         dText: "#FFFF"
       }
