@@ -7,12 +7,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // primary: 'rgb(255,255,255)',
-        // secondary: 'rgb(243 244 246)',
         primary: '#FEFFFE',
         secondary: '#F8F8F9',
         dPrimary: '#121212',
         dSecondary: '#1E1E1E',
+<<<<<<< HEAD
         // dPrimary: '#292929',
         // dSecondary: '#353536',
         // dPrimary: '#3F5A7D',
@@ -23,6 +22,10 @@ module.exports = {
         // third: '#ffd700',
         third: '#FEDE55',
         dThird: '#323FA6',
+=======
+        third: '#F2ED6F',
+        comp: '#49C195',
+>>>>>>> redux-update
         text: '#323442',
         dText: "#FFFF"
       }
@@ -239,6 +242,8 @@ module.exports = {
       '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
       inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
       none: 'none',
+      third: `0 0 0 3px var(--third)`,
+      comp: `0 0 0 3px var(--comp)`,
     },
     boxShadowColor: ({ theme }) => theme('colors'),
     caretColor: ({ theme }) => theme('colors'),

@@ -1,78 +1,83 @@
-import axios from 'axios'
 
+<<<<<<< HEAD
 // const API_URL = 'https://taskr99.herokuapp.com/'
 
 const API_URL = 'http://localhost:8080/'
+=======
+import api from '../util/utilities'
+const API_URL = 'http://localhost:8080/'
 
-const createTask = async (taskData, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        }
-    }
-    const response = await axios.post(API_URL + 'task/insert', taskData, config)
+>>>>>>> redux-update
+
+
+//Create Task
+const createTask = async (taskData) => {
+    const response = await api.post('tasks/insert', taskData)
     console.log(response)
     return response.data
 }
 
-const getTasks = async (token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        }
-    }
-
-    const response = await axios.get(API_URL + 'task/user', config)
-    console.log(response)
-
+//Get All Tasks
+const getTasks = async () => {
+    const response = await api.get(API_URL + `tasks/user`)
+    // console.log(response)
     return response.data
 }
 
 //Delete task
-const deleteTask = async (id, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-        }
-    }
-    const response = await axios.delete(API_URL + `task/${id}`, config)
+const trashTask = async (id) => {
+    const response = await api.put(`tasks/${id}/trash`)
     console.log(response)
-
-    if (response.status === 200)
+    if (response.status === 200) {
         return { id }
+    }
     else
         return response.data
 }
 
-//Update Task
-const updateTask = async (taskData, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: "application/json",
-            "Content-Type": "application/json",
+//Get All Binned Tasks
+const getBinnedTasks = async () => {
+    const response = await api.get(`tasks/user/binned`)
+    // console.log(response)
+    return response.data
+}
 
-        },
+//Restore Binned Tasks
+const restoreBinnedTask = async (id) => {
+    const response = await api.put(`tasks/${id}/restore`, id)
+    console.log(response)
+    if (response.status === 200) {
+        console.log(id)
+        return { id }
     }
-    const { id, title, description, completed, pinned, expiresAt } = taskData
 
-    const response = await axios.put(API_URL + `task/${id}`, {
-        title, description, completed, pinned, expiresAt
-    }, config)
+}
+
+//Delete binned task
+const deleteBinnedTask = async (id) => {
+    const response = await api.delete(`tasks/${id}`)
+    console.log(response)
+    if (response.status === 200) {
+        return { id }
+    }
+}
+
+//Update Task
+const updateTask = async (taskData) => {
+    const { id } = taskData
+    const response = await api.put(`tasks/${id}/edit`, taskData)
     console.log(response)
     return response.data
 }
+
 const taskService = {
     createTask,
     getTasks,
-    deleteTask,
-    updateTask
+    trashTask,
+    updateTask,
+    getBinnedTasks,
+    restoreBinnedTask,
+    deleteBinnedTask
 }
 
 export default taskService

@@ -35,10 +35,6 @@ function Login() {
       dispatch(reset());
       navigate("/dashboard");
     }
-
-    if (isError) {
-      // setTimeout(() => dispatch(reset()), 5000);
-    }
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 
   const onChange = (e) => {

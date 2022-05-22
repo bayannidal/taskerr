@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTask } from "../features/tasks/taskSlice";
-import { Switch } from "@headlessui/react";
 import { InputText } from "./InputText";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 import Button from "./ButtonComponents/Button";
 import { Textarea } from "./Textarea";
+import SwitchItem from "./SwitchItem";
+import Title from "./Title";
 function TaskForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -41,12 +42,8 @@ function TaskForm() {
     <section className="p-2 bg-secondary custom-shadow dark:bg-dSecondary text-text dark:text-dText rounded-lg">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="mb-3">
-          <label
-            htmlFor="text"
-            className="font-bold ml-2 text-text dark:text-dText"
-          >
-            Create a new Taskrr.
-          </label>
+          <Title text="Create a new Taskrr." customClass="text-center" />
+
           <div className="flex mt-5">
             <InputText
               type="text"
@@ -77,56 +74,31 @@ function TaskForm() {
               <label htmlFor="completed" className="font-bold">
                 Completed
               </label>
-              <Switch
-                checked={completed}
+
+              <SwitchItem
+                type={completed}
                 onChange={setCompleted}
-                className={`${
-                  completed ? "bg-green-500" : "bg-primary dark:bg-dPrimary"
-                } relative inline-flex items-center h-6 rounded-full w-11`}
-              >
-                <span className="sr-only">Enable notifications</span>
-                <span
-                  className={`${
-                    completed
-                      ? "translate-x-6 bg-primary"
-                      : "translate-x-1 bg-green-500"
-                  } inline-block w-4 h-4 transform  rounded-full`}
-                >
-                  <CheckIcon
-                    className={`h-4 ${
-                      completed ? "text-green-500" : "text-dText"
-                    }  z-50`}
-                  />
-                </span>
-              </Switch>
+                icon={<CheckIcon />}
+                primaryColor="bg-comp"
+                bgColor="bg-primary"
+                dBgColor="dark:bg-dPrimary"
+                txtColor="text-text"
+              />
             </div>
             <div className="flex gap-2 flex-col items-end pt-5 pr-2">
               <label htmlFor="completed" className="font-bold">
                 Pinned
               </label>
-              <Switch
-                checked={pinned}
+              <SwitchItem
+                type={pinned}
                 onChange={setPinned}
-                className={`${
-                  pinned ? "bg-purple-500" : "bg-primary dark:bg-dPrimary"
-                } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
-              >
-                <span className="sr-only">Enable notifications</span>
-                <span
-                  className={`${
-                    pinned
-                      ? "translate-x-6 bg-primary"
-                      : "translate-x-1 bg-purple-500"
-                  } inline-block w-4 h-4 transform  rounded-full custom-shadow`}
-                >
-                  {/* <FingerPrintIcon /> */}
-                  <PaperClipIcon
-                    className={`h-4 ${
-                      pinned ? "text-purple-500" : "text-dText"
-                    }  z-50`}
-                  />
-                </span>
-              </Switch>
+                icon={<PaperClipIcon />}
+                primaryColor="bg-third"
+                bgColor="bg-primary"
+                dBgColor="dark:bg-dPrimary"
+                dTxtColor="text-text"
+                txtColor="text-text"
+              />
             </div>
           </div>
         </div>

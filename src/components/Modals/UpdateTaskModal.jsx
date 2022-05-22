@@ -2,13 +2,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import PencilAltIcon from "@heroicons/react/solid/PencilAltIcon";
 import { useDispatch } from "react-redux";
-import { Switch } from "@headlessui/react";
-import { InputText } from "./InputText";
-import { updateTask } from "../features/tasks/taskSlice";
+import SwitchItem from "../SwitchItem";
+import { InputText } from "../InputText";
+import { updateTask } from "../../features/tasks/taskSlice";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
-import Button from "./ButtonComponents/Button";
-import { Textarea } from "./Textarea";
+import Button from "../ButtonComponents/Button";
+import { Textarea } from "../Textarea";
+
 export default function MyModal({ task }) {
   let [isOpen, setIsOpen] = useState(false);
   const [title, setTitle] = useState(task.title);
@@ -52,7 +53,7 @@ export default function MyModal({ task }) {
   return (
     <>
       <div className="absolute  z-4 top-1 left-2">
-        <button type="button" onClick={openModal} className="hover:text-third">
+        <button type="button" onClick={openModal} className="hover:text-comp">
           <PencilAltIcon className="h-[20px]" />
         </button>
       </div>
@@ -120,61 +121,27 @@ export default function MyModal({ task }) {
                       <div className="flex justify-between">
                         {" "}
                         <div className="">
-                          <Switch
-                            checked={completed}
+                          <SwitchItem
+                            type={completed}
                             onChange={setCompleted}
-                            className={`${
-                              completed
-                                ? "bg-green-500"
-                                : "bg-secondary dark:bg-dSecondary"
-                            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
-                          >
-                            <span className="sr-only">
-                              Enable notifications
-                            </span>
-                            <span
-                              className={`${
-                                completed
-                                  ? "translate-x-6 bg-primary"
-                                  : "translate-x-1 bg-green-500"
-                              } inline-block w-4 h-4 transform  rounded-full`}
-                            >
-                              <CheckIcon
-                                className={`h-4 ${
-                                  completed ? "text-green-500" : "text-dText"
-                                }  z-50`}
-                              />
-                            </span>
-                          </Switch>
+                            icon={<CheckIcon />}
+                            primaryColor="bg-comp"
+                            bgColor="bg-secondary"
+                            dBgColor="dark:bg-dSecondary"
+                            txtColor="text-text"
+                          />
                         </div>
                         <div className="">
-                          <Switch
-                            checked={pinned}
+                          <SwitchItem
+                            type={pinned}
                             onChange={setPinned}
-                            className={`${
-                              pinned
-                                ? "bg-purple-500"
-                                : "bg-secondary dark:bg-dSecondary"
-                            } relative inline-flex items-center h-6 rounded-full w-11 custom-shadow`}
-                          >
-                            <span className="sr-only">
-                              Enable notifications
-                            </span>
-                            <span
-                              className={`${
-                                pinned
-                                  ? "translate-x-6 bg-primary"
-                                  : "translate-x-1 bg-purple-500"
-                              } inline-block w-4 h-4 transform  rounded-full`}
-                            >
-                              {/* <FingerPrintIcon /> */}
-                              <PaperClipIcon
-                                className={`h-4 ${
-                                  pinned ? "text-purple-500" : "text-dText"
-                                }  z-50`}
-                              />
-                            </span>
-                          </Switch>
+                            icon={<PaperClipIcon />}
+                            primaryColor="bg-third"
+                            bgColor="bg-secondary"
+                            dBgColor="dark:bg-dSecondary"
+                            dTxtColor="text-text"
+                            txtColor="text-text"
+                          />
                         </div>
                       </div>
                     </div>

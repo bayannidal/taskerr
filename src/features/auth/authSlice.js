@@ -32,6 +32,39 @@ export const authenticate = createAsyncThunk('authenticate', async (user, thunkA
     }
 })
 
+export const updateUser = createAsyncThunk(
+    'user/edit',
+    async (userData, thunkAPI) => {
+        try {
+            const token = thunkAPI.getState().auth.user.token
+            return await authService.updateUser(userData, token)
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString()
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+export const changePassword = createAsyncThunk('user/password/change', async (password, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await authService.changePassword(password, token)
+    } catch (error) {
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const logout = createAsyncThunk('logout', async () => {
     authService.logout()
 })
@@ -56,7 +89,7 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.isError = false
-                state.user = action.payload
+                state.user = null
             })
             .addCase(register.rejected, (state, action) => {
                 state.isLoading = false
@@ -78,6 +111,34 @@ export const authSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
                 state.user = null
+            })
+            .addCase(updateUser.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.isError = false
+                state.user = action.payload
+            })
+            .addCase(updateUser.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(changePassword.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(changePassword.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.isError = false
+                state.message = action.payload
+            })
+            .addCase(changePassword.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
             })
             .addCase(logout.fulfilled, (state) => {
                 state.user = null

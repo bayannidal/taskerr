@@ -7,13 +7,14 @@ export default function useDarkMode() {
         localStorage.setItem('theme', 'light')
         document
             .querySelector('meta[name="theme-color"]')
-            .setAttribute("content", "#FEFFFE");
+            .setAttribute("content", "#fefefe");
     }
     if (colorTheme === 'light') {
         localStorage.setItem('theme', 'dark')
         document
             .querySelector('meta[name="theme-color"]')
             .setAttribute("content", "#121212");
+
     }
 
     useEffect(() => {

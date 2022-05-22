@@ -10,6 +10,7 @@ import Error from "../components/Error";
 import AuthTop from "../components/AuthComponents/AuthTop";
 import AuthBottom from "../components/AuthComponents/AuthBottom";
 import AuthContainer from "../components/AuthComponents/AuthContainer";
+import CheckCircle from "@heroicons/react/outline/BadgeCheckIcon";
 function Register() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,9 +39,14 @@ function Register() {
     if (isError) {
       dispatch(reset());
     }
+<<<<<<< HEAD
     if (isSuccess || user) {
       dispatch(reset());
       navigate("/dashboard");
+=======
+    if (isSuccess) {
+      // dispatch(reset());
+>>>>>>> redux-update
     }
   }, [user, isError, isSuccess, isLoading, message, navigate, dispatch]);
 
@@ -75,6 +81,20 @@ function Register() {
       dispatch(register(userData));
     }
   };
+
+  if (isSuccess) {
+    return (
+      <div className="text-text dark:text-dText bg-gradient-to-r from-comp to-third  flex items-center justify-center text-3xl font-bold">
+        <div className="p-4 flex flex-col gap-6 rounded-lg bg-primary dark:bg-dSecondary">
+          <CheckCircle className="h-16 text-comp" />
+          <h1>Check your email, verify it and add some tasks!</h1>
+          <Link to="/login">
+            <Button text="Go to login" c />
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <AuthContainer reversed={false}>
