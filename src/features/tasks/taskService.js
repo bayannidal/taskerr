@@ -13,9 +13,13 @@ const createTask = async (taskData) => {
 
 //Get All Tasks
 const getTasks = async () => {
-    const response = await api.get(API_URL + `tasks/user`)
+    const response = await api.get(`tasks/user`)
     // console.log(response)
     return response.data
+}
+
+const getTaskById = async () => {
+    const response = await api.get()
 }
 
 //Delete task

@@ -2,6 +2,7 @@ import SwitchItem from "./SwitchItem";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
+import ModalDelete from "./Modals/ModalDelete";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 import {
   deleteBinnedTask,
@@ -20,6 +21,10 @@ const BinnedTaskItem = ({ binnedTask }) => {
   const handleDeleteDispatch = () => {
     return dispatch(deleteBinnedTask(binnedTask.id));
   };
+
+  // const handleDispatch = () => {
+  //   return dispatch(trashTask(task.id));
+  // };
   return (
     <div className="relative flex-1 min-w-full md:min-w-[calc(50%-0.5rem)] 2xl:min-w-[calc(33%-0.5rem)] custom-shadow rounded-lg bg-primary dark:bg-dPrimary  text-text dark:text-dText  group">
       <div className="min-w-full px-4  relative group flex flex-col my-8">
@@ -34,24 +39,6 @@ const BinnedTaskItem = ({ binnedTask }) => {
           </div>
         </div>
         <div className="text-sm font-light mb-4 flex flex-row justify-between gap-2">
-          <AlertModal
-            icon={
-              <SwitchItem
-                type={completed}
-                icon={<CheckIcon />}
-                primaryColor="bg-comp"
-                bgColor="bg-secondary"
-                dBgColor="dark:bg-dSecondary"
-                txtColor="text-text"
-                disabled={true}
-              />
-            }
-            bgColor="bg-comp"
-            text="This task will be restored!"
-            title="Restore Task"
-            btnText="Ok!"
-          />
-
           <SwitchItem
             type={completed}
             icon={<CheckIcon />}
@@ -76,13 +63,10 @@ const BinnedTaskItem = ({ binnedTask }) => {
       <div className="absolute bottom-4 left-4 text-xs">
         {new Date(binnedTask.lastEditedAt).toLocaleString()}
       </div>
+      <ModalDelete task={binnedTask} handleDispatch={handleDeleteDispatch} />
       <PlusCircleIcon
-        className="absolute  z-4 top-1 left-2 hover:text-comp h-[20px]"
+        className="absolute  z-4 top-1 right-2 hover:text-comp h-[20px]"
         onClick={handleRestoreDispatch}
-      />
-      <MinusCircleIcon
-        className="absolute  z-4 top-1 right-2 hover:text-red-500 h-[20px]"
-        onClick={handleDeleteDispatch}
       />
     </div>
   );

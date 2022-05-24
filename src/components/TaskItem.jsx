@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { trashTask, updateTask } from "../features/tasks/taskSlice";
 import UpdateTaskModal from "./Modals/UpdateTaskModal";
-import ModalDelete from "./Modals/ModalDelete";
+import MinusCircleIcon from "@heroicons/react/outline/MinusCircleIcon";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
 
@@ -74,8 +74,11 @@ function TaskItem({ task }) {
       <div className="absolute bottom-4 left-4 text-xs">
         {new Date(task.lastEditedAt).toLocaleString()}
       </div>
-      <ModalDelete task={task} handleDispatch={handleDispatch} />
       <UpdateTaskModal task={task} />
+      <MinusCircleIcon
+        className="absolute  z-4 top-1 left-2 hover:text-red-500 h-[20px]"
+        onClick={handleDispatch}
+      />
     </div>
   );
 }

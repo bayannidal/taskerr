@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import XCircleIcon from "@heroicons/react/outline/XCircleIcon";
 
-export default function MyModal({ handleDispatch }) {
+export default function ModalDelete({ handleDispatch }) {
   let [isOpen, setIsOpen] = useState(false);
   function closeModal() {
     setIsOpen(false);
@@ -14,7 +14,7 @@ export default function MyModal({ handleDispatch }) {
 
   return (
     <>
-      <div className="absolute  z-5 top-1 right-2">
+      <div className="absolute  z-5 top-1 left-2">
         <button
           type="button"
           onClick={openModal}
