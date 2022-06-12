@@ -1,20 +1,18 @@
-import axios from 'axios'
-import api from '../util/utilities'
-
-// const API_URL = 'https://taskr99.herokuapp.com/'
-const API_URL = 'http://localhost:8080/'
-// const API_URL = 'https://11e7-188-24-71-26.ngrok.io/'
+import apis from '../util/utilities'
+// const api = 'https://taskr99.herokuapp.com/'
 
 //Register user
 const register = async (userData) => {
-    const response = await axios.post(API_URL + 'register', userData)
+    // const response = await axios.post(apis.apiAuth_URL + 'register', userData)
+    const response = await apis.api.post('register', userData)
     console.log(response)
     return response.data
 }
 
 //Login user
 const authenticate = async (userData) => {
-    const response = await axios.post(API_URL + 'authenticate', userData)
+    // const response = await axios.post(apis.apiAuth_URL + 'authenticate', userData)
+    const response = await apis.api.post('authenticate', userData)
     console.log(response)
     if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
@@ -24,8 +22,7 @@ const authenticate = async (userData) => {
 
 //Update user
 const updateUser = async (userData, token) => {
-    const { username, emailAddress, firstName, lastName } = userData;
-    const response = await api.put(`users/edit`, userData)
+    const response = await apis.apiAuth.put(`users/edit`, userData)
     console.log(response)
     if (response.data && response.status === 200) {
         const updatedUser = response.data;
@@ -36,9 +33,8 @@ const updateUser = async (userData, token) => {
 }
 
 //Change password
-const changePassword = async (password, token) => {
-    const { oldPass, newPass } = password
-    const response = await api.post(`users/password/change`, password)
+const changePassword = async (password) => {
+    const response = await apis.apiAuth.post(`users/password/change`, password)
     console.log(response)
 
     return response.data

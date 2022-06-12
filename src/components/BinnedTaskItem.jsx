@@ -1,6 +1,6 @@
 import SwitchItem from "./SwitchItem";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import CheckIcon from "@heroicons/react/outline/CheckIcon";
 import ModalDelete from "./Modals/ModalDelete";
 import PaperClipIcon from "@heroicons/react/outline/PaperClipIcon";
@@ -8,9 +8,9 @@ import {
   deleteBinnedTask,
   restoreBinnedTask,
 } from "../features/tasks/taskSlice";
-import AlertModal from "./Modals/AlertModal";
+// import AlertModal from "./Modals/AlertModal";
 import PlusCircleIcon from "@heroicons/react/outline/PlusCircleIcon";
-import MinusCircleIcon from "@heroicons/react/outline/MinusCircleIcon";
+// import MinusCircleIcon from "@heroicons/react/outline/MinusCircleIcon";
 const BinnedTaskItem = ({ binnedTask }) => {
   const [completed] = useState(binnedTask.completed);
   const [pinned] = useState(binnedTask.pinned);
@@ -26,7 +26,7 @@ const BinnedTaskItem = ({ binnedTask }) => {
   //   return dispatch(trashTask(task.id));
   // };
   return (
-    <div className="relative flex-1 min-w-full md:min-w-[calc(50%-0.5rem)] 2xl:min-w-[calc(33%-0.5rem)] custom-shadow rounded-lg bg-primary dark:bg-dPrimary  text-text dark:text-dText  group">
+    <div className="relative flex-1 min-w-full max-w-full custom-shadow rounded-lg bg-primary dark:bg-dPrimary  text-text dark:text-dText  group">
       <div className="min-w-full px-4  relative group flex flex-col my-8">
         <div className="text-sm mb-4 font-light flex flex-col">
           <div className=" text-left font-bold text-lg pb-4 overflow-x-auto overflow-y-hidden custom-scroll">

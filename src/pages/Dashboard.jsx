@@ -10,7 +10,6 @@ import Error from "../components/Error";
 import TaskFilter from "../components/TaskFilter";
 import Layout from "../styles/Layout";
 import BinnedTasks from "../components/BinnedTasks";
-import Button from "../components/ButtonComponents/Button";
 import DashboardWelcome from "../components/DashboardSections/DashboardWelcome";
 function Dashboard() {
   const navigate = useNavigate();
@@ -48,12 +47,10 @@ function Dashboard() {
     dispatch(reset());
   };
 
-  const [open, setOpen] = useState(false);
-  console.log(open);
   return (
     <Layout>
-      <div className=" min-w-full flex flex-col max-w-full min-h-full">
-        <DashboardWelcome />
+      <div className="min-w-full flex flex-col max-w-full min-h-full">
+        {/* <DashboardWelcome /> */}
         <div className="flex max-w-full flex-col  md:flex-row md:gap-2">
           <div className="flex flex-col gap-2 md:flex-[1] min-w-0  rounded-lg">
             <TaskForm
@@ -63,10 +60,9 @@ function Dashboard() {
               handleError={handleError}
             />
 
-            <Button text="A" onClick={() => setOpen(!open)} />
-            <div className="relative">
+            <div>
               {!isLoading ? (
-                <BinnedTasks binnedTasks={binnedTasks} open={open} />
+                <BinnedTasks binnedTasks={binnedTasks} />
               ) : (
                 <Spinner />
               )}
